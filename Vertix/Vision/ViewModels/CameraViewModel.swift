@@ -8,13 +8,18 @@
 //  CameraViewModel.swift
 //  Vertix
 
+
 import AVFoundation
 import SwiftUI
-import Combine   
+import MediaPipeTasksVision
+
 class CameraViewModel: NSObject, ObservableObject {
 
     let session = AVCaptureSession()
     private let videoOutput = AVCaptureVideoDataOutput()
+    private let poseDetector = PoseDetector()
+
+    @Published var landmarks: [[NormalizedLandmark]] = []
 
     override init() {
         super.init()
@@ -35,7 +40,7 @@ class CameraViewModel: NSObject, ObservableObject {
         }
 
         guard let input = try? AVCaptureDeviceInput(device: device) else {
-            print("❌ Could not create camera input")
+            print("❌ Could not create input")
             return
         }
 
@@ -47,18 +52,22 @@ class CameraViewModel: NSObject, ObservableObject {
             self,
             queue: DispatchQueue(label: "videoQueue")
         )
+        videoOutput.alwaysDiscardsLateVideoFrames = true
 
         if session.canAddOutput(videoOutput) {
             session.addOutput(videoOutput)
         }
 
         videoOutput.connections.first?.isVideoMirrored = true
+
         session.commitConfiguration()
+        print("✅ Session configured")
     }
 
     func startSession() {
         DispatchQueue.global(qos: .userInitiated).async {
             self.session.startRunning()
+            print("▶️ Session running: \(self.session.isRunning)")
         }
     }
 
@@ -73,6 +82,7 @@ extension CameraViewModel: AVCaptureVideoDataOutputSampleBufferDelegate {
         didOutput sampleBuffer: CMSampleBuffer,
         from connection: AVCaptureConnection
     ) {
-        // Step 3: MediaPipe pose detection goes here
+        let timestamp = Int(Date().timeIntervalSince1970 * 1000)
+        poseDetector.detect(sampleBuffer: sampleBuffer, timestamp: timestamp)
     }
 }
