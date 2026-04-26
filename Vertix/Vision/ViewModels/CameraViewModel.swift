@@ -1,16 +1,9 @@
-//
 //  CameraViewModel.swift
 //  Vertix
-//
-//  Created by Felicia Sword on 25/04/26.
-//
-
-//  CameraViewModel.swift
-//  Vertix
-
 
 import AVFoundation
 import SwiftUI
+import Combine
 import MediaPipeTasksVision
 
 class CameraViewModel: NSObject, ObservableObject {
@@ -53,12 +46,20 @@ class CameraViewModel: NSObject, ObservableObject {
             queue: DispatchQueue(label: "videoQueue")
         )
         videoOutput.alwaysDiscardsLateVideoFrames = true
+        videoOutput.videoSettings = [
+            kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA
+        ]
 
         if session.canAddOutput(videoOutput) {
             session.addOutput(videoOutput)
         }
 
-        videoOutput.connections.first?.isVideoMirrored = true
+        if let connection = videoOutput.connection(with: .video) {
+            connection.videoOrientation = .portrait
+            connection.isVideoMirrored = true
+        }
+
+        poseDetector.delegate = self
 
         session.commitConfiguration()
         print("✅ Session configured")
@@ -83,6 +84,18 @@ extension CameraViewModel: AVCaptureVideoDataOutputSampleBufferDelegate {
         from connection: AVCaptureConnection
     ) {
         let timestamp = Int(Date().timeIntervalSince1970 * 1000)
+        print("📸 Frame received: \(timestamp)")
         poseDetector.detect(sampleBuffer: sampleBuffer, timestamp: timestamp)
+    }
+}
+
+extension CameraViewModel: PoseDetectorDelegate {
+    func poseDetector(_ detector: PoseDetector, didDetect landmarks: [[NormalizedLandmark]]) {
+        DispatchQueue.main.async {
+            self.landmarks = landmarks
+            if !landmarks.isEmpty {
+                print("✅ Detected \(landmarks.count) pose(s) with \(landmarks[0].count) landmarks")
+            }
+        }
     }
 }

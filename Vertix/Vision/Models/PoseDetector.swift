@@ -1,12 +1,6 @@
-//
 //  PoseDetector.swift
 //  Vertix
-//
-//  Created by Felicia Sword on 26/04/26.
-//
 
-//  PoseDetector.swift
-//  Vertix
 import MediaPipeTasksVision
 import CoreVideo
 
@@ -48,9 +42,21 @@ class PoseDetector: NSObject {
     }
 
     func detect(sampleBuffer: CMSampleBuffer, timestamp: Int) {
-        guard let poseLandmarker else { return }
-        guard let image = try? MPImage(sampleBuffer: sampleBuffer) else { return }
-        try? poseLandmarker.detectAsync(image: image, timestampInMilliseconds: timestamp)
+        guard let poseLandmarker else {
+            print("❌ poseLandmarker is nil")
+            return
+        }
+
+        guard let image = try? MPImage(sampleBuffer: sampleBuffer) else {
+            print("❌ Failed to create MPImage from sampleBuffer")
+            return
+        }
+
+        do {
+            try poseLandmarker.detectAsync(image: image, timestampInMilliseconds: timestamp)
+        } catch {
+            print("❌ detectAsync error: \(error)")
+        }
     }
 }
 
