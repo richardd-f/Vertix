@@ -1,0 +1,21 @@
+# CocoaPods - never commit this
+Pods/
+*.xcworkspace
+
+# Xcode
+*.xcuserstate
+xcuserdata/
+DerivedData/
+*.moved-aside
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+
+# Build
+build/
+*.o
+*.d
+
+# macOS
+.DS_Store

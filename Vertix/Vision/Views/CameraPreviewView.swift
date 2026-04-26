@@ -5,27 +5,45 @@
 //  Created by Felicia Sword on 25/04/26.
 //
 
-import SwiftUI
+//  CameraPreviewView.swift
+//  Vertix
 
-struct FocusModeView: View {
-    @StateObject private var camera = CameraViewModel()
-    var body: some View {
-        ZStack {
-//            camera fills whole background
-            CameraPreviewView(session: camera.session)
-                .ignoresSafeArea()
-            VStack {
-                Spacer()
-                Text("Camera Action")
-                    .foregroundColor(.white)
-                    .padding()
-            }
-        }
-        .onAppear {
-            camera.startSession() // start camera when screen opens
-        }
-        .onDisappear {
-            camera.stopSession() // stop camera when screen closes
-        }
+//  CameraPreviewView.swift
+//  Vertix
+
+import SwiftUI
+import AVFoundation
+
+struct CameraPreviewView: UIViewRepresentable {
+
+    let session: AVCaptureSession
+
+    func makeUIView(context: Context) -> PreviewView {
+        let view = PreviewView()
+        view.backgroundColor = .black
+        view.previewLayer.session = session
+        view.previewLayer.videoGravity = .resizeAspectFill
+        return view
+    }
+
+    func updateUIView(_ uiView: PreviewView, context: Context) {
+        // Layout is handled automatically by PreviewView
+    }
+}
+
+// Custom UIView that correctly sizes the preview layer
+class PreviewView: UIView {
+
+    override class var layerClass: AnyClass {
+        return AVCaptureVideoPreviewLayer.self
+    }
+
+    var previewLayer: AVCaptureVideoPreviewLayer {
+        return layer as! AVCaptureVideoPreviewLayer
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        previewLayer.frame = bounds  // updates every time view resizes
     }
 }
