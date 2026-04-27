@@ -14,7 +14,10 @@ class CameraViewModel: NSObject, ObservableObject {
 
     @Published var landmarks: [[NormalizedLandmark]] = []
     @Published var postureResult: PostureResult?
-    
+
+    private var badPostureStartTime: Date?
+    private let badPostureThreshold: TimeInterval = 5.0
+
     override init() {
         super.init()
         setupCamera()
@@ -38,9 +41,7 @@ class CameraViewModel: NSObject, ObservableObject {
             return
         }
 
-        if session.canAddInput(input) {
-            session.addInput(input)
-        }
+        if session.canAddInput(input) { session.addInput(input) }
 
         videoOutput.setSampleBufferDelegate(
             self,
@@ -51,17 +52,14 @@ class CameraViewModel: NSObject, ObservableObject {
             kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32BGRA
         ]
 
-        if session.canAddOutput(videoOutput) {
-            session.addOutput(videoOutput)
-        }
+        if session.canAddOutput(videoOutput) { session.addOutput(videoOutput) }
 
         if let connection = videoOutput.connection(with: .video) {
-            connection.videoOrientation = .portrait
+            connection.videoRotationAngle = 90
             connection.isVideoMirrored = true
         }
 
         poseDetector.delegate = self
-
         session.commitConfiguration()
         print("✅ Session configured")
     }
@@ -85,7 +83,6 @@ extension CameraViewModel: AVCaptureVideoDataOutputSampleBufferDelegate {
         from connection: AVCaptureConnection
     ) {
         let timestamp = Int(Date().timeIntervalSince1970 * 1000)
-        print("📸 Frame received: \(timestamp)")
         poseDetector.detect(sampleBuffer: sampleBuffer, timestamp: timestamp)
     }
 }
@@ -95,7 +92,22 @@ extension CameraViewModel: PoseDetectorDelegate {
         DispatchQueue.main.async {
             self.landmarks = landmarks
             if let firstPose = landmarks.first {
-                self.postureResult = PostureAnalyzer.analyze(landmarks: firstPose)
+                let result = PostureAnalyzer.analyze(landmarks: firstPose)
+                self.postureResult = result
+
+                if let result {
+                    if result.isGoodPosture {
+                        self.badPostureStartTime = nil
+                    } else {
+                        if self.badPostureStartTime == nil {
+                            self.badPostureStartTime = Date()
+                        } else if let start = self.badPostureStartTime,
+                                  Date().timeIntervalSince(start) >= self.badPostureThreshold {
+                            WatchConnectivityManager.shared.sendPostureAlert(feedback: result.feedback)
+                            self.badPostureStartTime = nil
+                        }
+                    }
+                }
             }
         }
     }

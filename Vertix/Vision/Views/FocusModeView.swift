@@ -67,6 +67,14 @@ struct FocusModeView: View {
                     }
                     .padding(.bottom, 40)
                 }
+                Button("Test Watch Alert") {
+                    WatchConnectivityManager.shared.sendPostureAlert(feedback: "Keep your back straight!")
+                }
+                .padding()
+                .background(Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(10)
+                .padding(.bottom, 20)
             }
         }
         .onAppear { camera.startSession() }
