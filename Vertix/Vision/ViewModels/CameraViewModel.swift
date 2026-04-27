@@ -13,7 +13,8 @@ class CameraViewModel: NSObject, ObservableObject {
     private let poseDetector = PoseDetector()
 
     @Published var landmarks: [[NormalizedLandmark]] = []
-
+    @Published var postureResult: PostureResult?
+    
     override init() {
         super.init()
         setupCamera()
@@ -93,8 +94,8 @@ extension CameraViewModel: PoseDetectorDelegate {
     func poseDetector(_ detector: PoseDetector, didDetect landmarks: [[NormalizedLandmark]]) {
         DispatchQueue.main.async {
             self.landmarks = landmarks
-            if !landmarks.isEmpty {
-                print("✅ Detected \(landmarks.count) pose(s) with \(landmarks[0].count) landmarks")
+            if let firstPose = landmarks.first {
+                self.postureResult = PostureAnalyzer.analyze(landmarks: firstPose)
             }
         }
     }

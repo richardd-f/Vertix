@@ -17,9 +17,3 @@ enum PostureStatus {
     case unknown
 }
 
-// Stores result of one posture check
-struct PostureResult {
-    let status: PostureStatus
-    let confidence: Double      // 0.0 to 1.0
-    let message: String         // e.g. "Sit up straight!"
-}
