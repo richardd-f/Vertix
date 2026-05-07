@@ -1,6 +1,8 @@
 //  PoseDetector.swift
 //  Vertix
 
+// function nya kenapa di taro di model
+
 import MediaPipeTasksVision
 import CoreVideo
 
