@@ -51,7 +51,7 @@ struct VertixInputField: View {
 }
 
 // Add this to your Color extension from Phase 2
-extension Color {
-    // The very soft warm beige used inside the text fields
-    static let vertixFieldBackground = Color(red: 248/255, green: 245/255, blue: 240/255)
-}
+// extension Color {
+//     // The very soft warm beige used inside the text fields
+//     static let vertixFieldBackground = Color(red: 248/255, green: 245/255, blue: 240/255)
+// }

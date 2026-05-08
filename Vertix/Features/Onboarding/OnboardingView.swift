@@ -115,8 +115,8 @@ struct OnboardingView: View {
 }
 
 // MARK: - Custom Colors
-extension Color {
-    // Extracted directly from your screenshots
-    static let vertixDarkGreen = Color(red: 45/255, green: 79/255, blue: 68/255)
-    static let vertixBackground = Color(red: 244/255, green: 242/255, blue: 238/255)
-}
+// extension Color {
+//     // Extracted directly from your screenshots
+//     static let vertixDarkGreen = Color(red: 45/255, green: 79/255, blue: 68/255)
+//     static let vertixBackground = Color(red: 244/255, green: 242/255, blue: 238/255)
+// }
