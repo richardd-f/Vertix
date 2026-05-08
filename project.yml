@@ -1,5 +1,11 @@
 name: Vertix
 
+# 1. Tell XcodeGen where to download the Firebase package
+packages:
+  Firebase:
+    url: https://github.com/firebase/firebase-ios-sdk
+    from: 11.0.0
+
 targets:
   Vertix:
     type: application
@@ -9,6 +15,15 @@ targets:
     # This targets your inner "Vertix" folder to grab your Views, ViewModels, and the Firebase plist
     sources:
       - path: Vertix
+
+    # 2. Tell XcodeGen to link these specific Firebase modules to your app
+    dependencies:
+      - package: Firebase
+        product: FirebaseCore
+      - package: Firebase
+        product: FirebaseAuth
+      - package: Firebase
+        product: FirebaseDatabase
 
     settings:
       base:
