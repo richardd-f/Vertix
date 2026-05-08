@@ -33,6 +33,23 @@ class AuthManager {
             // 2. Fetch the user's custom profile from Realtime DB
             await fetchUserData(uid: result.user.uid)
             
+            // 3. If fetchUserData failed to find a profile, create one from Auth data
+            //    This handles the "partial registration" case where Auth succeeded but DB write failed previously
+            if self.currentUser == nil {
+                let fallbackName = result.user.displayName ?? "User"
+                let fallbackEmail = result.user.email ?? email
+                
+                let userData: [String: Any] = [
+                    "id": result.user.uid,
+                    "name": fallbackName,
+                    "email": fallbackEmail
+                ]
+                
+                // Attempt to repair the missing DB entry
+                try? await dbRef.child("users").child(result.user.uid).setValue(userData)
+                self.currentUser = User(id: result.user.uid, name: fallbackName, email: fallbackEmail)
+            }
+            
             isAuthenticated = true
         } catch {
             errorMessage = error.localizedDescription
@@ -59,7 +76,16 @@ class AuthManager {
             ]
             
             // 3. Save it to Realtime Database under the path: users/uid/...
-            try await dbRef.child("users").child(uid).setValue(userData)
+            //    If this fails, delete the Auth user to prevent a "partial registration"
+            do {
+                try await dbRef.child("users").child(uid).setValue(userData)
+            } catch {
+                // Rollback: delete the Auth account so the user can retry cleanly
+                try? await result.user.delete()
+                errorMessage = "Account created but failed to save profile. Please try again."
+                isLoading = false
+                return
+            }
             
             // 4. Update local app state
             self.currentUser = User(id: uid, name: name, email: email)
@@ -79,11 +105,14 @@ class AuthManager {
             let snapshot = try await dbRef.child("users").child(uid).getData()
             
             // Parse the dictionary back into our Swift User struct
-            if let dict = snapshot.value as? [String: Any],
-               let name = dict["name"] as? String,
-               let email = dict["email"] as? String {
+            // Use fallback values so a missing field doesn't leave currentUser nil
+            if let dict = snapshot.value as? [String: Any] {
+                let name = dict["name"] as? String ?? "User"
+                let email = dict["email"] as? String ?? ""
                 self.currentUser = User(id: uid, name: name, email: email)
             }
+            // If snapshot.value is not a dictionary, currentUser stays nil
+            // The caller (login) handles this case
         } catch {
             print("Error fetching user data from DB: \(error)")
         }

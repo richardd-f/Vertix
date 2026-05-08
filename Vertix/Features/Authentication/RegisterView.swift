@@ -117,5 +117,14 @@ struct RegisterView: View {
                 .padding(.bottom, 20)
             }
         }
+        // MARK: - Error Alert
+        .alert("Registration Failed", isPresented: Binding<Bool>(
+            get: { authManager.errorMessage != nil },
+            set: { if !$0 { authManager.errorMessage = nil } }
+        )) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text(authManager.errorMessage ?? "")
+        }
     }
 }

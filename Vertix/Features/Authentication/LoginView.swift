@@ -12,6 +12,7 @@ struct LoginView: View {
             Color.vertixBackground.ignoresSafeArea()
             
             VStack(spacing: 0) {
+
                 // MARK: - Logo Area
                 VStack(spacing: 12) {
                     ZStack {
@@ -118,6 +119,15 @@ struct LoginView: View {
                 }
                 .padding(.bottom, 20)
             }
+        }
+        // MARK: - Error Alert
+        .alert("Login Failed", isPresented: Binding<Bool>(
+            get: { authManager.errorMessage != nil },
+            set: { if !$0 { authManager.errorMessage = nil } }
+        )) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text(authManager.errorMessage ?? "")
         }
     }
 }
