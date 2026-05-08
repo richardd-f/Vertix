@@ -115,7 +115,7 @@ struct HistoryView: View {
                                     )
                                     .foregroundStyle(Color.vertixDarkGreen)
                                     .lineStyle(StrokeStyle(lineWidth: 3))
-                                    .symbol(Circle().strokeBorder(Color.white, lineWidth: 2))
+                                    .symbol(Circle())
                                     .symbolSize(60)
                                     
                                     AreaMark(

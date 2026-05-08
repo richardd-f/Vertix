@@ -11,7 +11,9 @@ class AuthManager {
     var errorMessage: String? = nil // To handle and display Firebase errors
     
     // Reference to the root of your Realtime Database
-    private let dbRef = Database.database().reference()
+    private var dbRef: DatabaseReference {
+        Database.database().reference()
+    }
     
     init() {
         // Automatically log the user in if Firebase remembers their session
