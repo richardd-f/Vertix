@@ -1,6 +1,8 @@
-platform :ios, '18.0'
+platform :ios, '16.0'
+use_frameworks!
 
 target 'Vertix' do
-  use_frameworks!
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
   pod 'MediaPipeTasksVision'
 end

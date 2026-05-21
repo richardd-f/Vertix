@@ -7,14 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FD9C682E00B72A3C6D216D08 /* Pods_Vertix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15856073932A8EA4E23958B1 /* Pods_Vertix.framework */; };
+		B658340D5D68BC8E8C311B6C /* Pods_Vertix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EF3CC27153D9321E6E3737B /* Pods_Vertix.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		15856073932A8EA4E23958B1 /* Pods_Vertix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vertix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		22F8C9B1BEA678DF3A587E8E /* Pods-Vertix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vertix.release.xcconfig"; path = "Target Support Files/Pods-Vertix/Pods-Vertix.release.xcconfig"; sourceTree = "<group>"; };
 		3F7F1AF22F90BEAA00E435E6 /* Vertix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vertix.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		CBC0B37476CD592065AFFF1E /* Pods-Vertix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vertix.debug.xcconfig"; path = "Target Support Files/Pods-Vertix/Pods-Vertix.debug.xcconfig"; sourceTree = "<group>"; };
+		773C48C2473B4AF1A9F24F41 /* Pods-Vertix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vertix.debug.xcconfig"; path = "Target Support Files/Pods-Vertix/Pods-Vertix.debug.xcconfig"; sourceTree = "<group>"; };
+		7EF3CC27153D9321E6E3737B /* Pods_Vertix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vertix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A42FB93FEBDBBBEE05609158 /* Pods-Vertix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vertix.release.xcconfig"; path = "Target Support Files/Pods-Vertix/Pods-Vertix.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -30,20 +32,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD9C682E00B72A3C6D216D08 /* Pods_Vertix.framework in Frameworks */,
+				B658340D5D68BC8E8C311B6C /* Pods_Vertix.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1BD258F7D154A0311D739739 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7EF3CC27153D9321E6E3737B /* Pods_Vertix.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3F7F1AE92F90BEAA00E435E6 = {
 			isa = PBXGroup;
 			children = (
 				3F7F1AF42F90BEAA00E435E6 /* Vertix */,
 				3F7F1AF32F90BEAA00E435E6 /* Products */,
-				6B60C7A1B196DA83D9A558FE /* Pods */,
-				F5DD504D33E88553CBD4FEAC /* Frameworks */,
+				ACB3EBF7EEAF12297919F950 /* Pods */,
+				1BD258F7D154A0311D739739 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,21 +65,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6B60C7A1B196DA83D9A558FE /* Pods */ = {
+		ACB3EBF7EEAF12297919F950 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				CBC0B37476CD592065AFFF1E /* Pods-Vertix.debug.xcconfig */,
-				22F8C9B1BEA678DF3A587E8E /* Pods-Vertix.release.xcconfig */,
+				773C48C2473B4AF1A9F24F41 /* Pods-Vertix.debug.xcconfig */,
+				A42FB93FEBDBBBEE05609158 /* Pods-Vertix.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		F5DD504D33E88553CBD4FEAC /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				15856073932A8EA4E23958B1 /* Pods_Vertix.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -79,10 +81,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3F7F1AFD2F90BEAB00E435E6 /* Build configuration list for PBXNativeTarget "Vertix" */;
 			buildPhases = (
-				F0801888C8413C9E633C018F /* [CP] Check Pods Manifest.lock */,
+				115D56E993E00FDF37EA6552 /* [CP] Check Pods Manifest.lock */,
 				3F7F1AEE2F90BEAA00E435E6 /* Sources */,
 				3F7F1AEF2F90BEAA00E435E6 /* Frameworks */,
 				3F7F1AF02F90BEAA00E435E6 /* Resources */,
+				B372883EC400DDBAC2870C19 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -141,7 +144,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		F0801888C8413C9E633C018F /* [CP] Check Pods Manifest.lock */ = {
+		115D56E993E00FDF37EA6552 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -161,6 +164,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B372883EC400DDBAC2870C19 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Vertix/Pods-Vertix-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Vertix/Pods-Vertix-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Vertix/Pods-Vertix-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -214,7 +238,7 @@
 				DEVELOPMENT_TEAM = U687259YQU;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -279,7 +303,7 @@
 				DEVELOPMENT_TEAM = U687259YQU;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -301,7 +325,7 @@
 		};
 		3F7F1AFE2F90BEAB00E435E6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CBC0B37476CD592065AFFF1E /* Pods-Vertix.debug.xcconfig */;
+			baseConfigurationReference = 773C48C2473B4AF1A9F24F41 /* Pods-Vertix.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -335,7 +359,7 @@
 		};
 		3F7F1AFF2F90BEAB00E435E6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 22F8C9B1BEA678DF3A587E8E /* Pods-Vertix.release.xcconfig */;
+			baseConfigurationReference = A42FB93FEBDBBBEE05609158 /* Pods-Vertix.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
