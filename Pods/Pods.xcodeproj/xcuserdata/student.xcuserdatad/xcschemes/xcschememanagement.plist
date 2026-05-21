@@ -123,6 +123,16 @@
 			<key>orderHint</key>
 			<integer>13</integer>
 		</dict>
+		<key>MediaPipeTasksCommon.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MediaPipeTasksVision.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Vertix.xcscheme</key>
 		<dict>
 			<key>isShown</key>

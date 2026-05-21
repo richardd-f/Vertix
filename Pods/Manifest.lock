@@ -59,11 +59,15 @@ PODS:
     - GoogleUtilities/Privacy
   - GTMSessionFetcher/Core (5.3.0)
   - leveldb-library (1.22.6)
+  - MediaPipeTasksCommon (0.10.14)
+  - MediaPipeTasksVision (0.10.14):
+    - MediaPipeTasksCommon (= 0.10.14)
   - RecaptchaInterop (101.0.0)
 
 DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Database
+  - MediaPipeTasksVision
 
 SPEC REPOS:
   trunk:
@@ -79,6 +83,8 @@ SPEC REPOS:
     - GoogleUtilities
     - GTMSessionFetcher
     - leveldb-library
+    - MediaPipeTasksCommon
+    - MediaPipeTasksVision
     - RecaptchaInterop
 
 SPEC CHECKSUMS:
@@ -94,8 +100,10 @@ SPEC CHECKSUMS:
   GoogleUtilities: 00c88b9a86066ef77f0da2fab05f65d7768ed8e1
   GTMSessionFetcher: 127211aeec0b1e904fc49f4f6f895dcc535b0ecf
   leveldb-library: cc8b8f8e013647a295ad3f8cd2ddf49a6f19be19
+  MediaPipeTasksCommon: 5660099c2dd81f7ac4a7a5f51055785ead8e0e64
+  MediaPipeTasksVision: 0fac0db83c0b45e4d7811a9227be5e571403cf83
   RecaptchaInterop: 11e0b637842dfb48308d242afc3f448062325aba
 
-PODFILE CHECKSUM: 7282d6b40ac72f30f79c424ff73a1c7e28e4f774
+PODFILE CHECKSUM: 431ea6fe93b92331a3831343d2cd2ac7a03f0fa6
 
 COCOAPODS: 1.16.2

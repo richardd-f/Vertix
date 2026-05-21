@@ -11,8 +11,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		15856073932A8EA4E23958B1 /* Pods_Vertix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vertix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		22F8C9B1BEA678DF3A587E8E /* Pods-Vertix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vertix.release.xcconfig"; path = "Target Support Files/Pods-Vertix/Pods-Vertix.release.xcconfig"; sourceTree = "<group>"; };
 		3F7F1AF22F90BEAA00E435E6 /* Vertix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vertix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		773C48C2473B4AF1A9F24F41 /* Pods-Vertix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vertix.debug.xcconfig"; path = "Target Support Files/Pods-Vertix/Pods-Vertix.debug.xcconfig"; sourceTree = "<group>"; };
 		7EF3CC27153D9321E6E3737B /* Pods_Vertix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vertix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -22,6 +20,8 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		3F7F1AF42F90BEAA00E435E6 /* Vertix */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Vertix;
 			sourceTree = "<group>";
 		};
@@ -174,13 +174,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Vertix/Pods-Vertix-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Vertix/Pods-Vertix-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
