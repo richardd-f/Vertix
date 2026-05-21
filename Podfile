@@ -4,4 +4,5 @@ use_frameworks!
 target 'Vertix' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
+  pod 'MediaPipeTasksVision'
 end

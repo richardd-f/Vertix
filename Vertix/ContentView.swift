@@ -5,6 +5,9 @@
 //  Created by student on 16/04/26.
 //
 
+//  ContentView.swift
+//  Vertix
+
 import SwiftUI
 
 struct ContentView: View {
@@ -15,6 +18,7 @@ struct ContentView: View {
     @Environment(AuthManager.self) private var authManager
     
     var body: some View {
+        // FocusModeView()
         Group {
             if !hasSeenOnboarding {
                 // 1. Show intro if it's their first time
@@ -31,8 +35,4 @@ struct ContentView: View {
         .animation(.easeInOut, value: hasSeenOnboarding)
         .animation(.easeInOut, value: authManager.isAuthenticated)
     }
-}
-
-#Preview {
-    ContentView()
 }
