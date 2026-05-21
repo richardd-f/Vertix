@@ -239,8 +239,9 @@ refactor: extract session timer into SessionManager
 
 | Name | Role |
 |------|------|
-| Felix | iOS Developer — Auth, Dashboard, Firebase |
-| *(teammate)* | iOS Developer — AI Posture Detection |
+| Felicia | iOS Developer — AI Posture Detection |
+| Felix | iOS Developer — Firebase, History Analytics |
+| Clarice | iOS & WatchOS Developer — Pomodoro Session |
 
 ---
 
