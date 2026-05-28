@@ -5,4 +5,8 @@ target 'Vertix' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'MediaPipeTasksVision'
+
+  target 'VertixTests' do
+    inherit! :search_paths
+  end
 end
