@@ -1,9 +1,18 @@
 import SwiftUI
 import Combine
+import FirebaseAuth
 
 struct FocusModeView: View {
     @Environment(\.dismiss) private var dismiss
     @StateObject private var camera = CameraViewModel()
+
+    @State private var sessionManager = SessionManager()
+
+    // Pomodoro settings — snapshotted into Firebase when session ends
+    @State private var focusDuration: Int = 25
+    @State private var shortBreakDuration: Int = 5
+    @State private var longBreakDuration: Int = 15
+    @State private var totalCycles: Int = 1
 
     @State private var timeRemaining: Int = 25 * 60
     @State private var isTimerRunning: Bool = true
@@ -63,13 +72,39 @@ struct FocusModeView: View {
         .onReceive(tickTimer) { _ in
             guard isTimerRunning, timeRemaining > 0 else { return }
             timeRemaining -= 1
-            if timeRemaining == 0 { isTimerRunning = false }
+            // Sample posture once per minute
+            if elapsedSeconds > 0 && elapsedSeconds % 60 == 0 {
+                let isGood = camera.postureResult?.isGoodPosture ?? false
+                sessionManager.recordMinuteSample(isGood: isGood)
+            }
+            if timeRemaining == 0 {
+                isTimerRunning = false
+                triggerSessionSave(elapsed: elapsedSeconds)
+            }
         }
         .alert("End Session?", isPresented: $showSaveConfirmation) {
-            Button("End", role: .destructive) { dismiss() }
+            Button("End", role: .destructive) {
+                triggerSessionSave(elapsed: elapsedSeconds)
+                dismiss()
+            }
             Button("Cancel", role: .cancel) {}
         } message: {
             Text("You've completed \(formattedElapsed) of posture monitoring.")
+        }
+    }
+
+    // MARK: Session save
+
+    private func triggerSessionSave(elapsed: Int) {
+        guard let uid = Auth.auth().currentUser?.uid, elapsed > 0 else { return }
+        let settings = PomodoroSettings(
+            focusDuration: focusDuration,
+            shortBreakDuration: shortBreakDuration,
+            longBreakDuration: longBreakDuration,
+            totalCycles: totalCycles
+        )
+        Task {
+            await sessionManager.saveSession(uid: uid, elapsedSeconds: elapsed, pomodoroSettings: settings)
         }
     }
 
