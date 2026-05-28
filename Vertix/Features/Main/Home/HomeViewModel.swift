@@ -5,6 +5,7 @@ import Observation
 class HomeViewModel {
     var userName: String = ""
     var averageScore: Int = 0
+    var currentStreak: Int = 0
     var lastSessionDuration: String = ""
     var lastSessionScore: Int = 0
     var lastSessionDateKey: String = ""
@@ -51,6 +52,7 @@ class HomeViewModel {
         do {
             let dict = try await db.getData(path: "users/\(uid)")
             userName = dict["name"] as? String ?? ""
+            currentStreak = dict["currentStreak"] as? Int ?? 0
         } catch {
             print("HomeViewModel: failed to fetch userName — \(error)")
         }
