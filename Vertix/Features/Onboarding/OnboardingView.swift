@@ -47,7 +47,7 @@ struct OnboardingView: View {
     var body: some View {
         ZStack {
             // Background color matching the mockup
-            Color(hex: "F2F0EB")
+            Color("F2F0EB")
                 .ignoresSafeArea()
             
             VStack(spacing: 0) {
@@ -69,7 +69,7 @@ struct OnboardingView: View {
                     HStack(spacing: 8) {
                         ForEach(0..<pages.count, id: \.self) { index in
                             Capsule()
-                                .fill(index == currentPage ? Color(hex: "2D5A3D") : Color(hex: "2D5A3D").opacity(0.25))
+                                .fill(index == currentPage ? Color("2D5A3D") : Color("2D5A3D").opacity(0.25))
                                 .frame(width: index == currentPage ? 24 : 8, height: 8)
                                 .animation(.spring(), value: currentPage)
                         }
@@ -86,7 +86,7 @@ struct OnboardingView: View {
                         }
                         .frame(maxWidth: .infinity)
                         .frame(height: 56)
-                        .background(Color(hex: "2D5A3D"))
+                        .background(Color("2D5A3D"))
                         .cornerRadius(16)
                     }
                     .padding(.horizontal, 24)
@@ -127,14 +127,14 @@ struct OnboardingPageView: View {
                         HStack(spacing: 6) {
                             Image(systemName: "camera.fill")
                                 .font(.system(size: 10))
-                                .foregroundColor(Color(hex: "2D5A3D"))
+                                .foregroundColor(Color("2D5A3D"))
                             Text(tag)
                                 .font(.system(size: 11, weight: .semibold))
-                                .foregroundColor(Color(hex: "2D5A3D"))
+                                .foregroundColor(Color("2D5A3D"))
                         }
                         .padding(.horizontal, 12)
                         .padding(.vertical, 6)
-                        .background(Color(hex: "2D5A3D").opacity(0.1))
+                        .background(Color("2D5A3D").opacity(0.1))
                         .cornerRadius(20)
                         .shadow(color: .black.opacity(0.08), radius: 8, x: 0, y: 4)
                     }
@@ -153,12 +153,12 @@ struct OnboardingPageView: View {
             VStack(spacing: 12) {
                 Text(page.title)
                     .font(.system(size: 28, weight: .bold))
-                    .foregroundColor(Color(hex: "1A1A1A"))
+                    .foregroundColor(Color("1A1A1A"))
                     .multilineTextAlignment(.center)
                 
                 Text(page.description)
                     .font(.system(size: 15))
-                    .foregroundColor(Color(hex: "6B6B6B"))
+                    .foregroundColor(Color("6B6B6B"))
                     .multilineTextAlignment(.center)
                     .lineSpacing(4)
                     .padding(.horizontal, 32)
