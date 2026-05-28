@@ -1,6 +1,5 @@
 import Foundation
 import Observation
-import FirebaseDatabase
 
 @Observable
 class HomeViewModel {
@@ -23,10 +22,7 @@ class HomeViewModel {
 
     var lastSessionLabel: String {
         guard hasLastSession else { return "" }
-        let fmt = DateFormatter()
-        fmt.dateFormat = "yyyy-MM-dd"
-        fmt.locale = Locale(identifier: "en_US_POSIX")
-        guard let date = fmt.date(from: lastSessionDateKey) else { return lastSessionDateKey }
+        guard let date = SessionManager.dateFromKey(lastSessionDateKey) else { return lastSessionDateKey }
         if Calendar.current.isDateInToday(date)     { return "Today" }
         if Calendar.current.isDateInYesterday(date) { return "Yesterday" }
         let display = DateFormatter()
@@ -34,7 +30,11 @@ class HomeViewModel {
         return display.string(from: date)
     }
 
-    private let dbRef = Database.database().reference()
+    private let db: DatabaseServiceProtocol
+
+    init(db: DatabaseServiceProtocol = FirebaseDatabaseService()) {
+        self.db = db
+    }
 
     @MainActor
     func load(uid: String) async {
@@ -44,11 +44,13 @@ class HomeViewModel {
         await fetchLastSession(uid: uid)
     }
 
+    // MARK: - Private
+
     @MainActor
     private func fetchUserName(uid: String) async {
         do {
-            let snap = try await dbRef.child("users").child(uid).child("name").getData()
-            userName = snap.value as? String ?? ""
+            let dict = try await db.getData(path: "users/\(uid)")
+            userName = dict["name"] as? String ?? ""
         } catch {
             print("HomeViewModel: failed to fetch userName — \(error)")
         }
@@ -56,12 +58,10 @@ class HomeViewModel {
 
     @MainActor
     private func fetchTodayScore(uid: String) async {
-        let today = dateKey(for: Date())
+        let today = SessionManager.dateKey(for: Date())
         do {
-            let snap = try await dbRef.child("dailyScores").child(uid).child(today).getData()
-            if let dict = snap.value as? [String: Any] {
-                averageScore = dict["averageScore"] as? Int ?? 0
-            }
+            let dict = try await db.getData(path: "dailyScores/\(uid)/\(today)")
+            averageScore = dict["averageScore"] as? Int ?? 0
         } catch {
             print("HomeViewModel: failed to fetch today score — \(error)")
         }
@@ -70,28 +70,16 @@ class HomeViewModel {
     @MainActor
     private func fetchLastSession(uid: String) async {
         do {
-            let snap = try await dbRef.child("sessions").child(uid)
-                .queryOrdered(byChild: "startedAt")
-                .queryLimited(toLast: 1)
-                .getData()
-            guard let children = snap.children.allObjects as? [DataSnapshot],
-                  let last = children.first,
-                  let dict = last.value as? [String: Any] else { return }
+            guard let dict = try await db.getLastChild(
+                path: "sessions/\(uid)", orderedBy: "startedAt"
+            ) else { return }
             let seconds = dict["durationSeconds"] as? Int ?? 0
-            let mins = max(1, seconds / 60)
-            lastSessionDuration = "\(mins)m"
-            lastSessionScore = dict["postureScore"] as? Int ?? 0
-            lastSessionDateKey = dict["dateKey"] as? String ?? ""
-            hasLastSession = true
+            lastSessionDuration = "\(max(1, seconds / 60))m"
+            lastSessionScore    = dict["postureScore"] as? Int ?? 0
+            lastSessionDateKey  = dict["dateKey"]      as? String ?? ""
+            hasLastSession      = true
         } catch {
             print("HomeViewModel: failed to fetch last session — \(error)")
         }
-    }
-
-    private func dateKey(for date: Date) -> String {
-        let fmt = DateFormatter()
-        fmt.dateFormat = "yyyy-MM-dd"
-        fmt.locale = Locale(identifier: "en_US_POSIX")
-        return fmt.string(from: date)
     }
 }

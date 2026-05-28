@@ -1,7 +1,6 @@
 import Foundation
 import Observation
 import FirebaseAuth
-import FirebaseDatabase
 
 @Observable
 class SessionManager {
@@ -10,7 +9,11 @@ class SessionManager {
     private(set) var isSaving: Bool = false
 
     private let startedAt: Date = Date()
-    private let dbRef: DatabaseReference = Database.database().reference()
+    private let db: DatabaseServiceProtocol
+
+    init(db: DatabaseServiceProtocol = FirebaseDatabaseService()) {
+        self.db = db
+    }
 
     func recordMinuteSample(isGood: Bool) {
         if isGood { goodCount += 1 } else { badCount += 1 }
@@ -26,7 +29,7 @@ class SessionManager {
         defer { isSaving = false }
 
         let endedAt = Date()
-        let dateKey = Self.dateKey(for: endedAt)
+        let dateKey = SessionManager.dateKey(for: endedAt)
 
         let record = SessionRecord(
             startedAt: startedAt,
@@ -44,55 +47,30 @@ class SessionManager {
 
         do {
             let updates = try await buildAtomicUpdates(uid: uid, record: record, dateKey: dateKey)
-            try await dbRef.updateChildValues(updates)
+            try await db.updateValues(updates)
             print("✅ Session saved to Firebase")
         } catch {
             print("❌ Failed to save session: \(error)")
         }
     }
 
-    // MARK: - Private
+    // MARK: - Internal helpers (internal so tests can verify them directly)
 
-    private func buildAtomicUpdates(
-        uid: String,
-        record: SessionRecord,
-        dateKey: String
-    ) async throws -> [String: Any] {
-        // Generate session push ID
-        let sessionKey = dbRef.child("sessions").child(uid).childByAutoId().key ?? UUID().uuidString
-
-        // Read existing user stats for streak calculation
-        let userSnap = try await dbRef.child("users").child(uid).getData()
-        let userDict = userSnap.value as? [String: Any] ?? [:]
-        let prevTotal = userDict["totalTrackedSeconds"] as? Int ?? 0
-        let prevStreak = userDict["currentStreak"] as? Int ?? 0
-        let prevLongest = userDict["longestStreak"] as? Int ?? 0
-        let prevLastActive = userDict["lastActiveDate"] as? String ?? ""
-
-        let newTotal = prevTotal + record.durationSeconds
-        let (newStreak, newLongest) = Self.calculateStreak(
-            prevLastActive: prevLastActive,
-            prevStreak: prevStreak,
-            prevLongest: prevLongest,
-            today: dateKey
-        )
-
-        // Read existing daily scores to merge
-        let dailySnap = try await dbRef.child("dailyScores").child(uid).child(dateKey).getData()
-        let dailyDict = dailySnap.value as? [String: Any] ?? [:]
-        let mergedDaily = Self.mergeDailyScores(existing: dailyDict, record: record)
-
-        return [
-            "sessions/\(uid)/\(sessionKey)": record.toFirebaseDict(),
-            "dailyScores/\(uid)/\(dateKey)": mergedDaily,
-            "users/\(uid)/totalTrackedSeconds": newTotal,
-            "users/\(uid)/currentStreak": newStreak,
-            "users/\(uid)/longestStreak": newLongest,
-            "users/\(uid)/lastActiveDate": dateKey
-        ]
+    static func dateKey(for date: Date) -> String {
+        let fmt = DateFormatter()
+        fmt.dateFormat = "yyyy-MM-dd"
+        fmt.locale = Locale(identifier: "en_US_POSIX")
+        return fmt.string(from: date)
     }
 
-    private static func calculateStreak(
+    static func dateFromKey(_ key: String) -> Date? {
+        let fmt = DateFormatter()
+        fmt.dateFormat = "yyyy-MM-dd"
+        fmt.locale = Locale(identifier: "en_US_POSIX")
+        return fmt.date(from: key)
+    }
+
+    static func calculateStreak(
         prevLastActive: String,
         prevStreak: Int,
         prevLongest: Int,
@@ -109,46 +87,68 @@ class SessionManager {
         return (streak, max(prevLongest, streak))
     }
 
-    private static func isYesterday(_ dateKey: String, relativeTo today: String) -> Bool {
+    static func isYesterday(_ dateKey: String, relativeTo today: String) -> Bool {
         guard let date = dateFromKey(dateKey), let todayDate = dateFromKey(today) else { return false }
         let diff = Calendar.current.dateComponents([.day], from: date, to: todayDate).day ?? 0
         return diff == 1
     }
 
-    private static func mergeDailyScores(existing: [String: Any], record: SessionRecord) -> [String: Any] {
+    static func mergeDailyScores(existing: [String: Any], record: SessionRecord) -> [String: Any] {
         let prevSessions = existing["totalSessions"] as? Int ?? 0
-        let prevSeconds = existing["totalSeconds"] as? Int ?? 0
-        let prevGood = existing["totalGoodCount"] as? Int ?? 0
-        let prevBad = existing["totalBadCount"] as? Int ?? 0
+        let prevSeconds  = existing["totalSeconds"]  as? Int ?? 0
+        let prevGood     = existing["totalGoodCount"] as? Int ?? 0
+        let prevBad      = existing["totalBadCount"]  as? Int ?? 0
 
-        let newSessions = prevSessions + 1
-        let newSeconds = prevSeconds + record.durationSeconds
-        let newGood = prevGood + record.goodCount
-        let newBad = prevBad + record.badCount
+        let newSessions  = prevSessions + 1
+        let newSeconds   = prevSeconds + record.durationSeconds
+        let newGood      = prevGood + record.goodCount
+        let newBad       = prevBad + record.badCount
         let totalSamples = newGood + newBad
-        let avgScore = totalSamples > 0 ? newGood * 100 / totalSamples : 0
+        let avgScore     = totalSamples > 0 ? newGood * 100 / totalSamples : 0
 
         return [
             "totalSessions": newSessions,
-            "totalSeconds": newSeconds,
+            "totalSeconds":  newSeconds,
             "totalGoodCount": newGood,
-            "totalBadCount": newBad,
-            "averageScore": avgScore,
-            "isActive": true
+            "totalBadCount":  newBad,
+            "averageScore":   avgScore,
+            "isActive":       true
         ]
     }
 
-    private static func dateKey(for date: Date) -> String {
-        let fmt = DateFormatter()
-        fmt.dateFormat = "yyyy-MM-dd"
-        fmt.locale = Locale(identifier: "en_US_POSIX")
-        return fmt.string(from: date)
-    }
+    // MARK: - Private
 
-    private static func dateFromKey(_ key: String) -> Date? {
-        let fmt = DateFormatter()
-        fmt.dateFormat = "yyyy-MM-dd"
-        fmt.locale = Locale(identifier: "en_US_POSIX")
-        return fmt.date(from: key)
+    private func buildAtomicUpdates(
+        uid: String,
+        record: SessionRecord,
+        dateKey: String
+    ) async throws -> [String: Any] {
+        let sessionKey = UUID().uuidString
+
+        let userDict   = try await db.getData(path: "users/\(uid)")
+        let prevTotal  = userDict["totalTrackedSeconds"] as? Int ?? 0
+        let prevStreak = userDict["currentStreak"]       as? Int ?? 0
+        let prevLongest = userDict["longestStreak"]      as? Int ?? 0
+        let prevLastActive = userDict["lastActiveDate"]  as? String ?? ""
+
+        let newTotal = prevTotal + record.durationSeconds
+        let (newStreak, newLongest) = SessionManager.calculateStreak(
+            prevLastActive: prevLastActive,
+            prevStreak: prevStreak,
+            prevLongest: prevLongest,
+            today: dateKey
+        )
+
+        let existingDaily = try await db.getData(path: "dailyScores/\(uid)/\(dateKey)")
+        let mergedDaily   = SessionManager.mergeDailyScores(existing: existingDaily, record: record)
+
+        return [
+            "sessions/\(uid)/\(sessionKey)": record.toFirebaseDict(),
+            "dailyScores/\(uid)/\(dateKey)": mergedDaily,
+            "users/\(uid)/totalTrackedSeconds": newTotal,
+            "users/\(uid)/currentStreak":       newStreak,
+            "users/\(uid)/longestStreak":       newLongest,
+            "users/\(uid)/lastActiveDate":      dateKey
+        ]
     }
 }

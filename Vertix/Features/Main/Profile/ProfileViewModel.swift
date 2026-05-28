@@ -1,6 +1,5 @@
 import Foundation
 import Observation
-import FirebaseDatabase
 
 @Observable
 class ProfileViewModel {
@@ -9,7 +8,11 @@ class ProfileViewModel {
     var avgScore: Int = 0
     var trackedHours: Int = 0
 
-    private let dbRef = Database.database().reference()
+    private let db: DatabaseServiceProtocol
+
+    init(db: DatabaseServiceProtocol = FirebaseDatabaseService()) {
+        self.db = db
+    }
 
     @MainActor
     func load(uid: String) async {
@@ -18,12 +21,13 @@ class ProfileViewModel {
         await fetchAvgScore(uid: uid)
     }
 
+    // MARK: - Private
+
     @MainActor
     private func fetchUserStats(uid: String) async {
         do {
-            let snap = try await dbRef.child("users").child(uid).getData()
-            guard let dict = snap.value as? [String: Any] else { return }
-            name = dict["name"] as? String ?? ""
+            let dict = try await db.getData(path: "users/\(uid)")
+            name  = dict["name"]  as? String ?? ""
             email = dict["email"] as? String ?? ""
             let totalSeconds = dict["totalTrackedSeconds"] as? Int ?? 0
             trackedHours = totalSeconds / 3600
@@ -35,15 +39,14 @@ class ProfileViewModel {
     @MainActor
     private func fetchAvgScore(uid: String) async {
         do {
-            let snap = try await dbRef.child("dailyScores").child(uid).getData()
+            let children = try await db.getAllChildren(path: "dailyScores/\(uid)")
             var total = 0
             var count = 0
-            for child in snap.children {
-                guard let entry = child as? DataSnapshot,
-                      let dict = entry.value as? [String: Any],
-                      let score = dict["averageScore"] as? Int else { continue }
-                total += score
-                count += 1
+            for dict in children.values {
+                if let score = dict["averageScore"] as? Int {
+                    total += score
+                    count += 1
+                }
             }
             avgScore = count > 0 ? total / count : 0
         } catch {
