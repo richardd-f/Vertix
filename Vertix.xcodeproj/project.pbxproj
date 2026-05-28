@@ -35,11 +35,15 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		3F0320142FC7F15F00A28F4E /* VertixTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = VertixTests;
 			sourceTree = "<group>";
 		};
 		3F7F1AF42F90BEAA00E435E6 /* Vertix */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Vertix;
 			sourceTree = "<group>";
 		};
@@ -239,13 +243,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Vertix/Pods-Vertix-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Vertix/Pods-Vertix-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
