@@ -73,7 +73,6 @@ struct ProfileView: View {
                         // MARK: Settings Lists
                         SettingsGroup(title: "PERSONAL INFO") {
                             SettingsRow(icon: "envelope.fill", title: "Email", subtitle: viewModel.email)
-                            SettingsRow(icon: "phone.fill", title: "Phone", subtitle: viewModel.phone)
                         }
                         
                         SettingsGroup(title: "ACCOUNT SECURITY") {
@@ -104,6 +103,9 @@ struct ProfileView: View {
                     }
                 }
             }
+        }
+        .task {
+            await viewModel.load(uid: authManager.currentUser?.id ?? "")
         }
     }
 }
