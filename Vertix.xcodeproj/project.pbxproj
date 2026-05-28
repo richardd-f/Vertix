@@ -10,7 +10,18 @@
 		B658340D5D68BC8E8C311B6C /* Pods_Vertix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EF3CC27153D9321E6E3737B /* Pods_Vertix.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		3F0320172FC7F15F00A28F4E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F7F1AEA2F90BEAA00E435E6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3F7F1AF12F90BEAA00E435E6;
+			remoteInfo = Vertix;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		3F0320132FC7F15F00A28F4E /* VertixTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VertixTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F7F1AF22F90BEAA00E435E6 /* Vertix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vertix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		773C48C2473B4AF1A9F24F41 /* Pods-Vertix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vertix.debug.xcconfig"; path = "Target Support Files/Pods-Vertix/Pods-Vertix.debug.xcconfig"; sourceTree = "<group>"; };
 		7EF3CC27153D9321E6E3737B /* Pods_Vertix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vertix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -18,16 +29,26 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		3F0320142FC7F15F00A28F4E /* VertixTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = VertixTests;
+			sourceTree = "<group>";
+		};
 		3F7F1AF42F90BEAA00E435E6 /* Vertix */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = Vertix;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3F0320102FC7F15F00A28F4E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3F7F1AEF2F90BEAA00E435E6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -51,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				3F7F1AF42F90BEAA00E435E6 /* Vertix */,
+				3F0320142FC7F15F00A28F4E /* VertixTests */,
 				3F7F1AF32F90BEAA00E435E6 /* Products */,
 				ACB3EBF7EEAF12297919F950 /* Pods */,
 				1BD258F7D154A0311D739739 /* Frameworks */,
@@ -61,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				3F7F1AF22F90BEAA00E435E6 /* Vertix.app */,
+				3F0320132FC7F15F00A28F4E /* VertixTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -77,6 +100,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3F0320122FC7F15F00A28F4E /* VertixTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F03201B2FC7F15F00A28F4E /* Build configuration list for PBXNativeTarget "VertixTests" */;
+			buildPhases = (
+				3F03200F2FC7F15F00A28F4E /* Sources */,
+				3F0320102FC7F15F00A28F4E /* Frameworks */,
+				3F0320112FC7F15F00A28F4E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3F0320182FC7F15F00A28F4E /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				3F0320142FC7F15F00A28F4E /* VertixTests */,
+			);
+			name = VertixTests;
+			packageProductDependencies = (
+			);
+			productName = VertixTests;
+			productReference = 3F0320132FC7F15F00A28F4E /* VertixTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		3F7F1AF12F90BEAA00E435E6 /* Vertix */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3F7F1AFD2F90BEAB00E435E6 /* Build configuration list for PBXNativeTarget "Vertix" */;
@@ -106,9 +152,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2630;
+				LastSwiftUpdateCheck = 2650;
 				LastUpgradeCheck = 2620;
 				TargetAttributes = {
+					3F0320122FC7F15F00A28F4E = {
+						CreatedOnToolsVersion = 26.5;
+						TestTargetID = 3F7F1AF12F90BEAA00E435E6;
+					};
 					3F7F1AF12F90BEAA00E435E6 = {
 						CreatedOnToolsVersion = 26.3;
 					};
@@ -129,11 +179,19 @@
 			projectRoot = "";
 			targets = (
 				3F7F1AF12F90BEAA00E435E6 /* Vertix */,
+				3F0320122FC7F15F00A28F4E /* VertixTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3F0320112FC7F15F00A28F4E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3F7F1AF02F90BEAA00E435E6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -174,9 +232,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Vertix/Pods-Vertix-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Vertix/Pods-Vertix-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -186,6 +248,13 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3F03200F2FC7F15F00A28F4E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3F7F1AEE2F90BEAA00E435E6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -195,7 +264,59 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		3F0320182FC7F15F00A28F4E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3F7F1AF12F90BEAA00E435E6 /* Vertix */;
+			targetProxy = 3F0320172FC7F15F00A28F4E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		3F0320192FC7F15F00A28F4E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.felix.VertixTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Vertix.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Vertix";
+			};
+			name = Debug;
+		};
+		3F03201A2FC7F15F00A28F4E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.felix.VertixTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Vertix.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Vertix";
+			};
+			name = Release;
+		};
 		3F7F1AFB2F90BEAB00E435E6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -390,6 +511,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3F03201B2FC7F15F00A28F4E /* Build configuration list for PBXNativeTarget "VertixTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F0320192FC7F15F00A28F4E /* Debug */,
+				3F03201A2FC7F15F00A28F4E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3F7F1AED2F90BEAA00E435E6 /* Build configuration list for PBXProject "Vertix" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
