@@ -43,12 +43,12 @@ class HistoryViewModel {
         fmt.dateFormat = "MMMM yyyy"
         monthLabel = fmt.string(from: now)
 
-        let range = calendar.range(of: .day, in: .month, for: now)!
+        guard let range = calendar.range(of: .day, in: .month, for: now) else { return }
         currentMonthDays = Array(range)
 
         var comps = calendar.dateComponents([.year, .month], from: now)
         comps.day = 1
-        let firstDay = calendar.date(from: comps)!
+        guard let firstDay = calendar.date(from: comps) else { return }
         let rawWeekday = calendar.component(.weekday, from: firstDay)
         calendarStartPadding = (rawWeekday + 5) % 7
     }
