@@ -2,7 +2,8 @@ import SwiftUI
 
 struct HomeView: View {
     @State private var viewModel = HomeViewModel()
-    
+    @State private var showFocusMode = false
+
     var body: some View {
         ZStack {
             Color.vertixBackground.ignoresSafeArea()
@@ -93,16 +94,16 @@ struct HomeView: View {
                 
                 // MARK: Start Session Button
                 Button(action: {
-                    viewModel.toggleSession()
+                    showFocusMode = true
                 }) {
                     HStack {
-                        Image(systemName: viewModel.isSessionActive ? "stop.fill" : "play.fill")
+                        Image(systemName: "play.fill")
                             .foregroundColor(.vertixDarkGreen)
                             .padding(10)
                             .background(Color.white.opacity(0.2))
                             .clipShape(Circle())
-                        
-                        Text(viewModel.isSessionActive ? "Stop Session" : "Start Session")
+
+                        Text("Start Session")
                             .font(.headline)
                             .foregroundColor(.white)
                         Spacer()
@@ -110,7 +111,7 @@ struct HomeView: View {
                             .foregroundColor(.white)
                     }
                     .padding()
-                    .background(viewModel.isSessionActive ? Color.red : Color.vertixDarkGreen)
+                    .background(Color.vertixDarkGreen)
                     .cornerRadius(20)
                     .padding(.horizontal, 20)
                 }
@@ -180,6 +181,9 @@ struct HomeView: View {
                 
                 Spacer()
             }
+        }
+        .fullScreenCover(isPresented: $showFocusMode) {
+            FocusModeView()
         }
     }
 }
