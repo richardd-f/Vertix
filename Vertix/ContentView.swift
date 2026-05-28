@@ -18,7 +18,7 @@ struct ContentView: View {
         Group {
             if !hasSeenOnboarding {
                 // 1. Show intro if it's their first time
-                OnboardingView(hasCompleted: $hasSeenOnboarding)
+                OnboardingView(hasCompletedOnboarding: $hasSeenOnboarding)
             } else if !authManager.isAuthenticated {
                 // 2. Show login/register if they aren't logged in
                 AuthContainerView()

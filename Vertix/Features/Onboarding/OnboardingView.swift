@@ -1,122 +1,171 @@
+//
+//  OnboardingView.swift
+//  Vertix
+//
+//  Created by Clarice Harijanto on 03/05/26.
+//
 import SwiftUI
-
+// Data Model
+// Each slide's content is defined here — easy to edit later
+struct OnboardingPage {
+    let imageName: String
+    let tag: String?
+    let title: String
+    let description: String
+}
+// Main Onboarding View
 struct OnboardingView: View {
-    @Binding var hasCompleted: Bool
-    @State private var currentStep = 0
+    
+    // Tracks which slide the user is on (0, 1, or 2)
+    @State private var currentPage = 0
+    
+    // When this becomes true, we navigate to Home
+    @Binding var hasCompletedOnboarding: Bool
+    
+    // The three slides — image names must match your Assets exactly
+    let pages: [OnboardingPage] = [
+        OnboardingPage(
+            imageName: "study-smarter",
+            tag: nil,
+            title: "Study Smarter",
+            description: "Combine focus with health. Use our Pomodoro timer to stay productive while we watch your back."
+        ),
+        OnboardingPage(
+            imageName: "fix-your-posture",
+            tag: "POSTURE DETECTION",
+            title: "Fix Your Posture",
+            description: "Real-time camera detection alerts you when you slouch, helping you maintain a healthy spine during long study sessions."
+        ),
+        OnboardingPage(
+            imageName: "feel-the-difference",
+            tag: "BUILD HABITS",
+            title: "Feel the Difference",
+            description: "Track your progress, earn streaks, and build healthy habits that last a lifetime. Ready to start?"
+        )
+    ]
     
     var body: some View {
-        VStack(spacing: 0) {
-            // MARK: - Carousel
-            TabView(selection: $currentStep) {
-                ForEach(0..<OnboardingStep.steps.count, id: \.self) { index in
-                    let step = OnboardingStep.steps[index]
-                    
-                    VStack(spacing: 20) {
-                        Spacer()
-                        
-                        // Main Illustration
-                        // Note: Using a placeholder rounded rectangle until you add your images to Assets
-                        Group {
-                            if let image = UIImage(named: step.imageName) {
-                                Image(uiImage: image)
-                                    .resizable()
-                                    .scaledToFit()
-                            } else {
-                                RoundedRectangle(cornerRadius: 24)
-                                    .fill(Color.white)
-                                    .shadow(color: .black.opacity(0.05), radius: 10, x: 0, y: 5)
-                            }
-                        }
-                        .frame(height: 300)
-                        .padding(.horizontal, 40)
-                        .padding(.bottom, 20)
-                        
-                        // Optional Badge (Pill)
-                        if let badgeText = step.badgeText, let badgeIcon = step.badgeIcon {
-                            HStack(spacing: 6) {
-                                Image(systemName: badgeIcon)
-                                    .font(.system(size: 12, weight: .bold))
-                                Text(badgeText)
-                                    .font(.system(size: 12, weight: .bold))
-                                    .tracking(1.0) // Adds slight letter spacing
-                            }
-                            .foregroundColor(Color.vertixDarkGreen)
-                            .padding(.horizontal, 16)
-                            .padding(.vertical, 8)
-                            .background(Color.vertixDarkGreen.opacity(0.1))
-                            .clipShape(Capsule())
-                        }
-                        
-                        // Title
-                        Text(step.title)
-                            .font(.system(size: 32, weight: .bold, design: .default))
-                            .foregroundColor(.primary)
-                        
-                        // Description
-                        Text(step.description)
-                            .font(.system(size: 16, weight: .regular))
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(Color.secondary)
-                            .padding(.horizontal, 32)
-                            .lineSpacing(4)
-                        
-                        Spacer()
-                    }
-                    .tag(index)
-                }
-            }
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never)) // Hides default dots
+        ZStack {
+            // Background color matching the mockup
+            Color(hex: "F2F0EB")
+                .ignoresSafeArea()
             
-            // MARK: - Bottom Controls
-            VStack(spacing: 32) {
-                // Custom Dot Indicator
-                HStack(spacing: 8) {
-                    ForEach(0..<OnboardingStep.steps.count, id: \.self) { index in
-                        Capsule()
-                            .fill(currentStep == index ? Color.vertixDarkGreen : Color.vertixDarkGreen.opacity(0.2))
-                            .frame(width: currentStep == index ? 24 : 8, height: 8)
-                            .animation(.spring(response: 0.3, dampingFraction: 0.7), value: currentStep)
+            VStack(spacing: 0) {
+                
+                // Swipeable slides
+                TabView(selection: $currentPage) {
+                    ForEach(0..<pages.count, id: \.self) { index in
+                        OnboardingPageView(page: pages[index])
+                            .tag(index)
                     }
                 }
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                .animation(.easeInOut, value: currentPage)
                 
-                // Next / Get Started Button
-                Button(action: handleNextButton) {
-                    HStack {
-                        Text(currentStep == OnboardingStep.steps.count - 1 ? "Get Started" : "Next")
-                        
-                        // Show arrow on the 2nd and 3rd screens
-                        if currentStep > 0 {
-                            Image(systemName: "arrow.right")
+                // Bottom section: dots + button
+                VStack(spacing: 32) {
+                    
+                    // Page indicator dots
+                    HStack(spacing: 8) {
+                        ForEach(0..<pages.count, id: \.self) { index in
+                            Capsule()
+                                .fill(index == currentPage ? Color(hex: "2D5A3D") : Color(hex: "2D5A3D").opacity(0.25))
+                                .frame(width: index == currentPage ? 24 : 8, height: 8)
+                                .animation(.spring(), value: currentPage)
                         }
                     }
-                    .font(.system(size: 18, weight: .semibold))
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 18)
-                    .background(Color.vertixDarkGreen)
-                    .clipShape(Capsule())
-                    .padding(.horizontal, 32)
+                    
+                    // Next / Get Started button
+                    Button(action: handleButtonTap) {
+                        HStack {
+                            Text(currentPage == pages.count - 1 ? "Get Started" : "Next")
+                                .font(.system(size: 17, weight: .semibold))
+                                .foregroundColor(.white)
+                            Image(systemName: "arrow.right")
+                                .foregroundColor(.white)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 56)
+                        .background(Color(hex: "2D5A3D"))
+                        .cornerRadius(16)
+                    }
+                    .padding(.horizontal, 24)
                 }
+                .padding(.bottom, 48)
             }
-            .padding(.bottom, 50)
         }
-        .background(Color.vertixBackground.ignoresSafeArea())
     }
     
-    // MARK: - Actions
-    private func handleNextButton() {
-        if currentStep < OnboardingStep.steps.count - 1 {
-            withAnimation { currentStep += 1 }
+    // Advance slide or finish onboarding
+    private func handleButtonTap() {
+        if currentPage < pages.count - 1 {
+            withAnimation {
+                currentPage += 1
+            }
         } else {
-            // Dismiss onboarding and move to Auth
-            hasCompleted = true
+            hasCompletedOnboarding = true
+        }
+    }
+}
+// Single Slide View
+struct OnboardingPageView: View {
+    let page: OnboardingPage
+    
+    var body: some View {
+        VStack(spacing: 24) {
+            Spacer()
+            
+            // Illustration card
+            ZStack {
+                RoundedRectangle(cornerRadius: 24)
+                    .fill(Color.white.opacity(0))  // fully transparent
+                    .frame(width: 280, height: 280)
+                
+                VStack(spacing: 12) {
+                    // Optional tag badge (e.g. "POSTURE DETECTION")
+                    if let tag = page.tag {
+                        HStack(spacing: 6) {
+                            Image(systemName: "camera.fill")
+                                .font(.system(size: 10))
+                                .foregroundColor(Color(hex: "2D5A3D"))
+                            Text(tag)
+                                .font(.system(size: 11, weight: .semibold))
+                                .foregroundColor(Color(hex: "2D5A3D"))
+                        }
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 6)
+                        .background(Color(hex: "2D5A3D").opacity(0.1))
+                        .cornerRadius(20)
+                        .shadow(color: .black.opacity(0.08), radius: 8, x: 0, y: 4)
+                    }
+                    
+                    Image(page.imageName)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 180, height: 180)
+                        .shadow(color: .black.opacity(0.15), radius: 16, x: 0, y: 8)
+                }
+            }
+            
+            Spacer()
+            
+            // Title + description
+            VStack(spacing: 12) {
+                Text(page.title)
+                    .font(.system(size: 28, weight: .bold))
+                    .foregroundColor(Color(hex: "1A1A1A"))
+                    .multilineTextAlignment(.center)
+                
+                Text(page.description)
+                    .font(.system(size: 15))
+                    .foregroundColor(Color(hex: "6B6B6B"))
+                    .multilineTextAlignment(.center)
+                    .lineSpacing(4)
+                    .padding(.horizontal, 32)
+            }
+            
+            Spacer()
         }
     }
 }
 
-// MARK: - Custom Colors
-// extension Color {
-//     // Extracted directly from your screenshots
-//     static let vertixDarkGreen = Color(red: 45/255, green: 79/255, blue: 68/255)
-//     static let vertixBackground = Color(red: 244/255, green: 242/255, blue: 238/255)
-// }
