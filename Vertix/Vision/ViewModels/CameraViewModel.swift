@@ -10,17 +10,20 @@ class CameraViewModel: NSObject, ObservableObject {
 
     let session = AVCaptureSession()
     private let videoOutput = AVCaptureVideoDataOutput()
-    private let poseDetector = PoseDetector()
+    private var poseDetector: PoseDetector?
+    private var isConfigured = false
 
     @Published var landmarks: [[NormalizedLandmark]] = []
     @Published var postureResult: PostureResult?
-    
+
     override init() {
         super.init()
-        setupCamera()
     }
 
     private func setupCamera() {
+        guard !isConfigured else { return }
+        isConfigured = true
+
         session.beginConfiguration()
         session.sessionPreset = .high
 
@@ -60,15 +63,37 @@ class CameraViewModel: NSObject, ObservableObject {
             connection.isVideoMirrored = true
         }
 
-        poseDetector.delegate = self
+        let detector = PoseDetector()
+        detector.delegate = self
+        poseDetector = detector
 
         session.commitConfiguration()
         print("✅ Session configured")
     }
 
     func startSession() {
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+        case .authorized:
+            configureAndRun()
+        case .notDetermined:
+            AVCaptureDevice.requestAccess(for: .video) { [weak self] granted in
+                guard granted else {
+                    print("❌ Camera access denied")
+                    return
+                }
+                self?.configureAndRun()
+            }
+        default:
+            print("❌ Camera access not authorized")
+        }
+    }
+
+    private func configureAndRun() {
         DispatchQueue.global(qos: .userInitiated).async {
-            self.session.startRunning()
+            self.setupCamera()
+            if !self.session.isRunning {
+                self.session.startRunning()
+            }
             print("▶️ Session running: \(self.session.isRunning)")
         }
     }
@@ -85,8 +110,7 @@ extension CameraViewModel: AVCaptureVideoDataOutputSampleBufferDelegate {
         from connection: AVCaptureConnection
     ) {
         let timestamp = Int(Date().timeIntervalSince1970 * 1000)
-        print("📸 Frame received: \(timestamp)")
-        poseDetector.detect(sampleBuffer: sampleBuffer, timestamp: timestamp)
+        poseDetector?.detect(sampleBuffer: sampleBuffer, timestamp: timestamp)
     }
 }
 
