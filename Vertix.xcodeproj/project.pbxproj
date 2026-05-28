@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B658340D5D68BC8E8C311B6C /* Pods_Vertix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EF3CC27153D9321E6E3737B /* Pods_Vertix.framework */; };
+		FD8D17985C9C6B94E3830B30 /* Pods_VertixTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 420F83437A5D75DF7FFD8C63 /* Pods_VertixTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,19 +24,26 @@
 /* Begin PBXFileReference section */
 		3F0320132FC7F15F00A28F4E /* VertixTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VertixTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F7F1AF22F90BEAA00E435E6 /* Vertix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vertix.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		420F83437A5D75DF7FFD8C63 /* Pods_VertixTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VertixTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		55634BE0838A7AD2D0C9DB55 /* Pods-VertixTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VertixTests.release.xcconfig"; path = "Target Support Files/Pods-VertixTests/Pods-VertixTests.release.xcconfig"; sourceTree = "<group>"; };
 		773C48C2473B4AF1A9F24F41 /* Pods-Vertix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vertix.debug.xcconfig"; path = "Target Support Files/Pods-Vertix/Pods-Vertix.debug.xcconfig"; sourceTree = "<group>"; };
 		7EF3CC27153D9321E6E3737B /* Pods_Vertix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vertix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A42FB93FEBDBBBEE05609158 /* Pods-Vertix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vertix.release.xcconfig"; path = "Target Support Files/Pods-Vertix/Pods-Vertix.release.xcconfig"; sourceTree = "<group>"; };
+		EE543421143B77FE06AB877C /* Pods-VertixTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VertixTests.debug.xcconfig"; path = "Target Support Files/Pods-VertixTests/Pods-VertixTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		3F0320142FC7F15F00A28F4E /* VertixTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = VertixTests;
 			sourceTree = "<group>";
 		};
 		3F7F1AF42F90BEAA00E435E6 /* Vertix */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Vertix;
 			sourceTree = "<group>";
 		};
@@ -46,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD8D17985C9C6B94E3830B30 /* Pods_VertixTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				7EF3CC27153D9321E6E3737B /* Pods_Vertix.framework */,
+				420F83437A5D75DF7FFD8C63 /* Pods_VertixTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -93,6 +103,8 @@
 			children = (
 				773C48C2473B4AF1A9F24F41 /* Pods-Vertix.debug.xcconfig */,
 				A42FB93FEBDBBBEE05609158 /* Pods-Vertix.release.xcconfig */,
+				EE543421143B77FE06AB877C /* Pods-VertixTests.debug.xcconfig */,
+				55634BE0838A7AD2D0C9DB55 /* Pods-VertixTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -104,6 +116,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3F03201B2FC7F15F00A28F4E /* Build configuration list for PBXNativeTarget "VertixTests" */;
 			buildPhases = (
+				CB90A6D307BD6EB161195429 /* [CP] Check Pods Manifest.lock */,
 				3F03200F2FC7F15F00A28F4E /* Sources */,
 				3F0320102FC7F15F00A28F4E /* Frameworks */,
 				3F0320112FC7F15F00A28F4E /* Resources */,
@@ -117,8 +130,6 @@
 				3F0320142FC7F15F00A28F4E /* VertixTests */,
 			);
 			name = VertixTests;
-			packageProductDependencies = (
-			);
 			productName = VertixTests;
 			productReference = 3F0320132FC7F15F00A28F4E /* VertixTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -232,17 +243,35 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Vertix/Pods-Vertix-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Vertix/Pods-Vertix-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
-			outputPaths = (
-			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Vertix/Pods-Vertix-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CB90A6D307BD6EB161195429 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VertixTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -275,6 +304,7 @@
 /* Begin XCBuildConfiguration section */
 		3F0320192FC7F15F00A28F4E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE543421143B77FE06AB877C /* Pods-VertixTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -297,6 +327,7 @@
 		};
 		3F03201A2FC7F15F00A28F4E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55634BE0838A7AD2D0C9DB55 /* Pods-VertixTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
