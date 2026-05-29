@@ -3,6 +3,10 @@ import Combine
 import FirebaseAuth
 
 struct FocusModeView: View {
+    private var isRunningTests: Bool {
+        ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
+    }
+    
     @Environment(\.dismiss) private var dismiss
     @StateObject private var camera = CameraViewModel()
 
@@ -50,29 +54,37 @@ struct FocusModeView: View {
 
     var body: some View {
         ZStack {
-            // Camera feed
-            CameraPreviewView(session: camera.session)
-                .ignoresSafeArea()
-
-            // Pose skeleton
-            GeometryReader { geo in
-                PoseOverlayView(landmarks: camera.landmarks, imageSize: geo.size)
+            if isRunningTests {
+                Color.black.ignoresSafeArea()
+            } else {
+                CameraPreviewView(session: camera.session)
                     .ignoresSafeArea()
-            }
 
-            // UI overlay
-            VStack(spacing: 0) {
-                topBar
-                Spacer()
-                bottomPanel
+                GeometryReader { geo in
+                    PoseOverlayView(landmarks: camera.landmarks, imageSize: geo.size)
+                        .ignoresSafeArea()
+                }
+
+                VStack(spacing: 0) {
+                    topBar
+                    Spacer()
+                    bottomPanel
+                }
             }
         }
-        .onAppear  { camera.startSession() }
-        .onDisappear { camera.stopSession() }
+        .onAppear {
+            if !isRunningTests {
+                camera.startSession()
+            }
+        }
+        .onDisappear {
+            if !isRunningTests {
+                camera.stopSession()
+            }
+        }
         .onReceive(tickTimer) { _ in
             guard isTimerRunning, timeRemaining > 0 else { return }
             timeRemaining -= 1
-            // Sample posture once per minute
             if elapsedSeconds > 0 && elapsedSeconds % 60 == 0 {
                 let isGood = camera.postureResult?.isGoodPosture ?? false
                 sessionManager.recordMinuteSample(isGood: isGood)

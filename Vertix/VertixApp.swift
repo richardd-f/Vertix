@@ -11,16 +11,19 @@ import FirebaseCore
 @main
 struct VertixApp: App {
     @State private var authManager: AuthManager
+    @State private var gamificationManager: GamificationManager
 
     init() {
         FirebaseApp.configure()
         _authManager = State(initialValue: AuthManager())
+        _gamificationManager = State(initialValue: GamificationManager())
     }
 
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environment(authManager)
+                .environment(gamificationManager)
         }
     }
 }

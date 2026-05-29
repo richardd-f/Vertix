@@ -7,252 +7,470 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		017F2E982E7CE60F8BCCE42A /* Pods_Vertix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE496C0036F73002BE971394 /* Pods_Vertix.framework */; };
-		290BE04380E31A121767D6AF /* Pods_VertixTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C8B83AD3CAFB420C15CB6D6 /* Pods_VertixTests.framework */; };
+		05DFC12B87D106F64660CB74 /* DatabaseServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7718BB5A3D7FEF572C0250D /* DatabaseServiceProtocol.swift */; };
+		0AEEDC96BC18C15FB126ED79 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304DDBC4D4F5FDCABCEE37F9 /* CameraPreviewView.swift */; };
+		0B6EA816454EC9CF0A86AF65 /* HistoryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE40F8BF9BE24290633D863 /* HistoryViewModelTests.swift */; };
+		0C42CA48F833C58D0AE066A4 /* PoseEstimationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDEE7FDCD066FCAA35B20B8F /* PoseEstimationViewModel.swift */; };
+		1F19839237CB6228F0895E99 /* SessionRecordTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022944CF49C5F8CE37386F4E /* SessionRecordTests.swift */; };
+		217D424E68E309BAEB5CD302 /* WeeklyPostureChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0E9A9B81CD65F4867508CE /* WeeklyPostureChart.swift */; };
+		25FB33E66BBD21A6572A1A6B /* GamificationViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6614303924F0E80FD6AE47 /* GamificationViews.swift */; };
+		29D96A4BDCC8E42EC3E1D491 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198D199F23761F16653293E1 /* RegisterView.swift */; };
+		2A61EB77C5AF3C32994ECE33 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A91653EA6F01784FD5117B6 /* AuthManager.swift */; };
+		2F4FEA0C2EB6C292D3FE8B04 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C5A67524360B1B7C7C231D9 /* HistoryView.swift */; };
+		3114715945B5B83F2769C4D1 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFBE8AD31996F4B80CCC151 /* OnboardingView.swift */; };
+		355E0075321F924C10CB73BF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A83BE6782D541B99522FB4F /* ContentView.swift */; };
+		3C75F955448518D054D1EB82 /* PoseOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68285596BBA44439B27B08A9 /* PoseOverlayView.swift */; };
+		3F83AC8700D573B5A84FD719 /* pose_landmarker_lite.task in Resources */ = {isa = PBXBuildFile; fileRef = F947EA7D6739CDBFCF399AB8 /* pose_landmarker_lite.task */; };
+		3FE201BF438741F5929936DC /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C391BEA63D2028719948A9C /* HomeViewModel.swift */; };
+		412CF405E7C9B6383BFF5D22 /* MonthlyOverviewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93604ADF8EB56BBB7727FFF6 /* MonthlyOverviewCard.swift */; };
+		4FCAC727F4E01B19B9B6C317 /* PostureAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E0ECD1B90233E27AD6BDF3 /* PostureAnalyzer.swift */; };
+		575F6F7EF0B601140A1427F8 /* Pods_VertixTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D6864B663DD80F30C8C75DC /* Pods_VertixTests.framework */; };
+		58559064023C733B573062BE /* PostureSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711938E09ED37C7F582C3CAB /* PostureSession.swift */; };
+		590BAC1CE357FB1C3D0B3937 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699BD6CC1CAD9889DB9996B6 /* SoundManager.swift */; };
+		6AA444C822AA125FD80F84A2 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838B848F243303FE76C7FF68 /* ProfileView.swift */; };
+		6BB3A7DBB294F532695A9365 /* MockDatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77989EEE4FD0E60DD9740D8B /* MockDatabaseService.swift */; };
+		6D3F40E0294906AE6E5DC4FD /* FocusModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517FA8DED416910A2169F5E1 /* FocusModeView.swift */; };
+		71D8A02AF7F7B9684E6C6D24 /* RecentSessionsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D300DC4D4D405680258682 /* RecentSessionsList.swift */; };
+		7E91B1B17CA17BF5906EEDA1 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5008D4933E987E385F62CD4A /* MainTabView.swift */; };
+		81F35A763AF19483FC835A9F /* Pods_Vertix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 575B95ED6CD054A8FCBD8CA9 /* Pods_Vertix.framework */; };
+		824ACBE0DDA32198BD703012 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB7273AF29EFFD5CF81F48E /* HistoryViewModel.swift */; };
+		8E18894025A43A12B9712667 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBA81477360C8FD128807A5 /* HomeView.swift */; };
+		8F82F512CDC0678B11CCF071 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863E0A80AED7716BD22BF803 /* SessionManager.swift */; };
+		8FDC2C11CCF23DC5BCD47893 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B08B7A72EA4C787BA38157 /* CameraViewModel.swift */; };
+		992FD1E0D3634E5286E44B4A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DEB91D2BF9DE2215D05A31BC /* GoogleService-Info.plist */; };
+		B2607D849559C564D6B2286E /* PostureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9CA6E3C36E7BD4BFA58BC4 /* PostureModel.swift */; };
+		B79F830E8624D0594D9BFBB5 /* PoseDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5951C2F6BF09B8AFB0D368 /* PoseDetector.swift */; };
+		B92CA58003A49C2C03062E0E /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B36AF3A9A4CE677CC55E61 /* HomeViewModelTests.swift */; };
+		BA0745A2A0590830AE20998C /* VertixTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA73FA1D1A0A2D06C3148A68 /* VertixTextFields.swift */; };
+		BDFF9AE49715C6A2EA62B404 /* OnboardingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD3291DF56B8E06D2C472F0 /* OnboardingStep.swift */; };
+		C2F57FF6FB6939A6B1CB61FA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E60FBC28570BCBBD2F94E07 /* User.swift */; };
+		C9D1CA63840527DFD8064B29 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE2E7BA525D4B4A93682C62 /* LoginView.swift */; };
+		D06992475DBB4308C9E0B0B2 /* GamificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C59915BDA3B7927DB34F0B /* GamificationManager.swift */; };
+		D4583F45AC518002D44E5702 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D40E2D5BCFCBB2FB1376D0 /* Color.swift */; };
+		DE9E6C6C5850E0BE8A22B752 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CB79112B37D54F1F4E0363 /* ProfileViewModel.swift */; };
+		E101C44DAD01FE227AE6A299 /* SessionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79CA0F4BDC54744D683D41 /* SessionManagerTests.swift */; };
+		E60AB650F8900813F4BC75A5 /* SessionRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02CCD7C5944DC72F38C9D7 /* SessionRecord.swift */; };
+		F877C677D46D56AAEC84A673 /* VertixApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A55305A219F4122793F214A /* VertixApp.swift */; };
+		F8C6A7026A8FD05BD92AFD81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B1D70A00389204EA8906897 /* Assets.xcassets */; };
+		FB8ADA2675CD5D4BC52C3599 /* AuthContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A714C3B4BB0D4A6C47D25622 /* AuthContainerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3F0320172FC7F15F00A28F4E /* PBXContainerItemProxy */ = {
+		9D78CA6E5B9A01E356CFE9ED /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 3F7F1AEA2F90BEAA00E435E6 /* Project object */;
+			containerPortal = 7B80A9C23E02EC32561F380E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 3F7F1AF12F90BEAA00E435E6;
+			remoteGlobalIDString = 549558CEA4AC817BA8624709;
 			remoteInfo = Vertix;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		07FFFC4E7D678B6A403CF150 /* Pods-VertixTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VertixTests.debug.xcconfig"; path = "Target Support Files/Pods-VertixTests/Pods-VertixTests.debug.xcconfig"; sourceTree = "<group>"; };
-		3F0320132FC7F15F00A28F4E /* VertixTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VertixTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3F7F1AF22F90BEAA00E435E6 /* Vertix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vertix.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4C8B83AD3CAFB420C15CB6D6 /* Pods_VertixTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VertixTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7A97D14B992745956A94E346 /* Pods-VertixTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VertixTests.release.xcconfig"; path = "Target Support Files/Pods-VertixTests/Pods-VertixTests.release.xcconfig"; sourceTree = "<group>"; };
-		9DE2669C744C63D33EDA6A4A /* Pods-Vertix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vertix.debug.xcconfig"; path = "Target Support Files/Pods-Vertix/Pods-Vertix.debug.xcconfig"; sourceTree = "<group>"; };
-		AB455E853370C5FCADD1AFB0 /* Pods-Vertix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vertix.release.xcconfig"; path = "Target Support Files/Pods-Vertix/Pods-Vertix.release.xcconfig"; sourceTree = "<group>"; };
-		FE496C0036F73002BE971394 /* Pods_Vertix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vertix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		022944CF49C5F8CE37386F4E /* SessionRecordTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRecordTests.swift; sourceTree = "<group>"; };
+		0A83BE6782D541B99522FB4F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0AB2AE0CCD223E90149CFE27 /* Pods-VertixTests.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Pods-VertixTests.release.xcconfig"; sourceTree = "<group>"; };
+		0D79CA0F4BDC54744D683D41 /* SessionManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManagerTests.swift; sourceTree = "<group>"; };
+		1748DCBDD1368D1FDE1A8447 /* Pods-VertixTests.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Pods-VertixTests.debug.xcconfig"; sourceTree = "<group>"; };
+		198D199F23761F16653293E1 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		1D6864B663DD80F30C8C75DC /* Pods_VertixTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VertixTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		24C59915BDA3B7927DB34F0B /* GamificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamificationManager.swift; sourceTree = "<group>"; };
+		2A91653EA6F01784FD5117B6 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		2C391BEA63D2028719948A9C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		2CBA81477360C8FD128807A5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		304DDBC4D4F5FDCABCEE37F9 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
+		32D01D69C9AC64066E67B80F /* Vertix.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Vertix.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B1D70A00389204EA8906897 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		46CB79112B37D54F1F4E0363 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		5008D4933E987E385F62CD4A /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		517FA8DED416910A2169F5E1 /* FocusModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusModeView.swift; sourceTree = "<group>"; };
+		55DE34D22AEDE76088AD7CD4 /* VertixTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = VertixTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		575B95ED6CD054A8FCBD8CA9 /* Pods_Vertix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vertix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		59B08B7A72EA4C787BA38157 /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
+		65B225194C7776544470DD54 /* Pods-VertixTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VertixTests.debug.xcconfig"; path = "Target Support Files/Pods-VertixTests/Pods-VertixTests.debug.xcconfig"; sourceTree = "<group>"; };
+		68285596BBA44439B27B08A9 /* PoseOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoseOverlayView.swift; sourceTree = "<group>"; };
+		699BD6CC1CAD9889DB9996B6 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		6C5AF9BF97FAFA9BF859C1EB /* Pods-VertixTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VertixTests.release.xcconfig"; path = "Target Support Files/Pods-VertixTests/Pods-VertixTests.release.xcconfig"; sourceTree = "<group>"; };
+		6D9CA6E3C36E7BD4BFA58BC4 /* PostureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostureModel.swift; sourceTree = "<group>"; };
+		711938E09ED37C7F582C3CAB /* PostureSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostureSession.swift; sourceTree = "<group>"; };
+		71D40E2D5BCFCBB2FB1376D0 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		75277D82A5881515E7756D3C /* Pods-Vertix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vertix.debug.xcconfig"; path = "Target Support Files/Pods-Vertix/Pods-Vertix.debug.xcconfig"; sourceTree = "<group>"; };
+		77989EEE4FD0E60DD9740D8B /* MockDatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDatabaseService.swift; sourceTree = "<group>"; };
+		7F02CCD7C5944DC72F38C9D7 /* SessionRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRecord.swift; sourceTree = "<group>"; };
+		838B848F243303FE76C7FF68 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		863E0A80AED7716BD22BF803 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		8A55305A219F4122793F214A /* VertixApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertixApp.swift; sourceTree = "<group>"; };
+		8B6614303924F0E80FD6AE47 /* GamificationViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamificationViews.swift; sourceTree = "<group>"; };
+		8C5A67524360B1B7C7C231D9 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		8E60FBC28570BCBBD2F94E07 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		93604ADF8EB56BBB7727FFF6 /* MonthlyOverviewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyOverviewCard.swift; sourceTree = "<group>"; };
+		9BFBE8AD31996F4B80CCC151 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		A57AD47D681A0335C6B1E1E1 /* Pods-Vertix.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Pods-Vertix.release.xcconfig"; sourceTree = "<group>"; };
+		A714C3B4BB0D4A6C47D25622 /* AuthContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthContainerView.swift; sourceTree = "<group>"; };
+		AFB7273AF29EFFD5CF81F48E /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+		CA73FA1D1A0A2D06C3148A68 /* VertixTextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertixTextFields.swift; sourceTree = "<group>"; };
+		CDD3291DF56B8E06D2C472F0 /* OnboardingStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStep.swift; sourceTree = "<group>"; };
+		CDEE7FDCD066FCAA35B20B8F /* PoseEstimationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoseEstimationViewModel.swift; sourceTree = "<group>"; };
+		CEE2E7BA525D4B4A93682C62 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		D2D300DC4D4D405680258682 /* RecentSessionsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSessionsList.swift; sourceTree = "<group>"; };
+		DB0E9A9B81CD65F4867508CE /* WeeklyPostureChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyPostureChart.swift; sourceTree = "<group>"; };
+		DE5951C2F6BF09B8AFB0D368 /* PoseDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoseDetector.swift; sourceTree = "<group>"; };
+		DEB91D2BF9DE2215D05A31BC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E202C80C8638A0944D6F9C7F /* Pods-Vertix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vertix.release.xcconfig"; path = "Target Support Files/Pods-Vertix/Pods-Vertix.release.xcconfig"; sourceTree = "<group>"; };
+		E4D86D6D7E26E8F471A150C4 /* Pods-Vertix.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Pods-Vertix.debug.xcconfig"; sourceTree = "<group>"; };
+		E7B36AF3A9A4CE677CC55E61 /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
+		EAE40F8BF9BE24290633D863 /* HistoryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModelTests.swift; sourceTree = "<group>"; };
+		F6E0ECD1B90233E27AD6BDF3 /* PostureAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostureAnalyzer.swift; sourceTree = "<group>"; };
+		F7718BB5A3D7FEF572C0250D /* DatabaseServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseServiceProtocol.swift; sourceTree = "<group>"; };
+		F947EA7D6739CDBFCF399AB8 /* pose_landmarker_lite.task */ = {isa = PBXFileReference; path = pose_landmarker_lite.task; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		3F0320142FC7F15F00A28F4E /* VertixTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = VertixTests;
-			sourceTree = "<group>";
-		};
-		3F7F1AF42F90BEAA00E435E6 /* Vertix */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Vertix;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
-
 /* Begin PBXFrameworksBuildPhase section */
-		3F0320102FC7F15F00A28F4E /* Frameworks */ = {
+		2430C5F5D3FF670D90690EA3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				290BE04380E31A121767D6AF /* Pods_VertixTests.framework in Frameworks */,
+				575F6F7EF0B601140A1427F8 /* Pods_VertixTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3F7F1AEF2F90BEAA00E435E6 /* Frameworks */ = {
+		924F7E6FA3C386B24700E7E4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				017F2E982E7CE60F8BCCE42A /* Pods_Vertix.framework in Frameworks */,
+				81F35A763AF19483FC835A9F /* Pods_Vertix.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2B411C1759B41D6EA0FB151A /* Frameworks */ = {
+		0769FF3C3533F517B725F433 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				FE496C0036F73002BE971394 /* Pods_Vertix.framework */,
-				4C8B83AD3CAFB420C15CB6D6 /* Pods_VertixTests.framework */,
+				2CBA81477360C8FD128807A5 /* HomeView.swift */,
+				2C391BEA63D2028719948A9C /* HomeViewModel.swift */,
 			);
-			name = Frameworks;
+			path = Home;
 			sourceTree = "<group>";
 		};
-		3F7F1AE92F90BEAA00E435E6 = {
+		0FFD8341A644D4AB7022F88F = {
 			isa = PBXGroup;
 			children = (
-				3F7F1AF42F90BEAA00E435E6 /* Vertix */,
-				3F0320142FC7F15F00A28F4E /* VertixTests */,
-				3F7F1AF32F90BEAA00E435E6 /* Products */,
-				ACB3EBF7EEAF12297919F950 /* Pods */,
-				2B411C1759B41D6EA0FB151A /* Frameworks */,
+				2F51AE5079D347E1464D1E49 /* Pods-Vertix */,
+				FF7D319958DA5DD754C04733 /* Pods-VertixTests */,
+				72DCBFA5F3A0157AB2FA7D73 /* Vertix */,
+				6ECB4A45CD21F930CFD3674A /* VertixTests */,
+				C98F3230C6614FBCFFBEF817 /* Products */,
+				670306C9B5EC756E29138B56 /* Pods */,
+				F48B7D6ED30E947B3B9C9272 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		3F7F1AF32F90BEAA00E435E6 /* Products */ = {
+		2F51AE5079D347E1464D1E49 /* Pods-Vertix */ = {
 			isa = PBXGroup;
 			children = (
-				3F7F1AF22F90BEAA00E435E6 /* Vertix.app */,
-				3F0320132FC7F15F00A28F4E /* VertixTests.xctest */,
+				E4D86D6D7E26E8F471A150C4 /* Pods-Vertix.debug.xcconfig */,
+				A57AD47D681A0335C6B1E1E1 /* Pods-Vertix.release.xcconfig */,
+			);
+			name = "Pods-Vertix";
+			path = "Pods/Target Support Files/Pods-Vertix";
+			sourceTree = "<group>";
+		};
+		460164FC677BBB9C9831AE35 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DE5951C2F6BF09B8AFB0D368 /* PoseDetector.swift */,
+				F6E0ECD1B90233E27AD6BDF3 /* PostureAnalyzer.swift */,
+				6D9CA6E3C36E7BD4BFA58BC4 /* PostureModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		47C9D47BE638C67E9CF0C2B1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				304DDBC4D4F5FDCABCEE37F9 /* CameraPreviewView.swift */,
+				517FA8DED416910A2169F5E1 /* FocusModeView.swift */,
+				68285596BBA44439B27B08A9 /* PoseOverlayView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5406C30BE2CEAC0252182BC8 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				74B66E993AB5536A2E750AD8 /* Authentication */,
+				6FB622F045E719A23DBDDAF7 /* Main */,
+				D86402DF33CD0DEEA52D33DF /* Onboarding */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		6098EB058E5D056AC3C37EF4 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				71D40E2D5BCFCBB2FB1376D0 /* Color.swift */,
+				8B6614303924F0E80FD6AE47 /* GamificationViews.swift */,
+				CA73FA1D1A0A2D06C3148A68 /* VertixTextFields.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		639A21AE9D60656B588FFC18 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				8C5A67524360B1B7C7C231D9 /* HistoryView.swift */,
+				AFB7273AF29EFFD5CF81F48E /* HistoryViewModel.swift */,
+				81FC6F944E7C990530C1241B /* components */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		644AA74FB5C28D0D422A8DF7 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				59B08B7A72EA4C787BA38157 /* CameraViewModel.swift */,
+				CDEE7FDCD066FCAA35B20B8F /* PoseEstimationViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		670306C9B5EC756E29138B56 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				75277D82A5881515E7756D3C /* Pods-Vertix.debug.xcconfig */,
+				E202C80C8638A0944D6F9C7F /* Pods-Vertix.release.xcconfig */,
+				65B225194C7776544470DD54 /* Pods-VertixTests.debug.xcconfig */,
+				6C5AF9BF97FAFA9BF859C1EB /* Pods-VertixTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		6A53D5BEA65CDF2A89C5E65C /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				2A91653EA6F01784FD5117B6 /* AuthManager.swift */,
+				F7718BB5A3D7FEF572C0250D /* DatabaseServiceProtocol.swift */,
+				24C59915BDA3B7927DB34F0B /* GamificationManager.swift */,
+				863E0A80AED7716BD22BF803 /* SessionManager.swift */,
+				699BD6CC1CAD9889DB9996B6 /* SoundManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		6ECB4A45CD21F930CFD3674A /* VertixTests */ = {
+			isa = PBXGroup;
+			children = (
+				EAE40F8BF9BE24290633D863 /* HistoryViewModelTests.swift */,
+				E7B36AF3A9A4CE677CC55E61 /* HomeViewModelTests.swift */,
+				77989EEE4FD0E60DD9740D8B /* MockDatabaseService.swift */,
+				0D79CA0F4BDC54744D683D41 /* SessionManagerTests.swift */,
+				022944CF49C5F8CE37386F4E /* SessionRecordTests.swift */,
+			);
+			path = VertixTests;
+			sourceTree = "<group>";
+		};
+		6FB622F045E719A23DBDDAF7 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				5008D4933E987E385F62CD4A /* MainTabView.swift */,
+				639A21AE9D60656B588FFC18 /* History */,
+				0769FF3C3533F517B725F433 /* Home */,
+				D647A373F7425327BF4A6E55 /* Profile */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		72DCBFA5F3A0157AB2FA7D73 /* Vertix */ = {
+			isa = PBXGroup;
+			children = (
+				3B1D70A00389204EA8906897 /* Assets.xcassets */,
+				0A83BE6782D541B99522FB4F /* ContentView.swift */,
+				DEB91D2BF9DE2215D05A31BC /* GoogleService-Info.plist */,
+				8A55305A219F4122793F214A /* VertixApp.swift */,
+				6098EB058E5D056AC3C37EF4 /* Components */,
+				5406C30BE2CEAC0252182BC8 /* Features */,
+				6A53D5BEA65CDF2A89C5E65C /* Manager */,
+				F9CFDEB8CCFAFC1D710BEA7C /* Models */,
+				9727F58F2A8AD87B97A5DE5C /* Vision */,
+			);
+			path = Vertix;
+			sourceTree = "<group>";
+		};
+		74B66E993AB5536A2E750AD8 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				A714C3B4BB0D4A6C47D25622 /* AuthContainerView.swift */,
+				CEE2E7BA525D4B4A93682C62 /* LoginView.swift */,
+				198D199F23761F16653293E1 /* RegisterView.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		81FC6F944E7C990530C1241B /* components */ = {
+			isa = PBXGroup;
+			children = (
+				93604ADF8EB56BBB7727FFF6 /* MonthlyOverviewCard.swift */,
+				D2D300DC4D4D405680258682 /* RecentSessionsList.swift */,
+				DB0E9A9B81CD65F4867508CE /* WeeklyPostureChart.swift */,
+			);
+			path = components;
+			sourceTree = "<group>";
+		};
+		9727F58F2A8AD87B97A5DE5C /* Vision */ = {
+			isa = PBXGroup;
+			children = (
+				F947EA7D6739CDBFCF399AB8 /* pose_landmarker_lite.task */,
+				460164FC677BBB9C9831AE35 /* Models */,
+				644AA74FB5C28D0D422A8DF7 /* ViewModels */,
+				47C9D47BE638C67E9CF0C2B1 /* Views */,
+			);
+			path = Vision;
+			sourceTree = "<group>";
+		};
+		C98F3230C6614FBCFFBEF817 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				32D01D69C9AC64066E67B80F /* Vertix.app */,
+				55DE34D22AEDE76088AD7CD4 /* VertixTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		ACB3EBF7EEAF12297919F950 /* Pods */ = {
+		D647A373F7425327BF4A6E55 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				9DE2669C744C63D33EDA6A4A /* Pods-Vertix.debug.xcconfig */,
-				AB455E853370C5FCADD1AFB0 /* Pods-Vertix.release.xcconfig */,
-				07FFFC4E7D678B6A403CF150 /* Pods-VertixTests.debug.xcconfig */,
-				7A97D14B992745956A94E346 /* Pods-VertixTests.release.xcconfig */,
+				838B848F243303FE76C7FF68 /* ProfileView.swift */,
+				46CB79112B37D54F1F4E0363 /* ProfileViewModel.swift */,
 			);
-			path = Pods;
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		D86402DF33CD0DEEA52D33DF /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				CDD3291DF56B8E06D2C472F0 /* OnboardingStep.swift */,
+				9BFBE8AD31996F4B80CCC151 /* OnboardingView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		F48B7D6ED30E947B3B9C9272 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				575B95ED6CD054A8FCBD8CA9 /* Pods_Vertix.framework */,
+				1D6864B663DD80F30C8C75DC /* Pods_VertixTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F9CFDEB8CCFAFC1D710BEA7C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				711938E09ED37C7F582C3CAB /* PostureSession.swift */,
+				7F02CCD7C5944DC72F38C9D7 /* SessionRecord.swift */,
+				8E60FBC28570BCBBD2F94E07 /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FF7D319958DA5DD754C04733 /* Pods-VertixTests */ = {
+			isa = PBXGroup;
+			children = (
+				1748DCBDD1368D1FDE1A8447 /* Pods-VertixTests.debug.xcconfig */,
+				0AB2AE0CCD223E90149CFE27 /* Pods-VertixTests.release.xcconfig */,
+			);
+			name = "Pods-VertixTests";
+			path = "Pods/Target Support Files/Pods-VertixTests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3F0320122FC7F15F00A28F4E /* VertixTests */ = {
+		549558CEA4AC817BA8624709 /* Vertix */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3F03201B2FC7F15F00A28F4E /* Build configuration list for PBXNativeTarget "VertixTests" */;
+			buildConfigurationList = 02C323BA0A06F98D05D064D4 /* Build configuration list for PBXNativeTarget "Vertix" */;
 			buildPhases = (
-				F6E054E7BAA8BB7F9FD99589 /* [CP] Check Pods Manifest.lock */,
-				3F03200F2FC7F15F00A28F4E /* Sources */,
-				3F0320102FC7F15F00A28F4E /* Frameworks */,
-				3F0320112FC7F15F00A28F4E /* Resources */,
+				AA172272A7E05BD2A71C55E3 /* [CP] Check Pods Manifest.lock */,
+				F7FFEAC6C961E26F727EEBEE /* Sources */,
+				00EC63ACBCD923E461ECCBC1 /* Resources */,
+				924F7E6FA3C386B24700E7E4 /* Frameworks */,
+				B271623B2B52032188F235E0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				3F0320182FC7F15F00A28F4E /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				3F0320142FC7F15F00A28F4E /* VertixTests */,
-			);
-			name = VertixTests;
-			productName = VertixTests;
-			productReference = 3F0320132FC7F15F00A28F4E /* VertixTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		3F7F1AF12F90BEAA00E435E6 /* Vertix */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3F7F1AFD2F90BEAB00E435E6 /* Build configuration list for PBXNativeTarget "Vertix" */;
-			buildPhases = (
-				5D91759034DB656ECB72AFF4 /* [CP] Check Pods Manifest.lock */,
-				3F7F1AEE2F90BEAA00E435E6 /* Sources */,
-				3F7F1AEF2F90BEAA00E435E6 /* Frameworks */,
-				3F7F1AF02F90BEAA00E435E6 /* Resources */,
-				856EB7916DFB2EA8933B1AA4 /* [CP] Embed Pods Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				3F7F1AF42F90BEAA00E435E6 /* Vertix */,
 			);
 			name = Vertix;
 			productName = Vertix;
-			productReference = 3F7F1AF22F90BEAA00E435E6 /* Vertix.app */;
+			productReference = 32D01D69C9AC64066E67B80F /* Vertix.app */;
 			productType = "com.apple.product-type.application";
+		};
+		7234B82B31ADBC12A2768F1B /* VertixTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3FEF1EC2434199F05137608D /* Build configuration list for PBXNativeTarget "VertixTests" */;
+			buildPhases = (
+				6A218D1A94D76F44F52193A1 /* [CP] Check Pods Manifest.lock */,
+				F7F881097033996C70DD01FD /* Sources */,
+				2430C5F5D3FF670D90690EA3 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F4CC76373ABDCDE70E185EDA /* PBXTargetDependency */,
+			);
+			name = VertixTests;
+			productName = VertixTests;
+			productReference = 55DE34D22AEDE76088AD7CD4 /* VertixTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		3F7F1AEA2F90BEAA00E435E6 /* Project object */ = {
+		7B80A9C23E02EC32561F380E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2650;
-				LastUpgradeCheck = 2620;
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
-					3F0320122FC7F15F00A28F4E = {
-						CreatedOnToolsVersion = 26.5;
-						TestTargetID = 3F7F1AF12F90BEAA00E435E6;
-					};
-					3F7F1AF12F90BEAA00E435E6 = {
-						CreatedOnToolsVersion = 26.3;
-					};
 				};
 			};
-			buildConfigurationList = 3F7F1AED2F90BEAA00E435E6 /* Build configuration list for PBXProject "Vertix" */;
+			buildConfigurationList = 7FE924720EF45D15B651DE6B /* Build configuration list for PBXProject "Vertix" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				en,
 			);
-			mainGroup = 3F7F1AE92F90BEAA00E435E6;
+			mainGroup = 0FFD8341A644D4AB7022F88F;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 3F7F1AF32F90BEAA00E435E6 /* Products */;
+			productRefGroup = C98F3230C6614FBCFFBEF817 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3F7F1AF12F90BEAA00E435E6 /* Vertix */,
-				3F0320122FC7F15F00A28F4E /* VertixTests */,
+				549558CEA4AC817BA8624709 /* Vertix */,
+				7234B82B31ADBC12A2768F1B /* VertixTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		3F0320112FC7F15F00A28F4E /* Resources */ = {
+		00EC63ACBCD923E461ECCBC1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3F7F1AF02F90BEAA00E435E6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				F8C6A7026A8FD05BD92AFD81 /* Assets.xcassets in Resources */,
+				992FD1E0D3634E5286E44B4A /* GoogleService-Info.plist in Resources */,
+				3F83AC8700D573B5A84FD719 /* pose_landmarker_lite.task in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5D91759034DB656ECB72AFF4 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Vertix-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		856EB7916DFB2EA8933B1AA4 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Vertix/Pods-Vertix-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Vertix/Pods-Vertix-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Vertix/Pods-Vertix-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F6E054E7BAA8BB7F9FD99589 /* [CP] Check Pods Manifest.lock */ = {
+		6A218D1A94D76F44F52193A1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -274,88 +492,146 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-/* End PBXShellScriptBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		3F03200F2FC7F15F00A28F4E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
+		AA172272A7E05BD2A71C55E3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Vertix-checkManifestLockResult.txt",
+			);
 			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
-		3F7F1AEE2F90BEAA00E435E6 /* Sources */ = {
+		B271623B2B52032188F235E0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Vertix/Pods-Vertix-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Vertix/Pods-Vertix-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Vertix/Pods-Vertix-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F7F881097033996C70DD01FD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B6EA816454EC9CF0A86AF65 /* HistoryViewModelTests.swift in Sources */,
+				B92CA58003A49C2C03062E0E /* HomeViewModelTests.swift in Sources */,
+				6BB3A7DBB294F532695A9365 /* MockDatabaseService.swift in Sources */,
+				E101C44DAD01FE227AE6A299 /* SessionManagerTests.swift in Sources */,
+				1F19839237CB6228F0895E99 /* SessionRecordTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F7FFEAC6C961E26F727EEBEE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB8ADA2675CD5D4BC52C3599 /* AuthContainerView.swift in Sources */,
+				2A61EB77C5AF3C32994ECE33 /* AuthManager.swift in Sources */,
+				0AEEDC96BC18C15FB126ED79 /* CameraPreviewView.swift in Sources */,
+				8FDC2C11CCF23DC5BCD47893 /* CameraViewModel.swift in Sources */,
+				D4583F45AC518002D44E5702 /* Color.swift in Sources */,
+				355E0075321F924C10CB73BF /* ContentView.swift in Sources */,
+				05DFC12B87D106F64660CB74 /* DatabaseServiceProtocol.swift in Sources */,
+				6D3F40E0294906AE6E5DC4FD /* FocusModeView.swift in Sources */,
+				D06992475DBB4308C9E0B0B2 /* GamificationManager.swift in Sources */,
+				25FB33E66BBD21A6572A1A6B /* GamificationViews.swift in Sources */,
+				2F4FEA0C2EB6C292D3FE8B04 /* HistoryView.swift in Sources */,
+				824ACBE0DDA32198BD703012 /* HistoryViewModel.swift in Sources */,
+				8E18894025A43A12B9712667 /* HomeView.swift in Sources */,
+				3FE201BF438741F5929936DC /* HomeViewModel.swift in Sources */,
+				C9D1CA63840527DFD8064B29 /* LoginView.swift in Sources */,
+				7E91B1B17CA17BF5906EEDA1 /* MainTabView.swift in Sources */,
+				412CF405E7C9B6383BFF5D22 /* MonthlyOverviewCard.swift in Sources */,
+				BDFF9AE49715C6A2EA62B404 /* OnboardingStep.swift in Sources */,
+				3114715945B5B83F2769C4D1 /* OnboardingView.swift in Sources */,
+				B79F830E8624D0594D9BFBB5 /* PoseDetector.swift in Sources */,
+				0C42CA48F833C58D0AE066A4 /* PoseEstimationViewModel.swift in Sources */,
+				3C75F955448518D054D1EB82 /* PoseOverlayView.swift in Sources */,
+				4FCAC727F4E01B19B9B6C317 /* PostureAnalyzer.swift in Sources */,
+				B2607D849559C564D6B2286E /* PostureModel.swift in Sources */,
+				58559064023C733B573062BE /* PostureSession.swift in Sources */,
+				6AA444C822AA125FD80F84A2 /* ProfileView.swift in Sources */,
+				DE9E6C6C5850E0BE8A22B752 /* ProfileViewModel.swift in Sources */,
+				71D8A02AF7F7B9684E6C6D24 /* RecentSessionsList.swift in Sources */,
+				29D96A4BDCC8E42EC3E1D491 /* RegisterView.swift in Sources */,
+				8F82F512CDC0678B11CCF071 /* SessionManager.swift in Sources */,
+				E60AB650F8900813F4BC75A5 /* SessionRecord.swift in Sources */,
+				590BAC1CE357FB1C3D0B3937 /* SoundManager.swift in Sources */,
+				C2F57FF6FB6939A6B1CB61FA /* User.swift in Sources */,
+				F877C677D46D56AAEC84A673 /* VertixApp.swift in Sources */,
+				BA0745A2A0590830AE20998C /* VertixTextFields.swift in Sources */,
+				217D424E68E309BAEB5CD302 /* WeeklyPostureChart.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3F0320182FC7F15F00A28F4E /* PBXTargetDependency */ = {
+		F4CC76373ABDCDE70E185EDA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3F7F1AF12F90BEAA00E435E6 /* Vertix */;
-			targetProxy = 3F0320172FC7F15F00A28F4E /* PBXContainerItemProxy */;
+			target = 549558CEA4AC817BA8624709 /* Vertix */;
+			targetProxy = 9D78CA6E5B9A01E356CFE9ED /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		3F0320192FC7F15F00A28F4E /* Debug */ = {
+		1E1C9D5BCD63D0FD2724C324 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 07FFFC4E7D678B6A403CF150 /* Pods-VertixTests.debug.xcconfig */;
+			baseConfigurationReference = 6C5AF9BF97FAFA9BF859C1EB /* Pods-VertixTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.felix.VertixTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SDKROOT = iphoneos;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Vertix.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Vertix";
-			};
-			name = Debug;
-		};
-		3F03201A2FC7F15F00A28F4E /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7A97D14B992745956A94E346 /* Pods-VertixTests.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.felix.VertixTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Vertix.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Vertix";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Vertix.app/Vertix";
 			};
 			name = Release;
 		};
-		3F7F1AFB2F90BEAB00E435E6 /* Debug */ = {
+		4A9C83F49B1164BF06AC1391 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -383,17 +659,15 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = U687259YQU;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
 					"$(inherited)",
+					"DEBUG=1",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -401,26 +675,113 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		3F7F1AFC2F90BEAB00E435E6 /* Release */ = {
+		8A21BD923F5F191A61CF153C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 75277D82A5881515E7756D3C /* Pods-Vertix.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Vertix needs camera access to monitor your posture during study sessions.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.felix.Vertix;
+				SDKROOT = iphoneos;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B1A57B630AD22350D96BE66C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 65B225194C7776544470DD54 /* Pods-VertixTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.felix.VertixTests;
+				SDKROOT = iphoneos;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Vertix.app/Vertix";
+			};
+			name = Debug;
+		};
+		C4C385EC71F073AA7CDD9CE0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E202C80C8638A0944D6F9C7F /* Pods-Vertix.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Vertix needs camera access to monitor your posture during study sessions.";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.felix.Vertix;
+				SDKROOT = iphoneos;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D3EAC651108541C1FE5C17C1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -448,11 +809,9 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = U687259YQU;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -460,116 +819,47 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		3F7F1AFE2F90BEAB00E435E6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9DE2669C744C63D33EDA6A4A /* Pods-Vertix.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "Vertix needs camera access to monitor your posture during study sessions.";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.felix.Vertix;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		3F7F1AFF2F90BEAB00E435E6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = AB455E853370C5FCADD1AFB0 /* Pods-Vertix.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "Vertix needs camera access to monitor your posture during study sessions.";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.felix.Vertix;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3F03201B2FC7F15F00A28F4E /* Build configuration list for PBXNativeTarget "VertixTests" */ = {
+		02C323BA0A06F98D05D064D4 /* Build configuration list for PBXNativeTarget "Vertix" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3F0320192FC7F15F00A28F4E /* Debug */,
-				3F03201A2FC7F15F00A28F4E /* Release */,
+				8A21BD923F5F191A61CF153C /* Debug */,
+				C4C385EC71F073AA7CDD9CE0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
-		3F7F1AED2F90BEAA00E435E6 /* Build configuration list for PBXProject "Vertix" */ = {
+		3FEF1EC2434199F05137608D /* Build configuration list for PBXNativeTarget "VertixTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3F7F1AFB2F90BEAB00E435E6 /* Debug */,
-				3F7F1AFC2F90BEAB00E435E6 /* Release */,
+				B1A57B630AD22350D96BE66C /* Debug */,
+				1E1C9D5BCD63D0FD2724C324 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
-		3F7F1AFD2F90BEAB00E435E6 /* Build configuration list for PBXNativeTarget "Vertix" */ = {
+		7FE924720EF45D15B651DE6B /* Build configuration list for PBXProject "Vertix" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3F7F1AFE2F90BEAB00E435E6 /* Debug */,
-				3F7F1AFF2F90BEAB00E435E6 /* Release */,
+				4A9C83F49B1164BF06AC1391 /* Debug */,
+				D3EAC651108541C1FE5C17C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 3F7F1AEA2F90BEAA00E435E6 /* Project object */;
+	rootObject = 7B80A9C23E02EC32561F380E /* Project object */;
 }

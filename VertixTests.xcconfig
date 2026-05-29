@@ -1,0 +1,3 @@
+#include "Pods/Target Support Files/Pods-VertixTests/Pods-VertixTests.debug.xcconfig"
+TEST_HOST = $(BUILT_PRODUCTS_DIR)/Vertix.app/Vertix
+BUNDLE_LOADER = $(TEST_HOST)
