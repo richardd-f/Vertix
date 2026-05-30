@@ -13,15 +13,17 @@ struct FocusModeView: View {
     @State private var sessionManager = SessionManager()
 
     // MARK: Pomodoro engine & settings state
-    @State private var pomodoroEngine         = PomodoroEngine()
-    @State private var showSettings   = false
-    @State private var settingsFocus  = 25
-    @State private var settingsShort  = 5
-    @State private var settingsLong   = 15
+    @State private var pomodoroEngine = PomodoroEngine()
+    @State private var showSettings = false
+    @State private var settingsFocus = 25
+    @State private var settingsShort = 5
+    @State private var settingsLong = 15
     @State private var settingsCycles = 4
 
     @State private var showSaveConfirmation = false
-    @State private var sessionSaved         = false
+    @State private var sessionSaved = false
+    
+    private let watchManager = WatchConnectivityManager.shared
 
     private let tickTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
@@ -72,6 +74,9 @@ struct FocusModeView: View {
         .onAppear {
             if !isRunningTests { camera.startSession() }
             pomodoroEngine.resetAll()
+            watchManager.sendSessionState(
+                  phase: "focus", remainingSeconds: pomodoroEngine.timeRemaining, isRunning: false
+            )
         }
         .onDisappear {
             if !isRunningTests { camera.stopSession() }
@@ -79,24 +84,35 @@ struct FocusModeView: View {
         .onReceive(tickTimer) { _ in
             let wasRunning = pomodoroEngine.isRunning
             pomodoroEngine.tick()
-
-            // Record a posture sample every completed focus minute
+         
+            // sync timer to Watch every tick
+            watchManager.sendSessionState(
+                phase: pomodoroEngine.currentPhase.label,
+                remainingSeconds: pomodoroEngine.timeRemaining,
+                isRunning: pomodoroEngine.isRunning
+            )
+         
+            // Record posture sample + send Watch alert at every completed focus minute
             if pomodoroEngine.currentPhase == .focus,
                pomodoroEngine.focusSecondsElapsed > 0,
                pomodoroEngine.focusSecondsElapsed % 60 == 0 {
-                sessionManager.recordMinuteSample(
-                    isGood: camera.postureResult?.isGoodPosture ?? false
-                )
+         
+                let isGood = camera.postureResult?.isGoodPosture ?? false
+                sessionManager.recordMinuteSample(isGood: isGood)
+         
+                // NEW: alert Watch only on bad posture
+                if !isGood, let feedback = camera.postureResult?.feedback {
+                    watchManager.sendPostureAlert(message: feedback)
+                }
             }
-
-            // Play break sound when a phase ends (but not all-done)
+         
             if wasRunning && !pomodoroEngine.isRunning && !pomodoroEngine.allCyclesComplete {
                 SoundManager.shared.play(.pomodoroBreak)
             }
-
-            // All cycles finished → auto-save
+         
             if pomodoroEngine.allCyclesComplete {
                 SoundManager.shared.play(.sessionEnd)
+                watchManager.sendSessionEnded()
                 saveAndDismiss()
             }
         }
@@ -122,6 +138,15 @@ struct FocusModeView: View {
         } message: {
             let mins = pomodoroEngine.focusSecondsElapsed / 60
             Text("You've focused for \(mins) minute\(mins == 1 ? "" : "s").")
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .watchCommandReceived)) { notif in
+            guard let command = notif.userInfo?["command"] as? String else { return }
+            switch command {
+            case "start":  if !pomodoroEngine.isRunning { pomodoroEngine.toggleRunning() }
+            case "pause":  if  pomodoroEngine.isRunning { pomodoroEngine.toggleRunning() }
+            case "stop":   showSaveConfirmation = true
+            default:       break
+            }
         }
     }
 
@@ -157,6 +182,7 @@ struct FocusModeView: View {
                 object: nil,
                 userInfo: ["postureScore": score, "durationSeconds": elapsed]
             )
+            watchManager.sendSessionEnded()
             dismiss()
         }
     }

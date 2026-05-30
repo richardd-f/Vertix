@@ -1,17 +1,19 @@
 //
 //  VertixWatchApp.swift
-//  VertixWatch Watch App
-//
-//  Created by Clarice Harijanto on 30/05/26.
+//  VertixWatch
 //
 
 import SwiftUI
 
 @main
-struct VertixWatch_Watch_AppApp: App {
+struct VertixWatchApp: App {
+
+    @StateObject private var watchSession = WatchSessionManager.shared
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            WatchRootView()
+                .environmentObject(watchSession)
         }
     }
 }
