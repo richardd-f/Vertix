@@ -13,31 +13,16 @@ struct FocusModeView: View {
     @State private var sessionManager = SessionManager()
 
     // Pomodoro settings — snapshotted into Firebase when session ends
-    @State private var focusDuration: Int = 25
-    @State private var shortBreakDuration: Int = 5
-    @State private var longBreakDuration: Int = 15
-    @State private var totalCycles: Int = 1
+    @State private var engine           = PomodoroEngine()
+    @State private var showSettings     = false
+    @State private var settingsFocus    = 25
+    @State private var settingsShort    = 5
+    @State private var settingsLong     = 15
+    @State private var settingsCycles   = 4
+    @State private var showSaveConfirmation = false
+    @State private var sessionSaved     = false
 
-    @State private var timeRemaining: Int = 25 * 60
-    @State private var isTimerRunning: Bool = true
-    @State private var showSaveConfirmation: Bool = false
-
-    private let sessionDuration: Int = 25 * 60
     private let tickTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-
-    private var formattedTime: String {
-        let mins = timeRemaining / 60
-        let secs = timeRemaining % 60
-        return String(format: "%02d:%02d", mins, secs)
-    }
-
-    private var elapsedSeconds: Int { sessionDuration - timeRemaining }
-
-    private var formattedElapsed: String {
-        let mins = elapsedSeconds / 60
-        let secs = elapsedSeconds % 60
-        return String(format: "%d:%02d", mins, secs)
-    }
 
     private var postureScore: Int {
         guard let result = camera.postureResult else { return 0 }
@@ -73,9 +58,8 @@ struct FocusModeView: View {
             }
         }
         .onAppear {
-            if !isRunningTests {
-                camera.startSession()
-            }
+            if !isRunningTests { camera.startSession() }
+            engine.resetAll()
         }
         .onDisappear {
             if !isRunningTests {
@@ -83,25 +67,50 @@ struct FocusModeView: View {
             }
         }
         .onReceive(tickTimer) { _ in
-            guard isTimerRunning, timeRemaining > 0 else { return }
-            timeRemaining -= 1
-            if elapsedSeconds > 0 && elapsedSeconds % 60 == 0 {
-                let isGood = camera.postureResult?.isGoodPosture ?? false
-                sessionManager.recordMinuteSample(isGood: isGood)
+            let wasRunning = engine.isRunning
+            engine.tick()
+
+            if engine.currentPhase == .focus,
+               engine.focusSecondsElapsed > 0,
+               engine.focusSecondsElapsed % 60 == 0 {
+                sessionManager.recordMinuteSample(
+                    isGood: camera.postureResult?.isGoodPosture ?? false
+                )
             }
-            if timeRemaining == 0 {
-                isTimerRunning = false
-                triggerSessionSave(elapsed: elapsedSeconds)
+
+            if wasRunning && !engine.isRunning && !engine.allCyclesComplete {
+                SoundManager.shared.play(.pomodoroBreak)
+            }
+
+            if engine.allCyclesComplete {
+                SoundManager.shared.play(.sessionEnd)
+                saveAndDismiss()
+            }
+        }
+        .sheet(isPresented: $showSettings) {
+            SessionSettingsView(
+                focusDuration:         $settingsFocus,
+                shortBreakDuration:    $settingsShort,
+                longBreakDuration:     $settingsLong,
+                cyclesBeforeLongBreak: $settingsCycles
+            ) {
+                engine.applySettings(
+                    focus:  settingsFocus,
+                    short:  settingsShort,
+                    long:   settingsLong,
+                    cycles: settingsCycles
+                )
+                sessionSaved = false
             }
         }
         .alert("End Session?", isPresented: $showSaveConfirmation) {
-            Button("End", role: .destructive) {
-                triggerSessionSave(elapsed: elapsedSeconds)
-                dismiss()
+            Button("End & Save", role: .destructive) {
+                saveAndDismiss()
             }
             Button("Cancel", role: .cancel) {}
         } message: {
-            Text("You've completed \(formattedElapsed) of posture monitoring.")
+            let mins = engine.focusSecondsElapsed / 60
+            Text("You've focused for \(mins) minute\(mins == 1 ? "" : "s").")
         }
     }
 
@@ -124,7 +133,7 @@ struct FocusModeView: View {
 
     private var topBar: some View {
         HStack(alignment: .top, spacing: 12) {
-            // Dismiss
+            // Dismiss button
             Button(action: { dismiss() }) {
                 Image(systemName: "xmark")
                     .font(.system(size: 16, weight: .semibold))
@@ -136,31 +145,48 @@ struct FocusModeView: View {
 
             Spacer()
 
-            // Timer + score panel
+            // Session label
             VStack(spacing: 8) {
-                timerPill
-                if camera.postureResult != nil {
-                    scorePill
+                Group {
+                    if engine.currentPhase == .focus {
+                        Text(engine.sessionLabel)
+                    } else {
+                        Text(engine.currentPhase.label)
+                    }
                 }
+                .font(.system(size: 13, weight: .bold))
+                .foregroundColor(
+                    engine.currentPhase == .focus ? .white : engine.currentPhase.color
+                )
+                .padding(.horizontal, 14).padding(.vertical, 8)
+                .background(Color.black.opacity(0.65))
+                .cornerRadius(14)
+
+                if camera.postureResult != nil {
+                    scorePill   // your friend's existing scorePill — untouched
+                }
+            }
+
+            Spacer()
+
+            // Gear button (new)
+            Button {
+                settingsFocus  = engine.focusDuration
+                settingsShort  = engine.shortBreakDuration
+                settingsLong   = engine.longBreakDuration
+                settingsCycles = engine.cyclesBeforeLongBreak
+                showSettings   = true
+            } label: {
+                Image(systemName: "gearshape.fill")
+                    .font(.system(size: 16, weight: .semibold))
+                    .foregroundColor(.white)
+                    .padding(10)
+                    .background(Color.black.opacity(0.55))
+                    .clipShape(Circle())
             }
         }
         .padding(.horizontal, 20)
         .padding(.top, 56)
-    }
-
-    private var timerPill: some View {
-        HStack(spacing: 6) {
-            Image(systemName: isTimerRunning ? "timer" : "timer.circle")
-                .font(.caption)
-                .foregroundColor(timeRemaining == 0 ? .orange : .white)
-            Text(formattedTime)
-                .font(.system(size: 22, weight: .bold, design: .monospaced))
-                .foregroundColor(timeRemaining == 0 ? .orange : .white)
-        }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 10)
-        .background(Color.black.opacity(0.65))
-        .cornerRadius(14)
     }
 
     private var scorePill: some View {
@@ -223,66 +249,52 @@ struct FocusModeView: View {
                 }
             }
 
-            // Session time progress
-            sessionProgressBar
+            // Timer Ring + Cycle Dots
+            timerRing
+            cycleDots
 
-            // Action buttons
-            HStack(spacing: 12) {
-                // Pause / resume
-                Button(action: { isTimerRunning.toggle() }) {
-                    Label(isTimerRunning ? "Pause" : "Resume",
-                          systemImage: isTimerRunning ? "pause.fill" : "play.fill")
-                        .font(.subheadline.weight(.semibold))
-                        .foregroundColor(Color.vertixDarkGreen)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 14)
-                        .background(Color.white.opacity(0.92))
-                        .cornerRadius(14)
+            // Pomodoro Controls (Reset, Play/Pause, & Skip)
+            HStack(spacing: 32) {
+                iconButton(icon: "arrow.counterclockwise", label: "Reset") {
+                    engine.reset()
                 }
+                Button { engine.toggleRunning() } label: {
+                    ZStack {
+                        Circle()
+                            .fill(engine.currentPhase.color)
+                            .frame(width: 64, height: 64)
+                            .shadow(color: engine.currentPhase.color.opacity(0.45),
+                                    radius: 10, y: 4)
+                        Image(systemName: engine.isRunning ? "pause.fill" : "play.fill")
+                            .font(.system(size: 24))
+                            .foregroundColor(.white)
+                    }
+                }
+                iconButton(icon: "forward.end.fill", label: "Skip") {
+                    engine.skipToNext()
+                }
+            }
 
-                // End session
-                Button(action: { showSaveConfirmation = true }) {
-                    Label("End Session", systemImage: "stop.fill")
-                        .font(.subheadline.weight(.semibold))
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 14)
-                        .background(Color.vertixDarkGreen)
-                        .cornerRadius(14)
-                }
+            // End Session
+            Button { showSaveConfirmation = true } label: {
+                Label("End Session", systemImage: "stop.fill")
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 14)
+                    .background(Color.black.opacity(0.5))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 14)
+                            .strokeBorder(Color.white.opacity(0.3), lineWidth: 1)
+                    )
+                    .cornerRadius(14)
             }
         }
         .padding(.horizontal, 20)
         .padding(.bottom, 40)
+
     }
 
-    private var sessionProgressBar: some View {
-        VStack(spacing: 4) {
-            HStack {
-                Text(formattedElapsed)
-                    .font(.caption.monospacedDigit())
-                    .foregroundColor(.white.opacity(0.8))
-                Spacer()
-                Text("25:00")
-                    .font(.caption.monospacedDigit())
-                    .foregroundColor(.white.opacity(0.8))
-            }
-            GeometryReader { geo in
-                ZStack(alignment: .leading) {
-                    Capsule()
-                        .fill(Color.white.opacity(0.25))
-                        .frame(height: 5)
-                    Capsule()
-                        .fill(Color.vertixDarkGreen)
-                        .frame(width: geo.size.width * CGFloat(elapsedSeconds) / CGFloat(sessionDuration),
-                               height: 5)
-                }
-            }
-            .frame(height: 5)
-        }
-        .padding(.horizontal, 4)
-    }
-}
 
 // MARK: - Angle Card
 
@@ -307,5 +319,83 @@ struct AngleCard: View {
         .padding(.vertical, 10)
         .background(Color.black.opacity(0.65))
         .cornerRadius(12)
+    }
+    
+    // MARK: Timer ring
+
+    private var timerRing: some View {
+        ZStack {
+            Circle()
+                .stroke(Color.white.opacity(0.15), lineWidth: 12)
+                .frame(width: 190, height: 190)
+
+            Circle()
+                .trim(from: 0, to: engine.progress)
+                .stroke(
+                    engine.currentPhase.color,
+                    style: StrokeStyle(lineWidth: 12, lineCap: .round)
+                )
+                .frame(width: 190, height: 190)
+                .rotationEffect(.degrees(-90))
+                .animation(.linear(duration: 0.8), value: engine.progress)
+
+            VStack(spacing: 5) {
+                Image(systemName: engine.currentPhase.icon)
+                    .font(.system(size: 18))
+                    .foregroundColor(engine.currentPhase.color)
+                Text(engine.formattedTime)
+                    .font(.system(size: 46, weight: .bold, design: .monospaced))
+                    .foregroundColor(.white)
+                Text(engine.currentPhase.label.uppercased())
+                    .font(.system(size: 10, weight: .bold))
+                    .tracking(1.5)
+                    .foregroundColor(engine.currentPhase.color)
+            }
+        }
+    }
+
+    // MARK: Cycle dots
+
+    private var cycleDots: some View {
+        let seq = engine.phaseSequence
+        return ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 5) {
+                ForEach(Array(seq.enumerated()), id: \.offset) { idx, phase in
+                    let isCurrent = idx == engine.phaseSequenceIndex
+                    let isPast    = idx < engine.phaseSequenceIndex
+                    Capsule()
+                        .fill(
+                            isPast    ? phase.color :
+                            isCurrent ? phase.color.opacity(0.9) :
+                                        Color.white.opacity(0.25)
+                        )
+                        .frame(width: isCurrent ? 26 : 14, height: 6)
+                        .animation(.spring(response: 0.3), value: engine.phaseSequenceIndex)
+                }
+            }
+            .padding(.horizontal, 24)
+        }
+    }
+
+    // MARK: Icon button helper
+
+    private func iconButton(
+        icon: String,
+        label: String,
+        action: @escaping () -> Void
+    ) -> some View {
+        Button(action: action) {
+            VStack(spacing: 4) {
+                ZStack {
+                    Circle()
+                        .fill(Color.white.opacity(0.15))
+                        .frame(width: 48, height: 48)
+                    Image(systemName: icon)
+                        .font(.system(size: 18))
+                        .foregroundColor(.white)
+                }
+                Text(label).font(.caption2).foregroundColor(.white.opacity(0.7))
+            }
+        }
     }
 }

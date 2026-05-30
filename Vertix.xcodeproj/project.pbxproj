@@ -31,6 +31,8 @@
 		6BB3A7DBB294F532695A9365 /* MockDatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77989EEE4FD0E60DD9740D8B /* MockDatabaseService.swift */; };
 		6D3F40E0294906AE6E5DC4FD /* FocusModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517FA8DED416910A2169F5E1 /* FocusModeView.swift */; };
 		6E8E06A92FCAF67000BDCC43 /* GamificationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8E06A82FCAF66B00BDCC43 /* GamificationTests.swift */; };
+		6E8E06AB2FCAFBDD00BDCC43 /* PomodoroEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8E06AA2FCAFBD800BDCC43 /* PomodoroEngine.swift */; };
+		6E8E06AD2FCAFC4900BDCC43 /* SessionSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8E06AC2FCAFC4600BDCC43 /* SessionSettingsView.swift */; };
 		71D8A02AF7F7B9684E6C6D24 /* RecentSessionsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D300DC4D4D405680258682 /* RecentSessionsList.swift */; };
 		7E91B1B17CA17BF5906EEDA1 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5008D4933E987E385F62CD4A /* MainTabView.swift */; };
 		81F35A763AF19483FC835A9F /* Pods_Vertix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 575B95ED6CD054A8FCBD8CA9 /* Pods_Vertix.framework */; };
@@ -93,6 +95,8 @@
 		6C5AF9BF97FAFA9BF859C1EB /* Pods-VertixTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VertixTests.release.xcconfig"; path = "Target Support Files/Pods-VertixTests/Pods-VertixTests.release.xcconfig"; sourceTree = "<group>"; };
 		6D9CA6E3C36E7BD4BFA58BC4 /* PostureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostureModel.swift; sourceTree = "<group>"; };
 		6E8E06A82FCAF66B00BDCC43 /* GamificationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamificationTests.swift; sourceTree = "<group>"; };
+		6E8E06AA2FCAFBD800BDCC43 /* PomodoroEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroEngine.swift; sourceTree = "<group>"; };
+		6E8E06AC2FCAFC4600BDCC43 /* SessionSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSettingsView.swift; sourceTree = "<group>"; };
 		711938E09ED37C7F582C3CAB /* PostureSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostureSession.swift; sourceTree = "<group>"; };
 		71D40E2D5BCFCBB2FB1376D0 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		75277D82A5881515E7756D3C /* Pods-Vertix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vertix.debug.xcconfig"; path = "Target Support Files/Pods-Vertix/Pods-Vertix.debug.xcconfig"; sourceTree = "<group>"; };
@@ -149,6 +153,7 @@
 		0769FF3C3533F517B725F433 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				6E8E06AC2FCAFC4600BDCC43 /* SessionSettingsView.swift */,
 				2CBA81477360C8FD128807A5 /* HomeView.swift */,
 				2C391BEA63D2028719948A9C /* HomeViewModel.swift */,
 			);
@@ -251,6 +256,7 @@
 		6A53D5BEA65CDF2A89C5E65C /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				6E8E06AA2FCAFBD800BDCC43 /* PomodoroEngine.swift */,
 				2A91653EA6F01784FD5117B6 /* AuthManager.swift */,
 				F7718BB5A3D7FEF572C0250D /* DatabaseServiceProtocol.swift */,
 				24C59915BDA3B7927DB34F0B /* GamificationManager.swift */,
@@ -557,6 +563,7 @@
 			files = (
 				FB8ADA2675CD5D4BC52C3599 /* AuthContainerView.swift in Sources */,
 				2A61EB77C5AF3C32994ECE33 /* AuthManager.swift in Sources */,
+				6E8E06AD2FCAFC4900BDCC43 /* SessionSettingsView.swift in Sources */,
 				0AEEDC96BC18C15FB126ED79 /* CameraPreviewView.swift in Sources */,
 				8FDC2C11CCF23DC5BCD47893 /* CameraViewModel.swift in Sources */,
 				D4583F45AC518002D44E5702 /* Color.swift in Sources */,
@@ -588,6 +595,7 @@
 				E60AB650F8900813F4BC75A5 /* SessionRecord.swift in Sources */,
 				590BAC1CE357FB1C3D0B3937 /* SoundManager.swift in Sources */,
 				C2F57FF6FB6939A6B1CB61FA /* User.swift in Sources */,
+				6E8E06AB2FCAFBDD00BDCC43 /* PomodoroEngine.swift in Sources */,
 				F877C677D46D56AAEC84A673 /* VertixApp.swift in Sources */,
 				BA0745A2A0590830AE20998C /* VertixTextFields.swift in Sources */,
 				217D424E68E309BAEB5CD302 /* WeeklyPostureChart.swift in Sources */,
