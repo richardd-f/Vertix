@@ -103,6 +103,7 @@ struct HomeView: View {
                         manager: gamificationManager,
                         streak: viewModel.currentStreak
                     )
+                    .padding(.horizontal, 20)
 
                     // MARK: Start Session Button
                     Button(action: { showFocusMode = true }) {
@@ -235,6 +236,7 @@ struct HomeView: View {
                   let uid = authManager.currentUser?.id else { return }
 
             Task {
+                await viewModel.load(uid: uid)
                 let prevLevel = gamificationManager.currentLevel.level
                 let gained = await gamificationManager.processSessionCompletion(
                     uid: uid,

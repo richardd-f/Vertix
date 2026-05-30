@@ -30,6 +30,7 @@
 		6AA444C822AA125FD80F84A2 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838B848F243303FE76C7FF68 /* ProfileView.swift */; };
 		6BB3A7DBB294F532695A9365 /* MockDatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77989EEE4FD0E60DD9740D8B /* MockDatabaseService.swift */; };
 		6D3F40E0294906AE6E5DC4FD /* FocusModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517FA8DED416910A2169F5E1 /* FocusModeView.swift */; };
+		6E8E06A92FCAF67000BDCC43 /* GamificationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8E06A82FCAF66B00BDCC43 /* GamificationTests.swift */; };
 		71D8A02AF7F7B9684E6C6D24 /* RecentSessionsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D300DC4D4D405680258682 /* RecentSessionsList.swift */; };
 		7E91B1B17CA17BF5906EEDA1 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5008D4933E987E385F62CD4A /* MainTabView.swift */; };
 		81F35A763AF19483FC835A9F /* Pods_Vertix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 575B95ED6CD054A8FCBD8CA9 /* Pods_Vertix.framework */; };
@@ -78,12 +79,12 @@
 		2C391BEA63D2028719948A9C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		2CBA81477360C8FD128807A5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		304DDBC4D4F5FDCABCEE37F9 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
-		32D01D69C9AC64066E67B80F /* Vertix.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Vertix.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		32D01D69C9AC64066E67B80F /* Vertix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vertix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B1D70A00389204EA8906897 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		46CB79112B37D54F1F4E0363 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		5008D4933E987E385F62CD4A /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		517FA8DED416910A2169F5E1 /* FocusModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusModeView.swift; sourceTree = "<group>"; };
-		55DE34D22AEDE76088AD7CD4 /* VertixTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = VertixTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		55DE34D22AEDE76088AD7CD4 /* VertixTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VertixTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		575B95ED6CD054A8FCBD8CA9 /* Pods_Vertix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vertix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		59B08B7A72EA4C787BA38157 /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 		65B225194C7776544470DD54 /* Pods-VertixTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VertixTests.debug.xcconfig"; path = "Target Support Files/Pods-VertixTests/Pods-VertixTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -91,6 +92,7 @@
 		699BD6CC1CAD9889DB9996B6 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		6C5AF9BF97FAFA9BF859C1EB /* Pods-VertixTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VertixTests.release.xcconfig"; path = "Target Support Files/Pods-VertixTests/Pods-VertixTests.release.xcconfig"; sourceTree = "<group>"; };
 		6D9CA6E3C36E7BD4BFA58BC4 /* PostureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostureModel.swift; sourceTree = "<group>"; };
+		6E8E06A82FCAF66B00BDCC43 /* GamificationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamificationTests.swift; sourceTree = "<group>"; };
 		711938E09ED37C7F582C3CAB /* PostureSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostureSession.swift; sourceTree = "<group>"; };
 		71D40E2D5BCFCBB2FB1376D0 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		75277D82A5881515E7756D3C /* Pods-Vertix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vertix.debug.xcconfig"; path = "Target Support Files/Pods-Vertix/Pods-Vertix.debug.xcconfig"; sourceTree = "<group>"; };
@@ -121,7 +123,7 @@
 		EAE40F8BF9BE24290633D863 /* HistoryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModelTests.swift; sourceTree = "<group>"; };
 		F6E0ECD1B90233E27AD6BDF3 /* PostureAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostureAnalyzer.swift; sourceTree = "<group>"; };
 		F7718BB5A3D7FEF572C0250D /* DatabaseServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseServiceProtocol.swift; sourceTree = "<group>"; };
-		F947EA7D6739CDBFCF399AB8 /* pose_landmarker_lite.task */ = {isa = PBXFileReference; path = pose_landmarker_lite.task; sourceTree = "<group>"; };
+		F947EA7D6739CDBFCF399AB8 /* pose_landmarker_lite.task */ = {isa = PBXFileReference; lastKnownFileType = file; path = pose_landmarker_lite.task; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,7 +245,6 @@
 				65B225194C7776544470DD54 /* Pods-VertixTests.debug.xcconfig */,
 				6C5AF9BF97FAFA9BF859C1EB /* Pods-VertixTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -262,6 +263,7 @@
 		6ECB4A45CD21F930CFD3674A /* VertixTests */ = {
 			isa = PBXGroup;
 			children = (
+				6E8E06A82FCAF66B00BDCC43 /* GamificationTests.swift */,
 				EAE40F8BF9BE24290633D863 /* HistoryViewModelTests.swift */,
 				E7B36AF3A9A4CE677CC55E61 /* HomeViewModelTests.swift */,
 				77989EEE4FD0E60DD9740D8B /* MockDatabaseService.swift */,
@@ -433,8 +435,6 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
-				TargetAttributes = {
-				};
 			};
 			buildConfigurationList = 7FE924720EF45D15B651DE6B /* Build configuration list for PBXProject "Vertix" */;
 			developmentRegion = en;
@@ -522,9 +522,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Vertix/Pods-Vertix-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Vertix/Pods-Vertix-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -542,6 +546,7 @@
 				B92CA58003A49C2C03062E0E /* HomeViewModelTests.swift in Sources */,
 				6BB3A7DBB294F532695A9365 /* MockDatabaseService.swift in Sources */,
 				E101C44DAD01FE227AE6A299 /* SessionManagerTests.swift in Sources */,
+				6E8E06A92FCAF67000BDCC43 /* GamificationTests.swift in Sources */,
 				1F19839237CB6228F0895E99 /* SessionRecordTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

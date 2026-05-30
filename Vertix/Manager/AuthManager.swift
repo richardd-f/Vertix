@@ -44,7 +44,12 @@ class AuthManager {
                 let userData: [String: Any] = [
                     "id": result.user.uid,
                     "name": fallbackName,
-                    "email": fallbackEmail
+                    "email": fallbackEmail,
+                    "totalExp": 0,
+                    "currentStreak": 0,
+                    "longestStreak": 0,
+                    "totalTrackedSeconds": 0,
+                    "lastActiveDate": ""
                 ]
                 
                 // Attempt to repair the missing DB entry

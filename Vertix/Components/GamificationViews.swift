@@ -164,7 +164,6 @@ struct GamificationCard: View {
         .background(Color.vertixCardBackground)
         .cornerRadius(24)
         .shadow(color: .black.opacity(0.03), radius: 10, x: 0, y: 5)
-        .padding(.horizontal, 20)
     }
 }
 
