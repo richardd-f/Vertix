@@ -8,123 +8,170 @@ class AuthManager {
     var isAuthenticated: Bool = false
     var currentUser: User? = nil
     var isLoading: Bool = false
-    var errorMessage: String? = nil // To handle and display Firebase errors
-    
-    // Reference to the root of your Realtime Database
+    var errorMessage: String? = nil
+
     private var dbRef: DatabaseReference {
         Database.database().reference()
     }
-    
+
     init() {
-        // Automatically log the user in if Firebase remembers their session
         if let user = Auth.auth().currentUser {
             self.isAuthenticated = true
             Task { await fetchUserData(uid: user.uid) }
         }
     }
-    
+
     @MainActor
     func login(email: String, password: String) async {
         isLoading = true
         errorMessage = nil
-        
+
         do {
-            // 1. Authenticate with Firebase Auth
             let result = try await Auth.auth().signIn(withEmail: email, password: password)
-            
-            // 2. Fetch the user's custom profile from Realtime DB
             await fetchUserData(uid: result.user.uid)
-            
-            // 3. If fetchUserData failed to find a profile, create one from Auth data
-            //    This handles the "partial registration" case where Auth succeeded but DB write failed previously
+
             if self.currentUser == nil {
-                let fallbackName = result.user.displayName ?? "User"
+                let fallbackName  = result.user.displayName ?? "User"
                 let fallbackEmail = result.user.email ?? email
-                
                 let userData: [String: Any] = [
                     "id": result.user.uid,
                     "name": fallbackName,
                     "email": fallbackEmail,
                     "totalExp": 0,
+                    "totalTrackedSeconds": 0,
                     "currentStreak": 0,
                     "longestStreak": 0,
-                    "totalTrackedSeconds": 0,
-                    "lastActiveDate": ""
+                    "lastActiveDate": "",
+                    "pomodoroFocusDuration": PomodoroSettings.defaults.focusDuration,
+                    "pomodoroShortBreakDuration": PomodoroSettings.defaults.shortBreakDuration,
+                    "pomodoroLongBreakDuration": PomodoroSettings.defaults.longBreakDuration,
+                    "pomodoroTotalCycles": PomodoroSettings.defaults.totalCycles
                 ]
-                
-                // Attempt to repair the missing DB entry
                 try? await dbRef.child("users").child(result.user.uid).setValue(userData)
-                self.currentUser = User(id: result.user.uid, name: fallbackName, email: fallbackEmail)
+                self.currentUser = User(
+                    id: result.user.uid,
+                    name: fallbackName,
+                    email: fallbackEmail,
+                    avatarUrl: nil,
+                    createdAt: Date(),
+                    totalTrackedSeconds: 0,
+                    currentStreak: 0,
+                    longestStreak: 0,
+                    lastActiveDate: nil,
+                    pomodoroSettings: .defaults
+                )
             }
-            
+
             isAuthenticated = true
         } catch {
             errorMessage = error.localizedDescription
         }
-        
+
         isLoading = false
     }
-    
+
     @MainActor
     func register(name: String, email: String, password: String) async {
         isLoading = true
         errorMessage = nil
-        
+
         do {
-            // 1. Create the secure user in Firebase Auth
             let result = try await Auth.auth().createUser(withEmail: email, password: password)
             let uid = result.user.uid
-            
-            // 2. Create a dictionary of the custom data we want to save
+
             let userData: [String: Any] = [
                 "id": uid,
                 "name": name,
-                "email": email
+                "email": email,
+                "createdAt": ServerValue.timestamp(),
+                "totalExp": 0,
+                "totalTrackedSeconds": 0,
+                "currentStreak": 0,
+                "longestStreak": 0,
+                "lastActiveDate": "",
+                "pomodoroFocusDuration": PomodoroSettings.defaults.focusDuration,
+                "pomodoroShortBreakDuration": PomodoroSettings.defaults.shortBreakDuration,
+                "pomodoroLongBreakDuration": PomodoroSettings.defaults.longBreakDuration,
+                "pomodoroTotalCycles": PomodoroSettings.defaults.totalCycles
             ]
-            
-            // 3. Save it to Realtime Database under the path: users/uid/...
-            //    If this fails, delete the Auth user to prevent a "partial registration"
+
             do {
                 try await dbRef.child("users").child(uid).setValue(userData)
             } catch {
-                // Rollback: delete the Auth account so the user can retry cleanly
                 try? await result.user.delete()
                 errorMessage = "Account created but failed to save profile. Please try again."
                 isLoading = false
                 return
             }
-            
-            // 4. Update local app state
-            self.currentUser = User(id: uid, name: name, email: email)
+
+            self.currentUser = User(
+                id: uid,
+                name: name,
+                email: email,
+                avatarUrl: nil,
+                createdAt: Date(),
+                totalTrackedSeconds: 0,
+                currentStreak: 0,
+                longestStreak: 0,
+                lastActiveDate: nil,
+                pomodoroSettings: .defaults
+            )
             self.isAuthenticated = true
-            
+
         } catch {
             errorMessage = error.localizedDescription
         }
-        
+
         isLoading = false
     }
-    
+
+    func refreshUser(uid: String) async {
+        await fetchUserData(uid: uid)
+    }
+
     @MainActor
     private func fetchUserData(uid: String) async {
         do {
-            // Read data from Realtime Database
             let snapshot = try await dbRef.child("users").child(uid).getData()
-            
-            // Parse the dictionary back into our Swift User struct
-            // Use fallback values so a missing field doesn't leave currentUser nil
+
             if let dict = snapshot.value as? [String: Any] {
-                let name = dict["name"] as? String ?? "User"
-                let email = dict["email"] as? String ?? ""
-                self.currentUser = User(id: uid, name: name, email: email)
+                let name       = dict["name"] as? String ?? "User"
+                let email      = dict["email"] as? String ?? ""
+                let avatarUrl  = dict["avatarUrl"] as? String
+                let createdAt  = (dict["createdAt"] as? Double)
+                                  .map { Date(timeIntervalSince1970: $0 / 1000) } ?? Date()
+                let totalSecs  = dict["totalTrackedSeconds"] as? Int ?? 0
+                let streak     = dict["currentStreak"] as? Int ?? 0
+                let longest    = dict["longestStreak"] as? Int ?? 0
+                let lastActive = dict["lastActiveDate"] as? String
+                let focusDur   = dict["pomodoroFocusDuration"] as? Int ?? 25
+                let shortBreak = dict["pomodoroShortBreakDuration"] as? Int ?? 5
+                let longBreak  = dict["pomodoroLongBreakDuration"] as? Int ?? 15
+                let cycles     = dict["pomodoroTotalCycles"] as? Int ?? 1
+                let settings   = PomodoroSettings(
+                                  focusDuration: focusDur,
+                                  shortBreakDuration: shortBreak,
+                                  longBreakDuration: longBreak,
+                                  totalCycles: cycles)
+
+                self.currentUser = User(
+                    id: uid,
+                    name: name,
+                    email: email,
+                    avatarUrl: avatarUrl,
+                    createdAt: createdAt,
+                    totalTrackedSeconds: totalSecs,
+                    currentStreak: streak,
+                    longestStreak: longest,
+                    lastActiveDate: lastActive,
+                    pomodoroSettings: settings
+                )
             }
-            // If snapshot.value is not a dictionary, currentUser stays nil
-            // The caller (login) handles this case
         } catch {
             print("Error fetching user data from DB: \(error)")
         }
     }
-    
+
     func logout() {
         do {
             try Auth.auth().signOut()
