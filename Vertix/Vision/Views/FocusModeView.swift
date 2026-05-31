@@ -3,6 +3,12 @@ import Combine
 import FirebaseAuth
 
 struct FocusModeView: View {
+    let settings: PomodoroSettings
+
+    init(settings: PomodoroSettings = .defaults) {
+        self.settings = settings
+    }
+
     private var isRunningTests: Bool {
         ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil
     }
@@ -30,6 +36,11 @@ struct FocusModeView: View {
     // MARK: Derived posture values (unchanged from original)
 
     private var postureScore: Int {
+        let total = sessionManager.goodCount + sessionManager.badCount
+        if total > 0 {
+            return sessionManager.goodCount * 100 / total
+        }
+        // Before first minute sample fires, use real-time angle reading
         guard let result = camera.postureResult else { return 0 }
         var score = 0
         if result.neckAngle    < 20 { score += 33 }
@@ -73,7 +84,12 @@ struct FocusModeView: View {
         }
         .onAppear {
             if !isRunningTests { camera.startSession() }
-            pomodoroEngine.resetAll()
+            pomodoroEngine.applySettings(
+                focus:  settings.focusDuration,
+                short:  settings.shortBreakDuration,
+                long:   settings.longBreakDuration,
+                cycles: settings.totalCycles
+            )
             watchManager.sendSessionState(
                   phase: "focus", remainingSeconds: pomodoroEngine.timeRemaining, isRunning: false
             )

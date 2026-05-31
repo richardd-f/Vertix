@@ -226,7 +226,7 @@ struct HomeView: View {
             await gamificationManager.load(uid: uid)
         }
         .fullScreenCover(isPresented: $showFocusMode) {
-            FocusModeView()
+            FocusModeView(settings: authManager.currentUser?.pomodoroSettings ?? .defaults)
         }
         // Listen for session-completed notification from FocusModeView
         .onReceive(NotificationCenter.default.publisher(for: .sessionCompleted)) { notif in
@@ -256,7 +256,8 @@ struct HomeView: View {
                     SoundManager.shared.play(.sessionEnd)
                 }
 
-                // Refresh home data
+                // Sync updated streak/stats into currentUser, then refresh dashboard
+                await authManager.refreshUser(uid: uid)
                 await viewModel.load(uid: uid)
             }
         }

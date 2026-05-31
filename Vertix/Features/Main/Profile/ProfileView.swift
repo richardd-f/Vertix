@@ -3,6 +3,11 @@ import SwiftUI
 struct ProfileView: View {
     @Environment(AuthManager.self) private var authManager
     @State private var viewModel = ProfileViewModel()
+    @State private var showSessionSettings = false
+    @State private var settingsFocus = PomodoroSettings.defaults.focusDuration
+    @State private var settingsShort = PomodoroSettings.defaults.shortBreakDuration
+    @State private var settingsLong  = PomodoroSettings.defaults.longBreakDuration
+    @State private var settingsCycles = PomodoroSettings.defaults.totalCycles
     
     var body: some View {
         NavigationStack {
@@ -82,6 +87,17 @@ struct ProfileView: View {
                         SettingsGroup(title: "PREFERENCES") {
                             SettingsRow(icon: "bell.fill", title: "Notifications", subtitle: "Posture alerts & Weekly summaries")
                         }
+
+                        SettingsGroup(title: "FOCUS SESSION") {
+                            Button(action: { showSessionSettings = true }) {
+                                SettingsRow(
+                                    icon: "timer",
+                                    title: "Session Settings",
+                                    subtitle: "Focus, breaks & cycles"
+                                )
+                            }
+                            .buttonStyle(.plain)
+                        }
                         
                         // MARK: Logout Button
                         Button(action: {
@@ -106,6 +122,32 @@ struct ProfileView: View {
         }
         .task {
             await viewModel.load(uid: authManager.currentUser?.id ?? "")
+            if let saved = authManager.currentUser?.pomodoroSettings {
+                settingsFocus  = saved.focusDuration
+                settingsShort  = saved.shortBreakDuration
+                settingsLong   = saved.longBreakDuration
+                settingsCycles = saved.totalCycles
+            }
+        }
+        .sheet(isPresented: $showSessionSettings) {
+            SessionSettingsView(
+                focusDuration:         $settingsFocus,
+                shortBreakDuration:    $settingsShort,
+                longBreakDuration:     $settingsLong,
+                cyclesBeforeLongBreak: $settingsCycles
+            ) {
+                guard let uid = authManager.currentUser?.id else { return }
+                let vm = SessionSettingsViewModel(settings: PomodoroSettings(
+                    focusDuration:      settingsFocus,
+                    shortBreakDuration: settingsShort,
+                    longBreakDuration:  settingsLong,
+                    totalCycles:        settingsCycles
+                ))
+                Task {
+                    await vm.save(uid: uid)
+                    await authManager.refreshUser(uid: uid)
+                }
+            }
         }
     }
 }
