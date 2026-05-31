@@ -24,7 +24,6 @@
 		3FE201BF438741F5929936DC /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C391BEA63D2028719948A9C /* HomeViewModel.swift */; };
 		412CF405E7C9B6383BFF5D22 /* MonthlyOverviewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93604ADF8EB56BBB7727FFF6 /* MonthlyOverviewCard.swift */; };
 		4FCAC727F4E01B19B9B6C317 /* PostureAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E0ECD1B90233E27AD6BDF3 /* PostureAnalyzer.swift */; };
-		575F6F7EF0B601140A1427F8 /* Pods_VertixTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D6864B663DD80F30C8C75DC /* Pods_VertixTests.framework */; };
 		58559064023C733B573062BE /* PostureSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711938E09ED37C7F582C3CAB /* PostureSession.swift */; };
 		590BAC1CE357FB1C3D0B3937 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 699BD6CC1CAD9889DB9996B6 /* SoundManager.swift */; };
 		6AA444C822AA125FD80F84A2 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838B848F243303FE76C7FF68 /* ProfileView.swift */; };
@@ -115,7 +114,6 @@
 		0D79CA0F4BDC54744D683D41 /* SessionManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManagerTests.swift; sourceTree = "<group>"; };
 		1748DCBDD1368D1FDE1A8447 /* Pods-VertixTests.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Pods-VertixTests.debug.xcconfig"; sourceTree = "<group>"; };
 		198D199F23761F16653293E1 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
-		1D6864B663DD80F30C8C75DC /* Pods_VertixTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VertixTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		24C59915BDA3B7927DB34F0B /* GamificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamificationManager.swift; sourceTree = "<group>"; };
 		2A91653EA6F01784FD5117B6 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		2C391BEA63D2028719948A9C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -181,16 +179,22 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		6E778BF82FCB3A0A00778942 /* VertixWatch Watch App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = "VertixWatch Watch App";
 			sourceTree = "<group>";
 		};
 		6E778C062FCB3A0B00778942 /* VertixWatch Watch AppTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = "VertixWatch Watch AppTests";
 			sourceTree = "<group>";
 		};
 		6E778C102FCB3A0B00778942 /* VertixWatch Watch AppUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = "VertixWatch Watch AppUITests";
 			sourceTree = "<group>";
 		};
@@ -201,7 +205,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				575F6F7EF0B601140A1427F8 /* Pods_VertixTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,7 +471,6 @@
 				6E778C242FCB3AA400778942 /* WatchConnectivity.framework */,
 				6E778C262FCB3AF300778942 /* WatchConnectivity.framework */,
 				575B95ED6CD054A8FCBD8CA9 /* Pods_Vertix.framework */,
-				1D6864B663DD80F30C8C75DC /* Pods_VertixTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -533,8 +535,6 @@
 				6E778BF82FCB3A0A00778942 /* VertixWatch Watch App */,
 			);
 			name = "VertixWatch Watch App";
-			packageProductDependencies = (
-			);
 			productName = "VertixWatch Watch App";
 			productReference = 6E778BF72FCB3A0A00778942 /* VertixWatch Watch App.app */;
 			productType = "com.apple.product-type.application";
@@ -556,8 +556,6 @@
 				6E778C062FCB3A0B00778942 /* VertixWatch Watch AppTests */,
 			);
 			name = "VertixWatch Watch AppTests";
-			packageProductDependencies = (
-			);
 			productName = "VertixWatch Watch AppTests";
 			productReference = 6E778C032FCB3A0B00778942 /* VertixWatch Watch AppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -579,8 +577,6 @@
 				6E778C102FCB3A0B00778942 /* VertixWatch Watch AppUITests */,
 			);
 			name = "VertixWatch Watch AppUITests";
-			packageProductDependencies = (
-			);
 			productName = "VertixWatch Watch AppUITests";
 			productReference = 6E778C0D2FCB3A0B00778942 /* VertixWatch Watch AppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -736,13 +732,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Vertix/Pods-Vertix-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Vertix/Pods-Vertix-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

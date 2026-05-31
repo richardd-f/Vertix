@@ -145,6 +145,7 @@ struct FocusModeView: View {
             case "start":  if !pomodoroEngine.isRunning { pomodoroEngine.toggleRunning() }
             case "pause":  if  pomodoroEngine.isRunning { pomodoroEngine.toggleRunning() }
             case "stop":   showSaveConfirmation = true
+            case "skip":   pomodoroEngine.skipToNext()
             default:       break
             }
         }

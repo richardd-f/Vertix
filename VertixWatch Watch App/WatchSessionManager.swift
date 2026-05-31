@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import Combine
+import WatchKit
 import WatchConnectivity
 import UserNotifications
 

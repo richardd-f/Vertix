@@ -164,10 +164,20 @@ git clone https://github.com/your-username/Vertix.git
 cd Vertix
 ```
 
-**2. Install dependencies**
+**2. Install dependencies & apply fixes**
+
+> ⚠️ MediaPipe has a known conflict with the test target. Always run this full command instead of plain `pod install`:
+
 ```bash
-pod install
+pod install && python3 fix_project.py && \
+for f in "Pods/Target Support Files/Pods-VertixTests/Pods-VertixTests.debug.xcconfig" \
+          "Pods/Target Support Files/Pods-VertixTests/Pods-VertixTests.release.xcconfig"; do
+  sed -i '' '/OTHER_LDFLAGS\[sdk=iphoneos\*\]/d' "$f"
+  sed -i '' '/OTHER_LDFLAGS\[sdk=iphonesimulator\*\]/d' "$f"
+done
 ```
+
+> Run this same command every time after `git pull` or switching branches.
 
 **3. Add Firebase configuration**
 
@@ -186,6 +196,16 @@ open Vertix.xcworkspace
 **5. Build and run**
 
 Select your target device and press `⌘ + R`.
+
+### ⚠️ Never Run XcodeGen
+
+`project.yml` exists in this repo but is outdated — it does not include the Watch target. Running `xcodegen generate` will wipe the Watch target. If you accidentally run it, restore with:
+
+```bash
+git checkout Vertix.xcodeproj/project.pbxproj
+```
+
+Then run the install command from step 2 again.
 
 ---
 

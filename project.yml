@@ -13,6 +13,10 @@ targets:
       Debug: Pods/Target Support Files/Pods-Vertix/Pods-Vertix.debug.xcconfig
       Release: Pods/Target Support Files/Pods-Vertix/Pods-Vertix.release.xcconfig
 
+    dependencies:
+      - target: VertixWatch
+        embed: true
+
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.felix.Vertix
@@ -69,3 +73,30 @@ targets:
           - "@loader_path/Frameworks"
         IPHONEOS_DEPLOYMENT_TARGET: "18.6"
         OTHER_LDFLAGS: "$(inherited)"
+    
+    VertixWatch:
+        type: application.watchapp2
+        platform: watchOS
+        deploymentTarget: "11.0"
+
+        sources:
+          - path: "VertixWatch Watch App"
+
+        settings:
+          base:
+            PRODUCT_BUNDLE_IDENTIFIER: com.felix.Vertix.watchkitapp
+            MARKETING_VERSION: "1.0"
+            CURRENT_PROJECT_VERSION: "1"
+            SWIFT_VERSION: "5.0"
+            GENERATE_INFOPLIST_FILE: "YES"
+
+    VertixWatchUITests:
+        type: bundle.unit-test
+        platform: watchOS
+        deploymentTarget: "11.0"
+
+        sources:
+          - path: "VertixWatch Watch AppTests"
+
+        dependencies:
+          - target: VertixWatch
