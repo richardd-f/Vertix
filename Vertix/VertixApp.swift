@@ -17,6 +17,7 @@ struct VertixApp: App {
         FirebaseApp.configure()
         _authManager = State(initialValue: AuthManager())
         _gamificationManager = State(initialValue: GamificationManager())
+        _ = WatchConnectivityManager.shared
     }
 
     var body: some Scene {
