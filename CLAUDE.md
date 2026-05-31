@@ -425,3 +425,4 @@ open Vertix.xcworkspace
 6. **Atomic Firebase writes** — always use `updateChildValues` when writing to multiple paths
 7. **Posture tracking = Focus phase only** — never run MediaPipe during break phases
 8. **`YYYY-MM-DD` for all date keys** — consistent format across sessions and dailyScores
+9. **No AI/tooling references**: never mention AI agent files (e.g. `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`) or agentic tooling characteristics in commit messages. Describe the actual change to the project, not the tooling used to make it.
