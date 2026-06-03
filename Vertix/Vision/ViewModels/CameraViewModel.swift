@@ -27,7 +27,9 @@ class CameraViewModel: NSObject, ObservableObject {
         isConfigured = true
 
         session.beginConfiguration()
-        session.sessionPreset = .high
+        // Pose detection works fine at low resolution. Using .high (often 1080p/4K)
+        // produced huge per-frame buffers and got the app killed for memory.
+        session.sessionPreset = .vga640x480
 
         guard let device = AVCaptureDevice.default(
             .builtInWideAngleCamera,
@@ -119,8 +121,13 @@ extension CameraViewModel: AVCaptureVideoDataOutputSampleBufferDelegate {
         didOutput sampleBuffer: CMSampleBuffer,
         from connection: AVCaptureConnection
     ) {
-        let timestamp = Int(Date().timeIntervalSince1970 * 1000)
-        poseDetector?.detect(sampleBuffer: sampleBuffer, timestamp: timestamp)
+        // Free each frame's temporary image immediately. Without this, the
+        // per-frame MPImage objects accumulate on the camera's background
+        // thread and memory grows until iOS terminates the app.
+        autoreleasepool {
+            let timestamp = Int(Date().timeIntervalSince1970 * 1000)
+            poseDetector?.detect(sampleBuffer: sampleBuffer, timestamp: timestamp)
+        }
     }
 }
 
