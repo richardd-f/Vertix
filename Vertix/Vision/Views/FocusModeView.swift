@@ -53,10 +53,11 @@ struct FocusModeView: View {
         postureScore >= 80 ? Color.vertixDarkGreen : (postureScore >= 50 ? .orange : .red)
     }
 
-    /// Shoulder tilt mapped to –1…+1 for the dot indicator
+    /// Shoulder tilt mapped to –1…+1 for the dot indicator (signed so it can
+    /// swing both left and right).
     private var shoulderTiltNormalized: Double {
         guard let result = camera.postureResult else { return 0 }
-        return max(-1, min(1, result.shoulderTilt / 15.0))
+        return max(-1, min(1, result.shoulderTiltSigned / 15.0))
     }
 
     // MARK: Camera permission
@@ -143,36 +144,43 @@ struct FocusModeView: View {
             if !isRunningTests { camera.stopSession() }
         }
         .onReceive(tickTimer) { _ in
-            let wasRunning = pomodoroEngine.isRunning
+            let indexBefore = pomodoroEngine.phaseSequenceIndex
             pomodoroEngine.tick()
-         
+
             // sync timer to Watch every tick
             watchManager.sendSessionState(
                 phase: pomodoroEngine.currentPhase.label,
                 remainingSeconds: pomodoroEngine.timeRemaining,
                 isRunning: pomodoroEngine.isRunning
             )
-         
+
             // Record posture sample + send Watch alert at every completed focus minute
             if pomodoroEngine.currentPhase == .focus,
                pomodoroEngine.focusSecondsElapsed > 0,
                pomodoroEngine.focusSecondsElapsed % 60 == 0 {
-         
+
                 let isGood = camera.postureResult?.isGoodPosture ?? false
                 sessionManager.recordMinuteSample(isGood: isGood)
-         
+
                 // NEW: alert Watch only on bad posture
                 if !isGood, let feedback = camera.postureResult?.feedback {
                     watchManager.sendPostureAlert(message: feedback)
                 }
             }
-         
-            if wasRunning && !pomodoroEngine.isRunning && !pomodoroEngine.allCyclesComplete {
-                SoundManager.shared.play(.pomodoroBreak)
+
+            // A phase boundary was crossed this tick — play the matching cue once.
+            if pomodoroEngine.phaseSequenceIndex > indexBefore,
+               !pomodoroEngine.allCyclesComplete {
+                switch pomodoroEngine.currentPhase {
+                case .shortBreak, .longBreak: SoundManager.shared.play(.pomodoroBreak)
+                case .focus:                  SoundManager.shared.play(.sessionStart)
+                }
             }
-         
-            if pomodoroEngine.allCyclesComplete {
-                SoundManager.shared.play(.sessionEnd)
+
+            // All cycles done — finish once. The end/level-up sound is owned by
+            // HomeView (it knows whether the user leveled up), so we don't play
+            // .sessionEnd here to avoid a double chime.
+            if pomodoroEngine.allCyclesComplete, !sessionSaved {
                 watchManager.sendSessionEnded()
                 saveAndDismiss()
             }

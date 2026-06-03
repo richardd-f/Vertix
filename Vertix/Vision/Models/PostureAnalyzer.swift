@@ -7,6 +7,9 @@ import CoreGraphics
 struct PostureResult {
     var neckAngle: Double
     var shoulderTilt: Double
+    /// Signed shoulder tilt: negative = left shoulder lower (tilt left),
+    /// positive = right shoulder lower (tilt right). `shoulderTilt` is its magnitude.
+    var shoulderTiltSigned: Double
     var spineAngle: Double
     var isGoodPosture: Bool
     var feedback: String
@@ -34,7 +37,11 @@ struct PostureAnalyzer {
             to:   CGPoint(x: CGFloat(midEar.x),      y: CGFloat(midEar.y))
         )
 
-        let shoulderTilt = abs(Double(leftShoulderLM.y - rightShoulderLM.y)) * 100
+        // Preserve direction for the on-screen tilt indicator; magnitude is used
+        // for the good/bad threshold. (Front camera is mirrored, so left shoulder
+        // lower → person leaning left.)
+        let shoulderTiltSigned = Double(leftShoulderLM.y - rightShoulderLM.y) * 100
+        let shoulderTilt       = abs(shoulderTiltSigned)
 
         let spineAngle = calculateAngle(
             from: CGPoint(x: CGFloat(midHip.x),      y: CGFloat(midHip.y)),
@@ -58,6 +65,7 @@ struct PostureAnalyzer {
         return PostureResult(
             neckAngle: neckAngle,
             shoulderTilt: shoulderTilt,
+            shoulderTiltSigned: shoulderTiltSigned,
             spineAngle: spineAngle,
             isGoodPosture: isGood,
             feedback: feedback

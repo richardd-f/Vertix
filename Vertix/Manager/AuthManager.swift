@@ -28,9 +28,12 @@ class AuthManager {
 
         do {
             let result = try await Auth.auth().signIn(withEmail: email, password: password)
-            await fetchUserData(uid: result.user.uid)
+            let fetch = await fetchUserData(uid: result.user.uid)
 
-            if self.currentUser == nil {
+            // Only seed a fresh profile when the record is genuinely missing.
+            // On a transient fetch failure we must NOT overwrite — that would
+            // wipe the user's existing streak/EXP/tracked-seconds with zeros.
+            if fetch == .missing {
                 let fallbackName  = result.user.displayName ?? "User"
                 let fallbackEmail = result.user.email ?? email
                 let userData: [String: Any] = [
@@ -126,49 +129,58 @@ class AuthManager {
     }
 
     func refreshUser(uid: String) async {
-        await fetchUserData(uid: uid)
+        _ = await fetchUserData(uid: uid)
     }
 
+    /// Outcome of a user-record fetch, so callers can tell a genuinely missing
+    /// record apart from a transient read failure.
+    private enum FetchResult { case loaded, missing, failed }
+
     @MainActor
-    private func fetchUserData(uid: String) async {
+    @discardableResult
+    private func fetchUserData(uid: String) async -> FetchResult {
         do {
             let snapshot = try await dbRef.child("users").child(uid).getData()
 
-            if let dict = snapshot.value as? [String: Any] {
-                let name       = dict["name"] as? String ?? "User"
-                let email      = dict["email"] as? String ?? ""
-                let avatarUrl  = dict["avatarUrl"] as? String
-                let createdAt  = (dict["createdAt"] as? Double)
-                                  .map { Date(timeIntervalSince1970: $0 / 1000) } ?? Date()
-                let totalSecs  = dict["totalTrackedSeconds"] as? Int ?? 0
-                let streak     = dict["currentStreak"] as? Int ?? 0
-                let longest    = dict["longestStreak"] as? Int ?? 0
-                let lastActive = dict["lastActiveDate"] as? String
-                let focusDur   = dict["pomodoroFocusDuration"] as? Int ?? 25
-                let shortBreak = dict["pomodoroShortBreakDuration"] as? Int ?? 5
-                let longBreak  = dict["pomodoroLongBreakDuration"] as? Int ?? 15
-                let cycles     = dict["pomodoroTotalCycles"] as? Int ?? 1
-                let settings   = PomodoroSettings(
-                                  focusDuration: focusDur,
-                                  shortBreakDuration: shortBreak,
-                                  longBreakDuration: longBreak,
-                                  totalCycles: cycles)
-
-                self.currentUser = User(
-                    id: uid,
-                    name: name,
-                    email: email,
-                    avatarUrl: avatarUrl,
-                    createdAt: createdAt,
-                    totalTrackedSeconds: totalSecs,
-                    currentStreak: streak,
-                    longestStreak: longest,
-                    lastActiveDate: lastActive,
-                    pomodoroSettings: settings
-                )
+            guard snapshot.exists(), let dict = snapshot.value as? [String: Any] else {
+                return .missing
             }
+
+            let name       = dict["name"] as? String ?? "User"
+            let email      = dict["email"] as? String ?? ""
+            let avatarUrl  = dict["avatarUrl"] as? String
+            let createdAt  = (dict["createdAt"] as? Double)
+                              .map { Date(timeIntervalSince1970: $0 / 1000) } ?? Date()
+            let totalSecs  = dict["totalTrackedSeconds"] as? Int ?? 0
+            let streak     = dict["currentStreak"] as? Int ?? 0
+            let longest    = dict["longestStreak"] as? Int ?? 0
+            let lastActive = dict["lastActiveDate"] as? String
+            let focusDur   = dict["pomodoroFocusDuration"] as? Int ?? 25
+            let shortBreak = dict["pomodoroShortBreakDuration"] as? Int ?? 5
+            let longBreak  = dict["pomodoroLongBreakDuration"] as? Int ?? 15
+            let cycles     = dict["pomodoroTotalCycles"] as? Int ?? 1
+            let settings   = PomodoroSettings(
+                              focusDuration: focusDur,
+                              shortBreakDuration: shortBreak,
+                              longBreakDuration: longBreak,
+                              totalCycles: cycles)
+
+            self.currentUser = User(
+                id: uid,
+                name: name,
+                email: email,
+                avatarUrl: avatarUrl,
+                createdAt: createdAt,
+                totalTrackedSeconds: totalSecs,
+                currentStreak: streak,
+                longestStreak: longest,
+                lastActiveDate: lastActive,
+                pomodoroSettings: settings
+            )
+            return .loaded
         } catch {
             print("Error fetching user data from DB: \(error)")
+            return .failed
         }
     }
 
