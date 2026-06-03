@@ -49,6 +49,13 @@
 		F877C677D46D56AAEC84A673 /* VertixApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A55305A219F4122793F214A /* VertixApp.swift */; };
 		F8C6A7026A8FD05BD92AFD81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B1D70A00389204EA8906897 /* Assets.xcassets */; };
 		FB8ADA2675CD5D4BC52C3599 /* AuthContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A714C3B4BB0D4A6C47D25622 /* AuthContainerView.swift */; };
+		FE57BB0000000000000T01 /* GamificationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE57FF0000000000000T01 /* GamificationTests.swift */; };
+		FE57BB0000000000000T02 /* PomodoroEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE57FF0000000000000T02 /* PomodoroEngineTests.swift */; };
+		FE57BB0000000000000T03 /* SessionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE57FF0000000000000T03 /* SessionManagerTests.swift */; };
+		FE57BB0000000000000T04 /* SessionRecordTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE57FF0000000000000T04 /* SessionRecordTests.swift */; };
+		FE57BB0000000000000T05 /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE57FF0000000000000T05 /* HomeViewModelTests.swift */; };
+		FE57BB0000000000000T06 /* HistoryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE57FF0000000000000T06 /* HistoryViewModelTests.swift */; };
+		FE57BB0000000000000T07 /* MockDatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE57FF0000000000000T07 /* MockDatabaseService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,6 +159,13 @@
 		F6E0ECD1B90233E27AD6BDF3 /* PostureAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostureAnalyzer.swift; sourceTree = "<group>"; };
 		F7718BB5A3D7FEF572C0250D /* DatabaseServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseServiceProtocol.swift; sourceTree = "<group>"; };
 		F947EA7D6739CDBFCF399AB8 /* pose_landmarker_lite.task */ = {isa = PBXFileReference; lastKnownFileType = file; path = pose_landmarker_lite.task; sourceTree = "<group>"; };
+		FE57FF0000000000000T01 /* GamificationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamificationTests.swift; sourceTree = "<group>"; };
+		FE57FF0000000000000T02 /* PomodoroEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroEngineTests.swift; sourceTree = "<group>"; };
+		FE57FF0000000000000T03 /* SessionManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManagerTests.swift; sourceTree = "<group>"; };
+		FE57FF0000000000000T04 /* SessionRecordTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRecordTests.swift; sourceTree = "<group>"; };
+		FE57FF0000000000000T05 /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
+		FE57FF0000000000000T06 /* HistoryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModelTests.swift; sourceTree = "<group>"; };
+		FE57FF0000000000000T07 /* MockDatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDatabaseService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -342,6 +356,13 @@
 		6ECB4A45CD21F930CFD3674A /* VertixTests */ = {
 			isa = PBXGroup;
 			children = (
+				FE57FF0000000000000T01 /* GamificationTests.swift */,
+				FE57FF0000000000000T02 /* PomodoroEngineTests.swift */,
+				FE57FF0000000000000T03 /* SessionManagerTests.swift */,
+				FE57FF0000000000000T04 /* SessionRecordTests.swift */,
+				FE57FF0000000000000T05 /* HomeViewModelTests.swift */,
+				FE57FF0000000000000T06 /* HistoryViewModelTests.swift */,
+				FE57FF0000000000000T07 /* MockDatabaseService.swift */,
 			);
 			path = VertixTests;
 			sourceTree = "<group>";
@@ -627,6 +648,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE57BB0000000000000T01 /* GamificationTests.swift in Sources */,
+				FE57BB0000000000000T02 /* PomodoroEngineTests.swift in Sources */,
+				FE57BB0000000000000T03 /* SessionManagerTests.swift in Sources */,
+				FE57BB0000000000000T04 /* SessionRecordTests.swift in Sources */,
+				FE57BB0000000000000T05 /* HomeViewModelTests.swift in Sources */,
+				FE57BB0000000000000T06 /* HistoryViewModelTests.swift in Sources */,
+				FE57BB0000000000000T07 /* MockDatabaseService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
