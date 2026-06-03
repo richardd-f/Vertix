@@ -37,15 +37,6 @@ struct ProfileView: View {
 
                             Text(viewModel.name)
                                 .font(.title3).bold()
-                            
-                            HStack(spacing: 4) {
-                                Image(systemName: "crown.fill").foregroundColor(.orange)
-                                Text("PREMIUM MEMBER")
-                            }
-                            .font(.caption).bold()
-                            .foregroundColor(Color.vertixDarkGreen)
-                            .padding(.horizontal, 12).padding(.vertical, 6)
-                            .background(Color.vertixDarkGreen.opacity(0.1)).clipShape(Capsule())
                         }
                         .frame(maxWidth: .infinity)
                         .padding(24)
