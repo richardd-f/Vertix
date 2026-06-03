@@ -140,6 +140,53 @@ struct HistoryView: View {
                         .cornerRadius(24)
                         .shadow(color: .black.opacity(0.03), radius: 10)
                         .padding(.horizontal, 20)
+
+                        // MARK: Recent Sessions
+                        VStack(alignment: .leading, spacing: 16) {
+                            Text("RECENT SESSIONS")
+                                .font(.caption).bold().tracking(1.0).foregroundColor(.secondary)
+
+                            if viewModel.recentSessions.isEmpty {
+                                Text("No sessions yet. Start your first focus session!")
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
+                                    .frame(maxWidth: .infinity, alignment: .center)
+                                    .padding(.vertical, 12)
+                            } else {
+                                ForEach(viewModel.recentSessions) { session in
+                                    HStack(spacing: 16) {
+                                        ZStack {
+                                            RoundedRectangle(cornerRadius: 12)
+                                                .fill(Color.vertixDarkGreen.opacity(0.1))
+                                                .frame(width: 44, height: 44)
+                                            Image(systemName: "figure.mind.and.body")
+                                                .foregroundColor(.vertixDarkGreen)
+                                        }
+
+                                        VStack(alignment: .leading, spacing: 4) {
+                                            Text("\(session.durationLabel) Focus Session")
+                                                .font(.subheadline).bold()
+                                            Text("\(session.postureScore)% Good Posture")
+                                                .font(.caption).foregroundColor(.secondary)
+                                        }
+
+                                        Spacer()
+
+                                        Text(viewModel.sessionDateLabel(session.dateKey))
+                                            .font(.caption).foregroundColor(.secondary)
+                                    }
+
+                                    if session.id != viewModel.recentSessions.last?.id {
+                                        Divider()
+                                    }
+                                }
+                            }
+                        }
+                        .padding(20)
+                        .background(Color.vertixCardBackground)
+                        .cornerRadius(24)
+                        .shadow(color: .black.opacity(0.03), radius: 10)
+                        .padding(.horizontal, 20)
                     }
                     .padding(.bottom, 100)
                 }

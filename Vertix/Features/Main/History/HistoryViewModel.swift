@@ -1,6 +1,17 @@
 import Foundation
 import Observation
 
+/// A single completed focus session, as shown in the History "Recent Sessions" list.
+struct RecentSession: Identifiable {
+    let id: String          // Firebase push key
+    let dateKey: String     // "YYYY-MM-DD"
+    let durationSeconds: Int
+    let postureScore: Int
+    let endedAt: Double     // timeIntervalSince1970, used for ordering
+
+    var durationLabel: String { "\(max(1, durationSeconds / 60))m" }
+}
+
 @Observable
 class HistoryViewModel {
     var monthLabel: String = ""
@@ -12,6 +23,10 @@ class HistoryViewModel {
     var monthSessionCount: Int = 0
     var monthAvgScore: Int = 0
     var currentStreak: Int = 0
+    var recentSessions: [RecentSession] = []
+
+    /// Max number of sessions shown in the Recent Sessions list.
+    private let recentSessionLimit = 5
 
     private let db: DatabaseServiceProtocol
     private let calendar = Calendar.current
@@ -118,6 +133,40 @@ class HistoryViewModel {
         } catch {
             print("HistoryViewModel: dailyScores fetch failed — \(error)")
         }
+
+        do {
+            let sessionChildren = try await db.getAllChildren(path: "sessions/\(uid)")
+            recentSessions = mapRecentSessions(from: sessionChildren)
+        } catch {
+            print("HistoryViewModel: sessions fetch failed — \(error)")
+        }
+    }
+
+    /// Map raw session nodes into the most-recent `recentSessionLimit` rows, newest first.
+    func mapRecentSessions(from children: [String: [String: Any]]) -> [RecentSession] {
+        children
+            .map { key, dict in
+                RecentSession(
+                    id: key,
+                    dateKey: dict["dateKey"] as? String ?? "",
+                    durationSeconds: dict["durationSeconds"] as? Int ?? 0,
+                    postureScore: dict["postureScore"] as? Int ?? 0,
+                    endedAt: dict["endedAt"] as? Double ?? 0
+                )
+            }
+            .sorted { $0.endedAt > $1.endedAt }
+            .prefix(recentSessionLimit)
+            .map { $0 }
+    }
+
+    /// Human-friendly label for a session's date: "Today" / "Yesterday" / "MMM d".
+    func sessionDateLabel(_ dateKey: String) -> String {
+        guard let date = SessionManager.dateFromKey(dateKey) else { return dateKey }
+        if calendar.isDateInToday(date)     { return "Today" }
+        if calendar.isDateInYesterday(date) { return "Yesterday" }
+        let fmt = DateFormatter()
+        fmt.dateFormat = "MMM d"
+        return fmt.string(from: date)
     }
 
     private func isCurrentMonth(_ dateKey: String) -> Bool {

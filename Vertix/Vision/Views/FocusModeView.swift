@@ -192,7 +192,8 @@ struct FocusModeView: View {
             await sessionManager.saveSession(
                 uid: uid,
                 elapsedSeconds: elapsed,
-                pomodoroSettings: settings
+                pomodoroSettings: settings,
+                pomodoroCount: pomodoroEngine.completedFocusCount
             )
             NotificationCenter.default.post(
                 name: .sessionCompleted,
