@@ -145,7 +145,7 @@ struct HistoryView: View {
                 }
             }
         }
-        .task {
+        .task(id: authManager.currentUser?.id) {
             await viewModel.load(uid: authManager.currentUser?.id ?? "")
         }
     }
