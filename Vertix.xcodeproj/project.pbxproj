@@ -44,11 +44,11 @@
 		D06992475DBB4308C9E0B0B2 /* GamificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C59915BDA3B7927DB34F0B /* GamificationManager.swift */; };
 		D4583F45AC518002D44E5702 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D40E2D5BCFCBB2FB1376D0 /* Color.swift */; };
 		DE9E6C6C5850E0BE8A22B752 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CB79112B37D54F1F4E0363 /* ProfileViewModel.swift */; };
-		FE11FEED0000000000000A02 /* SessionSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11FEED0000000000000A01 /* SessionSettingsViewModel.swift */; };
 		E60AB650F8900813F4BC75A5 /* SessionRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02CCD7C5944DC72F38C9D7 /* SessionRecord.swift */; };
 		F877C677D46D56AAEC84A673 /* VertixApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A55305A219F4122793F214A /* VertixApp.swift */; };
 		F8C6A7026A8FD05BD92AFD81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B1D70A00389204EA8906897 /* Assets.xcassets */; };
 		FB8ADA2675CD5D4BC52C3599 /* AuthContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A714C3B4BB0D4A6C47D25622 /* AuthContainerView.swift */; };
+		FE11FEED0000000000000A02 /* SessionSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11FEED0000000000000A01 /* SessionSettingsViewModel.swift */; };
 		FE57BB0000000000000T01 /* GamificationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE57FF0000000000000T01 /* GamificationTests.swift */; };
 		FE57BB0000000000000T02 /* PomodoroEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE57FF0000000000000T02 /* PomodoroEngineTests.swift */; };
 		FE57BB0000000000000T03 /* SessionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE57FF0000000000000T03 /* SessionManagerTests.swift */; };
@@ -116,7 +116,6 @@
 		32D01D69C9AC64066E67B80F /* Vertix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vertix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B1D70A00389204EA8906897 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		46CB79112B37D54F1F4E0363 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
-		FE11FEED0000000000000A01 /* SessionSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSettingsViewModel.swift; sourceTree = "<group>"; };
 		5008D4933E987E385F62CD4A /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		517FA8DED416910A2169F5E1 /* FocusModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusModeView.swift; sourceTree = "<group>"; };
 		55DE34D22AEDE76088AD7CD4 /* VertixTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VertixTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,6 +158,7 @@
 		F6E0ECD1B90233E27AD6BDF3 /* PostureAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostureAnalyzer.swift; sourceTree = "<group>"; };
 		F7718BB5A3D7FEF572C0250D /* DatabaseServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseServiceProtocol.swift; sourceTree = "<group>"; };
 		F947EA7D6739CDBFCF399AB8 /* pose_landmarker_lite.task */ = {isa = PBXFileReference; lastKnownFileType = file; path = pose_landmarker_lite.task; sourceTree = "<group>"; };
+		FE11FEED0000000000000A01 /* SessionSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSettingsViewModel.swift; sourceTree = "<group>"; };
 		FE57FF0000000000000T01 /* GamificationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamificationTests.swift; sourceTree = "<group>"; };
 		FE57FF0000000000000T02 /* PomodoroEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroEngineTests.swift; sourceTree = "<group>"; };
 		FE57FF0000000000000T03 /* SessionManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManagerTests.swift; sourceTree = "<group>"; };
@@ -171,22 +171,16 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		6E778BF82FCB3A0A00778942 /* VertixWatch Watch App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = "VertixWatch Watch App";
 			sourceTree = "<group>";
 		};
 		6E778C062FCB3A0B00778942 /* VertixWatch Watch AppTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = "VertixWatch Watch AppTests";
 			sourceTree = "<group>";
 		};
 		6E778C102FCB3A0B00778942 /* VertixWatch Watch AppUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = "VertixWatch Watch AppUITests";
 			sourceTree = "<group>";
 		};
@@ -648,13 +642,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE57BB0000000000000T01 /* GamificationTests.swift in Sources */,
-				FE57BB0000000000000T02 /* PomodoroEngineTests.swift in Sources */,
-				FE57BB0000000000000T03 /* SessionManagerTests.swift in Sources */,
-				FE57BB0000000000000T04 /* SessionRecordTests.swift in Sources */,
-				FE57BB0000000000000T05 /* HomeViewModelTests.swift in Sources */,
-				FE57BB0000000000000T06 /* HistoryViewModelTests.swift in Sources */,
-				FE57BB0000000000000T07 /* MockDatabaseService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -727,9 +714,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Vertix/Pods-Vertix-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Vertix/Pods-Vertix-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -764,6 +755,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE57BB0000000000000T01 /* GamificationTests.swift in Sources */,
+				FE57BB0000000000000T02 /* PomodoroEngineTests.swift in Sources */,
+				FE57BB0000000000000T03 /* SessionManagerTests.swift in Sources */,
+				FE57BB0000000000000T04 /* SessionRecordTests.swift in Sources */,
+				FE57BB0000000000000T05 /* HomeViewModelTests.swift in Sources */,
+				FE57BB0000000000000T06 /* HistoryViewModelTests.swift in Sources */,
+				FE57BB0000000000000T07 /* MockDatabaseService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -931,6 +929,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = U687259YQU;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
@@ -960,7 +959,7 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 26.5;
+				WATCHOS_DEPLOYMENT_TARGET = 26.2;
 			};
 			name = Debug;
 		};
@@ -974,6 +973,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = U687259YQU;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
@@ -999,7 +999,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 26.5;
+				WATCHOS_DEPLOYMENT_TARGET = 26.2;
 			};
 			name = Release;
 		};
@@ -1031,7 +1031,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VertixWatch Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/VertixWatch Watch App";
-				WATCHOS_DEPLOYMENT_TARGET = 26.5;
+				WATCHOS_DEPLOYMENT_TARGET = 26.2;
 			};
 			name = Debug;
 		};
@@ -1059,7 +1059,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VertixWatch Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/VertixWatch Watch App";
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 26.5;
+				WATCHOS_DEPLOYMENT_TARGET = 26.2;
 			};
 			name = Release;
 		};
@@ -1090,7 +1090,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				TEST_TARGET_NAME = "VertixWatch Watch App";
-				WATCHOS_DEPLOYMENT_TARGET = 26.5;
+				WATCHOS_DEPLOYMENT_TARGET = 26.2;
 			};
 			name = Debug;
 		};
@@ -1117,7 +1117,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				TEST_TARGET_NAME = "VertixWatch Watch App";
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 26.5;
+				WATCHOS_DEPLOYMENT_TARGET = 26.2;
 			};
 			name = Release;
 		};
@@ -1130,6 +1130,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = U687259YQU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Vertix needs camera access to monitor your posture during study sessions.";
@@ -1186,6 +1187,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = U687259YQU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Vertix needs camera access to monitor your posture during study sessions.";
