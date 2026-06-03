@@ -111,7 +111,7 @@ struct ProfileView: View {
                 }
             }
         }
-        .task {
+        .task(id: authManager.currentUser?.id) {
             await viewModel.load(uid: authManager.currentUser?.id ?? "")
             if let saved = authManager.currentUser?.pomodoroSettings {
                 settingsFocus  = saved.focusDuration

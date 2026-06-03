@@ -220,7 +220,7 @@ struct HomeView: View {
                 .animation(.spring(response: 0.4, dampingFraction: 0.7), value: showExpToast)
             }
         }
-        .task {
+        .task(id: authManager.currentUser?.id) {
             let uid = authManager.currentUser?.id ?? ""
             await viewModel.load(uid: uid)
             await gamificationManager.load(uid: uid)
