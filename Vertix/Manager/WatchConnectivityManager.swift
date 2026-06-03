@@ -55,14 +55,19 @@ final class WatchConnectivityManager: NSObject {
     // MARK: - Private
 
     private func send(_ message: [String: Any]) {
-        guard WCSession.default.activationState == .activated else { return }
+        guard WCSession.default.activationState == .activated else {
+            print("📱⚠️ WatchConnectivityManager: send skipped — session not activated")
+            return
+        }
         guard WCSession.default.isReachable else {
             // Watch not reachable — use transferUserInfo as a fallback queue
+            print("📱📦 WatchConnectivityManager: watch unreachable, queuing via transferUserInfo — \(message)")
             WCSession.default.transferUserInfo(message.mapValues { $0 as AnyObject } as [String: Any])
             return
         }
+        print("📱➡️ WatchConnectivityManager: sendMessage — \(message)")
         WCSession.default.sendMessage(message, replyHandler: nil) { error in
-            print("WatchConnectivityManager: sendMessage failed — \(error.localizedDescription)")
+            print("📱❌ WatchConnectivityManager: sendMessage failed — \(error.localizedDescription)")
         }
     }
 }
@@ -78,7 +83,9 @@ extension WatchConnectivityManager: WCSessionDelegate {
             self.isWatchReachable = (activationState == .activated && session.isReachable)
         }
         if let error {
-            print("WatchConnectivityManager: activation failed — \(error.localizedDescription)")
+            print("📱❌ WatchConnectivityManager: activation failed — \(error.localizedDescription)")
+        } else {
+            print("📱✅ WatchConnectivityManager: activated (state: \(activationState.rawValue), reachable: \(session.isReachable))")
         }
     }
 
@@ -86,6 +93,7 @@ extension WatchConnectivityManager: WCSessionDelegate {
         DispatchQueue.main.async {
             self.isWatchReachable = session.isReachable
         }
+        print("📱🔄 WatchConnectivityManager: reachability changed — reachable: \(session.isReachable)")
     }
 
     // Required on iOS (not needed on watchOS)
@@ -98,6 +106,7 @@ extension WatchConnectivityManager: WCSessionDelegate {
     // Handle any messages sent from the Watch → iPhone (start/pause/stop commands)
     func session(_ session: WCSession, didReceiveMessage message: [String: Any]) {
         guard let type = message["type"] as? String else { return }
+        print("📱⬅️ WatchConnectivityManager: received from watch — \(message)")
         DispatchQueue.main.async {
             switch type {
             case "watchCommand":

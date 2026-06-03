@@ -42,12 +42,16 @@ final class WatchSessionManager: NSObject, ObservableObject {
     // MARK: - Commands sent TO the iPhone
 
     func sendCommand(_ command: String) {
-        guard WCSession.default.isReachable else { return }
+        guard WCSession.default.isReachable else {
+            print("⌚⚠️ WatchSessionManager: sendCommand skipped — iPhone not reachable")
+            return
+        }
+        print("⌚➡️ WatchSessionManager: sendCommand — \(command)")
         WCSession.default.sendMessage(
             ["type": "watchCommand", "command": command],
             replyHandler: nil
         ) { error in
-            print("WatchSessionManager: sendCommand failed — \(error.localizedDescription)")
+            print("⌚❌ WatchSessionManager: sendCommand failed — \(error.localizedDescription)")
         }
     }
 
@@ -88,13 +92,16 @@ extension WatchSessionManager: WCSessionDelegate {
                  activationDidCompleteWith activationState: WCSessionActivationState,
                  error: Error?) {
         if let error {
-            print("WatchSessionManager: activation failed — \(error.localizedDescription)")
+            print("⌚❌ WatchSessionManager: activation failed — \(error.localizedDescription)")
+        } else {
+            print("⌚✅ WatchSessionManager: activated (state: \(activationState.rawValue), reachable: \(session.isReachable))")
         }
     }
 
     // Handle real-time messages from iPhone
     func session(_ session: WCSession, didReceiveMessage message: [String: Any]) {
         guard let type = message["type"] as? String else { return }
+        print("⌚⬅️ WatchSessionManager: received from iPhone — \(message)")
 
         DispatchQueue.main.async {
             switch type {
@@ -123,6 +130,7 @@ extension WatchSessionManager: WCSessionDelegate {
 
     // Handle queued messages sent via transferUserInfo (when Watch was unreachable)
     func session(_ session: WCSession, didReceiveUserInfo userInfo: [String: Any]) {
+        print("⌚📦 WatchSessionManager: received queued userInfo from iPhone")
         self.session(session, didReceiveMessage: userInfo)
     }
 }
