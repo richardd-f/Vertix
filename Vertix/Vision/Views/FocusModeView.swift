@@ -59,6 +59,47 @@ struct FocusModeView: View {
         return max(-1, min(1, result.shoulderTilt / 15.0))
     }
 
+    // MARK: Camera permission
+
+    private var cameraDeniedOverlay: some View {
+        ZStack {
+            Color.black.opacity(0.88).ignoresSafeArea()
+            VStack(spacing: 16) {
+                Image(systemName: "video.slash.fill")
+                    .font(.system(size: 44))
+                    .foregroundColor(.white)
+                Text("Camera Access Needed")
+                    .font(.title3.bold())
+                    .foregroundColor(.white)
+                Text("Vertix needs your camera to track posture during focus sessions. Enable it in Settings to continue.")
+                    .font(.subheadline)
+                    .foregroundColor(.white.opacity(0.8))
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 32)
+
+                Button {
+                    if let url = URL(string: UIApplication.openSettingsURLString) {
+                        UIApplication.shared.open(url)
+                    }
+                } label: {
+                    Text("Open Settings")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding(.vertical, 14)
+                        .frame(maxWidth: .infinity)
+                        .background(Color.vertixDarkGreen)
+                        .cornerRadius(14)
+                }
+                .padding(.horizontal, 40)
+
+                Button("Close") { dismiss() }
+                    .font(.subheadline)
+                    .foregroundColor(.white.opacity(0.8))
+                    .padding(.top, 4)
+            }
+        }
+    }
+
     // MARK: Body
 
     var body: some View {
@@ -79,6 +120,10 @@ struct FocusModeView: View {
                     topBar
                     Spacer()
                     bottomPanel
+                }
+
+                if camera.permissionDenied {
+                    cameraDeniedOverlay
                 }
             }
         }
@@ -192,7 +237,8 @@ struct FocusModeView: View {
             await sessionManager.saveSession(
                 uid: uid,
                 elapsedSeconds: elapsed,
-                pomodoroSettings: settings
+                pomodoroSettings: settings,
+                pomodoroCount: pomodoroEngine.completedFocusCount
             )
             NotificationCenter.default.post(
                 name: .sessionCompleted,

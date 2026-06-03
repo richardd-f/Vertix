@@ -72,6 +72,14 @@ class PomodoroEngine {
 
     var sessionLabel: String { "Session \(currentCycle) of \(cyclesBeforeLongBreak)" }
 
+    /// Number of focus blocks fully completed (i.e. advanced past). Saved as a
+    /// session's `pomodoroCount` — an in-progress focus block does not count.
+    var completedFocusCount: Int {
+        let seq = phaseSequence
+        let upTo = min(phaseSequenceIndex, seq.count)
+        return seq[0..<upTo].filter { $0 == .focus }.count
+    }
+
     var formattedTime: String {
         String(format: "%02d:%02d", timeRemaining / 60, timeRemaining % 60)
     }

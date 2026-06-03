@@ -4,6 +4,7 @@ struct ProfileView: View {
     @Environment(AuthManager.self) private var authManager
     @State private var viewModel = ProfileViewModel()
     @State private var showSessionSettings = false
+    @State private var showResetAlert = false
     @State private var settingsFocus = PomodoroSettings.defaults.focusDuration
     @State private var settingsShort = PomodoroSettings.defaults.shortBreakDuration
     @State private var settingsLong  = PomodoroSettings.defaults.longBreakDuration
@@ -18,38 +19,22 @@ struct ProfileView: View {
                     VStack(spacing: 24) {
                         
                         // MARK: Header
-                        HStack {
-                            VStack(alignment: .leading) {
-                                Text("Profile")
-                                    .font(.largeTitle).bold()
-                                Text("Manage your personal wellness identity")
-                                    .foregroundColor(.secondary)
-                            }
-                            Spacer()
-                            Button(action: {}) {
-                                Image(systemName: "chevron.left")
-                                    .foregroundColor(.vertixDarkGreen)
-                                    .padding(12)
-                                    .background(Color.vertixCardBackground)
-                                    .cornerRadius(12)
-                            }
+                        VStack(alignment: .leading) {
+                            Text("Profile")
+                                .font(.largeTitle).bold()
+                            Text("Manage your personal wellness identity")
+                                .foregroundColor(.secondary)
                         }
+                        .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal, 24)
                         
                         // MARK: User Card
                         VStack(spacing: 12) {
-                            ZStack(alignment: .bottomTrailing) {
-                                Circle()
-                                    .fill(Color.gray.opacity(0.2))
-                                    .frame(width: 80, height: 80)
-                                    .overlay(Image(systemName: "person.fill").font(.largeTitle).foregroundColor(.gray))
-                                
-                                Circle()
-                                    .fill(Color.vertixDarkGreen)
-                                    .frame(width: 24, height: 24)
-                                    .overlay(Image(systemName: "pencil").font(.system(size: 12)).foregroundColor(.white))
-                            }
-                            
+                            Circle()
+                                .fill(Color.gray.opacity(0.2))
+                                .frame(width: 80, height: 80)
+                                .overlay(Image(systemName: "person.fill").font(.largeTitle).foregroundColor(.gray))
+
                             Text(viewModel.name)
                                 .font(.title3).bold()
                             
@@ -81,11 +66,26 @@ struct ProfileView: View {
                         }
                         
                         SettingsGroup(title: "ACCOUNT SECURITY") {
-                            SettingsRow(icon: "lock.fill", title: "Password", subtitle: "Last changed 3 months ago")
+                            Button {
+                                Task {
+                                    await viewModel.sendPasswordReset()
+                                    showResetAlert = true
+                                }
+                            } label: {
+                                SettingsRow(icon: "lock.fill", title: "Password", subtitle: "Send a reset link to your email")
+                            }
+                            .buttonStyle(.plain)
                         }
-                        
+
                         SettingsGroup(title: "PREFERENCES") {
-                            SettingsRow(icon: "bell.fill", title: "Notifications", subtitle: "Posture alerts & Weekly summaries")
+                            Button {
+                                if let url = URL(string: UIApplication.openSettingsURLString) {
+                                    UIApplication.shared.open(url)
+                                }
+                            } label: {
+                                SettingsRow(icon: "bell.fill", title: "Notifications", subtitle: "Manage in iOS Settings")
+                            }
+                            .buttonStyle(.plain)
                         }
 
                         SettingsGroup(title: "FOCUS SESSION") {
@@ -148,6 +148,11 @@ struct ProfileView: View {
                     await authManager.refreshUser(uid: uid)
                 }
             }
+        }
+        .alert("Password Reset", isPresented: $showResetAlert) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text(viewModel.resetMessage ?? "")
         }
     }
 }

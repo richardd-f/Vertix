@@ -22,7 +22,8 @@ class SessionManager {
     func saveSession(
         uid: String,
         elapsedSeconds: Int,
-        pomodoroSettings: PomodoroSettings
+        pomodoroSettings: PomodoroSettings,
+        pomodoroCount: Int = 1
     ) async {
         guard elapsedSeconds > 0 else { return }
         isSaving = true
@@ -38,7 +39,7 @@ class SessionManager {
             dateKey: dateKey,
             goodCount: goodCount,
             badCount: badCount,
-            pomodoroCount: 1,
+            pomodoroCount: pomodoroCount,
             focusDuration: pomodoroSettings.focusDuration,
             shortBreakDuration: pomodoroSettings.shortBreakDuration,
             longBreakDuration: pomodoroSettings.longBreakDuration,
