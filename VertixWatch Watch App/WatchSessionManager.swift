@@ -20,6 +20,7 @@ final class WatchSessionManager: NSObject, ObservableObject {
 
     @Published var phase: String = "Focus"
     @Published var remainingSeconds: Int = 25 * 60
+    @Published var totalSeconds: Int = 25 * 60
     @Published var isRunning: Bool = false
     @Published var isSessionActive: Bool = false
 
@@ -109,6 +110,7 @@ extension WatchSessionManager: WCSessionDelegate {
             case "sessionState":
                 self.phase            = message["phase"]            as? String ?? self.phase
                 self.remainingSeconds = message["remainingSeconds"] as? Int    ?? self.remainingSeconds
+                self.totalSeconds     = message["totalSeconds"]     as? Int    ?? self.totalSeconds
                 self.isRunning        = message["isRunning"]        as? Bool   ?? self.isRunning
                 self.isSessionActive  = true
 
@@ -121,6 +123,7 @@ extension WatchSessionManager: WCSessionDelegate {
                 self.isRunning        = false
                 self.phase            = "Focus"
                 self.remainingSeconds = 25 * 60
+                self.totalSeconds     = 25 * 60
 
             default:
                 break
@@ -132,5 +135,12 @@ extension WatchSessionManager: WCSessionDelegate {
     func session(_ session: WCSession, didReceiveUserInfo userInfo: [String: Any]) {
         print("⌚📦 WatchSessionManager: received queued userInfo from iPhone")
         self.session(session, didReceiveMessage: userInfo)
+    }
+
+    // Handle the latest synced state (sent via updateApplicationContext) — this is
+    // how the timer catches up after the Watch was asleep/unreachable.
+    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String: Any]) {
+        print("⌚🔄 WatchSessionManager: received applicationContext from iPhone")
+        self.session(session, didReceiveMessage: applicationContext)
     }
 }

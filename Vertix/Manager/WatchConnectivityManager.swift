@@ -37,14 +37,25 @@ final class WatchConnectivityManager: NSObject {
         send(["type": "postureAlert", "message": message])
     }
 
-    /// Call this every second from PomodoroEngine.tick() so the Watch timer stays in sync.
-    func sendSessionState(phase: String, remainingSeconds: Int, isRunning: Bool) {
-        send([
+    /// Call this every second so the Watch timer stays in sync.
+    /// Uses applicationContext (latest-wins, never queues) instead of per-second
+    /// messages — when the Watch is asleep we only keep the most recent state,
+    /// and a live sendMessage is layered on top when it's reachable for immediacy.
+    func sendSessionState(phase: String, remainingSeconds: Int, totalSeconds: Int, isRunning: Bool) {
+        guard hasWatch else { return }
+        let message: [String: Any] = [
             "type": "sessionState",
             "phase": phase,
             "remainingSeconds": remainingSeconds,
+            "totalSeconds": totalSeconds,
             "isRunning": isRunning
-        ])
+        ]
+        // Stash the latest state (coalesced, survives reconnect, no backlog).
+        try? WCSession.default.updateApplicationContext(message)
+        // Send live too if the Watch is awake & reachable.
+        if WCSession.default.isReachable {
+            WCSession.default.sendMessage(message, replyHandler: nil, errorHandler: nil)
+        }
     }
 
     /// Call this when the session ends so the Watch can reset its UI.
@@ -54,13 +65,22 @@ final class WatchConnectivityManager: NSObject {
 
     // MARK: - Private
 
+    /// A paired Watch with the companion app installed actually exists.
+    private var hasWatch: Bool {
+        WCSession.default.activationState == .activated
+            && WCSession.default.isPaired
+            && WCSession.default.isWatchAppInstalled
+    }
+
     private func send(_ message: [String: Any]) {
-        guard WCSession.default.activationState == .activated else {
-            print("📱⚠️ WatchConnectivityManager: send skipped — session not activated")
+        // No paired/installed Watch — do nothing (and never build a transfer
+        // backlog for a Watch that will never receive it).
+        guard hasWatch else {
+            print("📱⚠️ WatchConnectivityManager: send skipped — no paired Watch")
             return
         }
         guard WCSession.default.isReachable else {
-            // Watch not reachable — use transferUserInfo as a fallback queue
+            // Watch paired but asleep — queue this discrete event for delivery.
             print("📱📦 WatchConnectivityManager: watch unreachable, queuing via transferUserInfo — \(message)")
             WCSession.default.transferUserInfo(message.mapValues { $0 as AnyObject } as [String: Any])
             return

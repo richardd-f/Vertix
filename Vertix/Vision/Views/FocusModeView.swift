@@ -137,7 +137,10 @@ struct FocusModeView: View {
                 cycles: settings.totalCycles
             )
             watchManager.sendSessionState(
-                  phase: "focus", remainingSeconds: pomodoroEngine.timeRemaining, isRunning: false
+                  phase: "focus",
+                  remainingSeconds: pomodoroEngine.timeRemaining,
+                  totalSeconds: pomodoroEngine.totalPhaseSeconds,
+                  isRunning: false
             )
         }
         .onDisappear {
@@ -151,6 +154,7 @@ struct FocusModeView: View {
             watchManager.sendSessionState(
                 phase: pomodoroEngine.currentPhase.label,
                 remainingSeconds: pomodoroEngine.timeRemaining,
+                totalSeconds: pomodoroEngine.totalPhaseSeconds,
                 isRunning: pomodoroEngine.isRunning
             )
 

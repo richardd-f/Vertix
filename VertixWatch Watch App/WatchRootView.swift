@@ -104,6 +104,7 @@ struct WatchTimerView: View {
                 // Timer ring
                 WatchTimerRing(
                     remainingSeconds: session.remainingSeconds,
+                    totalSeconds: session.totalSeconds,
                     phase: session.phase,
                     isRunning: session.isRunning
                 )
@@ -121,6 +122,7 @@ struct WatchTimerView: View {
 
 struct WatchTimerRing: View {
     let remainingSeconds: Int
+    let totalSeconds: Int
     let phase: String
     let isRunning: Bool
 
@@ -162,15 +164,10 @@ struct WatchTimerRing: View {
         }
     }
 
-    /// We don't know total phase seconds here, so we show a pulsing ring
-    /// that drains as remainingSeconds decreases. We store the max seen.
-    @State private var maxSeen: Int = 0
-
+    /// Accurate fraction using the phase length sent by the iPhone.
     private var progressFraction: CGFloat {
-        let current = remainingSeconds
-        if current > maxSeen { maxSeen = current }
-        guard maxSeen > 0 else { return 0 }
-        return CGFloat(current) / CGFloat(maxSeen)
+        guard totalSeconds > 0 else { return 0 }
+        return CGFloat(remainingSeconds) / CGFloat(totalSeconds)
     }
 }
 
