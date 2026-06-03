@@ -1,5 +1,6 @@
 import Foundation
 import Observation
+import FirebaseAuth
 
 @Observable
 class ProfileViewModel {
@@ -7,6 +8,8 @@ class ProfileViewModel {
     var email: String = ""
     var avgScore: Int = 0
     var trackedHours: Int = 0
+    /// Result of the last password-reset attempt, shown to the user in an alert.
+    var resetMessage: String? = nil
 
     private let db: DatabaseServiceProtocol
 
@@ -19,6 +22,21 @@ class ProfileViewModel {
         guard !uid.isEmpty else { return }
         await fetchUserStats(uid: uid)
         await fetchAvgScore(uid: uid)
+    }
+
+    /// Send a Firebase password-reset email to the account's address.
+    @MainActor
+    func sendPasswordReset() async {
+        guard !email.isEmpty else {
+            resetMessage = "No email is associated with this account."
+            return
+        }
+        do {
+            try await Auth.auth().sendPasswordReset(withEmail: email)
+            resetMessage = "We've sent a password reset link to \(email)."
+        } catch {
+            resetMessage = "Couldn't send reset email: \(error.localizedDescription)"
+        }
     }
 
     // MARK: - Private

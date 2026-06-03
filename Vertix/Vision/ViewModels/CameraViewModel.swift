@@ -15,6 +15,8 @@ class CameraViewModel: NSObject, ObservableObject {
 
     @Published var landmarks: [[NormalizedLandmark]] = []
     @Published var postureResult: PostureResult?
+    /// True when the user has denied/restricted camera access — drives the permission UI.
+    @Published var permissionDenied: Bool = false
 
     override init() {
         super.init()
@@ -74,18 +76,26 @@ class CameraViewModel: NSObject, ObservableObject {
     func startSession() {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .authorized:
+            setPermissionDenied(false)
             configureAndRun()
         case .notDetermined:
             AVCaptureDevice.requestAccess(for: .video) { [weak self] granted in
                 guard granted else {
                     print("❌ Camera access denied")
+                    self?.setPermissionDenied(true)
                     return
                 }
+                self?.setPermissionDenied(false)
                 self?.configureAndRun()
             }
         default:
             print("❌ Camera access not authorized")
+            setPermissionDenied(true)
         }
+    }
+
+    private func setPermissionDenied(_ denied: Bool) {
+        DispatchQueue.main.async { self.permissionDenied = denied }
     }
 
     private func configureAndRun() {

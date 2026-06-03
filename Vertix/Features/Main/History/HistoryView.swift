@@ -17,23 +17,13 @@ struct HistoryView: View {
                     VStack(spacing: 24) {
 
                         // MARK: Header
-                        HStack {
-                            VStack(alignment: .leading) {
-                                Text("History")
-                                    .font(.largeTitle).bold()
-                                Text(viewModel.monthLabel)
-                                    .foregroundColor(.secondary)
-                            }
-                            Spacer()
-                            Button(action: {}) {
-                                Image(systemName: "calendar")
-                                    .foregroundColor(.vertixDarkGreen)
-                                    .padding(12)
-                                    .background(Color.vertixCardBackground)
-                                    .cornerRadius(12)
-                                    .shadow(color: .black.opacity(0.05), radius: 5)
-                            }
+                        VStack(alignment: .leading) {
+                            Text("History")
+                                .font(.largeTitle).bold()
+                            Text(viewModel.monthLabel)
+                                .foregroundColor(.secondary)
                         }
+                        .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal, 24)
 
                         // MARK: Monthly Overview
