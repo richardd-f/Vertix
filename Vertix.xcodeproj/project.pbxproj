@@ -34,6 +34,7 @@
 		8E18894025A43A12B9712667 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBA81477360C8FD128807A5 /* HomeView.swift */; };
 		8F82F512CDC0678B11CCF071 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863E0A80AED7716BD22BF803 /* SessionManager.swift */; };
 		8FDC2C11CCF23DC5BCD47893 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B08B7A72EA4C787BA38157 /* CameraViewModel.swift */; };
+		9903851173D304FEC95A79EE /* Pods_VertixTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4B88BF5F589A0090C259C7E /* Pods_VertixTests.framework */; };
 		992FD1E0D3634E5286E44B4A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DEB91D2BF9DE2215D05A31BC /* GoogleService-Info.plist */; };
 		B2607D849559C564D6B2286E /* PostureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9CA6E3C36E7BD4BFA58BC4 /* PostureModel.swift */; };
 		B79F830E8624D0594D9BFBB5 /* PoseDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5951C2F6BF09B8AFB0D368 /* PoseDetector.swift */; };
@@ -149,6 +150,7 @@
 		A57AD47D681A0335C6B1E1E1 /* Pods-Vertix.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Pods-Vertix.release.xcconfig"; sourceTree = "<group>"; };
 		A714C3B4BB0D4A6C47D25622 /* AuthContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthContainerView.swift; sourceTree = "<group>"; };
 		AFB7273AF29EFFD5CF81F48E /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+		C4B88BF5F589A0090C259C7E /* Pods_VertixTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VertixTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA73FA1D1A0A2D06C3148A68 /* VertixTextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertixTextFields.swift; sourceTree = "<group>"; };
 		CDD3291DF56B8E06D2C472F0 /* OnboardingStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStep.swift; sourceTree = "<group>"; };
 		CEE2E7BA525D4B4A93682C62 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -173,16 +175,22 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		6E778BF82FCB3A0A00778942 /* VertixWatch Watch App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = "VertixWatch Watch App";
 			sourceTree = "<group>";
 		};
 		6E778C062FCB3A0B00778942 /* VertixWatch Watch AppTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = "VertixWatch Watch AppTests";
 			sourceTree = "<group>";
 		};
 		6E778C102FCB3A0B00778942 /* VertixWatch Watch AppUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = "VertixWatch Watch AppUITests";
 			sourceTree = "<group>";
 		};
@@ -193,6 +201,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9903851173D304FEC95A79EE /* Pods_VertixTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,6 +466,7 @@
 				6E778C242FCB3AA400778942 /* WatchConnectivity.framework */,
 				6E778C262FCB3AF300778942 /* WatchConnectivity.framework */,
 				575B95ED6CD054A8FCBD8CA9 /* Pods_Vertix.framework */,
+				C4B88BF5F589A0090C259C7E /* Pods_VertixTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -717,13 +727,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Vertix/Pods-Vertix-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Vertix/Pods-Vertix-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
