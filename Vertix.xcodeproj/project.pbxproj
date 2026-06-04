@@ -56,6 +56,7 @@
 		FE57BB0000000000000T05 /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE57FF0000000000000T05 /* HomeViewModelTests.swift */; };
 		FE57BB0000000000000T06 /* HistoryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE57FF0000000000000T06 /* HistoryViewModelTests.swift */; };
 		FE57BB0000000000000T07 /* MockDatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE57FF0000000000000T07 /* MockDatabaseService.swift */; };
+		FE57BB0000000000000T08 /* PostureAnalyzerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE57FF0000000000000T08 /* PostureAnalyzerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -166,6 +167,7 @@
 		FE57FF0000000000000T05 /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
 		FE57FF0000000000000T06 /* HistoryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModelTests.swift; sourceTree = "<group>"; };
 		FE57FF0000000000000T07 /* MockDatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDatabaseService.swift; sourceTree = "<group>"; };
+		FE57FF0000000000000T08 /* PostureAnalyzerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostureAnalyzerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -357,6 +359,7 @@
 				FE57FF0000000000000T05 /* HomeViewModelTests.swift */,
 				FE57FF0000000000000T06 /* HistoryViewModelTests.swift */,
 				FE57FF0000000000000T07 /* MockDatabaseService.swift */,
+				FE57FF0000000000000T08 /* PostureAnalyzerTests.swift */,
 			);
 			path = VertixTests;
 			sourceTree = "<group>";
@@ -762,6 +765,7 @@
 				FE57BB0000000000000T05 /* HomeViewModelTests.swift in Sources */,
 				FE57BB0000000000000T06 /* HistoryViewModelTests.swift in Sources */,
 				FE57BB0000000000000T07 /* MockDatabaseService.swift in Sources */,
+				FE57BB0000000000000T08 /* PostureAnalyzerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

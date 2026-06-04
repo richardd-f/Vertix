@@ -17,36 +17,56 @@ struct PostureResult {
 
 struct PostureAnalyzer {
 
+    /// MediaPipe returns 33 landmarks; we read up to index 24, so we need at least 25.
+    static func hasEnoughLandmarks(_ count: Int) -> Bool {
+        count > 24
+    }
+
+    // MARK: - MediaPipe adapter
+    // Thin layer that pulls the joints we care about out of MediaPipe's landmark
+    // array, then hands plain points to the pure `evaluate` core below.
+
     static func analyze(landmarks: [NormalizedLandmark]) -> PostureResult? {
-        guard landmarks.count > 24 else { return nil }
+        // Error handling: bail out safely on incomplete pose data.
+        guard hasEnoughLandmarks(landmarks.count) else { return nil }
 
-        let noseLM           = landmarks[0]
-        let leftShoulderLM   = landmarks[11]
-        let rightShoulderLM  = landmarks[12]
-        let leftHipLM        = landmarks[23]
-        let rightHipLM       = landmarks[24]
-        let leftEarLM        = landmarks[7]
-        let rightEarLM       = landmarks[8]
+        func point(_ i: Int) -> CGPoint {
+            CGPoint(x: CGFloat(landmarks[i].x), y: CGFloat(landmarks[i].y))
+        }
 
-        let midShoulder = midpoint(leftShoulderLM, rightShoulderLM)
-        let midHip      = midpoint(leftHipLM, rightHipLM)
-        let midEar      = midpoint(leftEarLM, rightEarLM)
-
-        let neckAngle = calculateAngle(
-            from: CGPoint(x: CGFloat(midShoulder.x), y: CGFloat(midShoulder.y)),
-            to:   CGPoint(x: CGFloat(midEar.x),      y: CGFloat(midEar.y))
+        return evaluate(
+            leftShoulder:  point(11),
+            rightShoulder: point(12),
+            leftEar:       point(7),
+            rightEar:      point(8),
+            leftHip:       point(23),
+            rightHip:      point(24)
         )
+    }
+
+    // MARK: - Pure posture logic (no MediaPipe — fully unit-testable)
+
+    static func evaluate(
+        leftShoulder: CGPoint,
+        rightShoulder: CGPoint,
+        leftEar: CGPoint,
+        rightEar: CGPoint,
+        leftHip: CGPoint,
+        rightHip: CGPoint
+    ) -> PostureResult {
+        let midShoulder = midpoint(leftShoulder, rightShoulder)
+        let midHip      = midpoint(leftHip, rightHip)
+        let midEar      = midpoint(leftEar, rightEar)
+
+        let neckAngle = calculateAngle(from: midShoulder, to: midEar)
 
         // Preserve direction for the on-screen tilt indicator; magnitude is used
         // for the good/bad threshold. (Front camera is mirrored, so left shoulder
         // lower → person leaning left.)
-        let shoulderTiltSigned = Double(leftShoulderLM.y - rightShoulderLM.y) * 100
+        let shoulderTiltSigned = Double(leftShoulder.y - rightShoulder.y) * 100
         let shoulderTilt       = abs(shoulderTiltSigned)
 
-        let spineAngle = calculateAngle(
-            from: CGPoint(x: CGFloat(midHip.x),      y: CGFloat(midHip.y)),
-            to:   CGPoint(x: CGFloat(midShoulder.x), y: CGFloat(midShoulder.y))
-        )
+        let spineAngle = calculateAngle(from: midHip, to: midShoulder)
 
         let goodNeck     = neckAngle < 20
         let goodShoulder = shoulderTilt < 5
@@ -72,11 +92,8 @@ struct PostureAnalyzer {
         )
     }
 
-    private static func midpoint(
-        _ a: NormalizedLandmark,
-        _ b: NormalizedLandmark
-    ) -> (x: Float, y: Float) {
-        return ((a.x + b.x) / 2, (a.y + b.y) / 2)
+    private static func midpoint(_ a: CGPoint, _ b: CGPoint) -> CGPoint {
+        CGPoint(x: (a.x + b.x) / 2, y: (a.y + b.y) / 2)
     }
 
     private static func calculateAngle(from: CGPoint, to: CGPoint) -> Double {
