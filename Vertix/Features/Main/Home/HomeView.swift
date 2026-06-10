@@ -222,7 +222,8 @@ struct HomeView: View {
         }
         .task(id: authManager.currentUser?.id) {
             let uid = authManager.currentUser?.id ?? ""
-            await viewModel.load(uid: uid)
+            let authName = authManager.currentUser?.name ?? ""
+            await viewModel.load(uid: uid, fallbackName: authName.isEmpty ? "there" : authName)
             await gamificationManager.load(uid: uid)
         }
         .fullScreenCover(isPresented: $showFocusMode) {

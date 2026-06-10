@@ -38,9 +38,9 @@ class HomeViewModel {
     }
 
     @MainActor
-    func load(uid: String) async {
+    func load(uid: String, fallbackName: String = "") async {
         guard !uid.isEmpty else { return }
-        await fetchUserName(uid: uid)
+        await fetchUserName(uid: uid, fallbackName: fallbackName)
         await fetchTodayScore(uid: uid)
         await fetchLastSession(uid: uid)
     }
@@ -48,12 +48,18 @@ class HomeViewModel {
     // MARK: - Private
 
     @MainActor
-    private func fetchUserName(uid: String) async {
+    private func fetchUserName(uid: String, fallbackName: String) async {
         do {
             let dict = try await db.getData(path: "users/\(uid)")
-            userName = dict["name"] as? String ?? ""
+            let dbName = dict["name"] as? String ?? ""
+            // Use the DB name when present; otherwise fall back so the header never
+            // sticks on "Loading…" (e.g. a missing record or a read that returns no name).
+            userName = dbName.isEmpty ? fallbackName : dbName
             currentStreak = dict["currentStreak"] as? Int ?? 0
         } catch {
+            // The read failed (network / permissions). Show the fallback instead of
+            // hanging, and surface the real reason in the console for debugging.
+            if userName.isEmpty { userName = fallbackName }
             print("HomeViewModel: failed to fetch userName — \(error)")
         }
     }

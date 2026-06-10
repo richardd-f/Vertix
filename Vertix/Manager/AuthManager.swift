@@ -17,6 +17,22 @@ class AuthManager {
     init() {
         if let user = Auth.auth().currentUser {
             self.isAuthenticated = true
+            // Seed a minimal profile immediately from the restored session so the UI
+            // always has a uid to load with. Otherwise, if the DB read below is slow,
+            // missing, or denied, currentUser stays nil and Home hangs on "Loading…"
+            // forever (its .task keys off currentUser?.id and never re-fires).
+            self.currentUser = User(
+                id: user.uid,
+                name: user.displayName ?? "",
+                email: user.email ?? "",
+                avatarUrl: nil,
+                createdAt: Date(),
+                totalTrackedSeconds: 0,
+                currentStreak: 0,
+                longestStreak: 0,
+                lastActiveDate: nil,
+                pomodoroSettings: .defaults
+            )
             Task { await fetchUserData(uid: user.uid) }
         }
     }
