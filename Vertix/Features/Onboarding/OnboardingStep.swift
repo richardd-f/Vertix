@@ -3,6 +3,7 @@ import Foundation
 struct OnboardingStep: Identifiable {
     let id = UUID()
     let imageName: String     // The name of the image in your Assets.xcassets
+    let iconName: String      // SF Symbol fallback shown until that asset image exists
     let badgeIcon: String?    // Optional SF Symbol for the pill
     let badgeText: String?    // Optional text for the pill
     let title: String
@@ -13,6 +14,7 @@ extension OnboardingStep {
     static let steps: [OnboardingStep] = [
         OnboardingStep(
             imageName: "onboarding_1", // Replace with your actual image asset name
+            iconName: "timer",
             badgeIcon: nil,
             badgeText: nil,
             title: "Study Smarter",
@@ -20,6 +22,7 @@ extension OnboardingStep {
         ),
         OnboardingStep(
             imageName: "onboarding_2",
+            iconName: "figure.stand",
             badgeIcon: "camera.fill",
             badgeText: "POSTURE DETECTION",
             title: "Fix Your Posture",
@@ -27,6 +30,7 @@ extension OnboardingStep {
         ),
         OnboardingStep(
             imageName: "onboarding_3",
+            iconName: "chart.line.uptrend.xyaxis",
             badgeIcon: "leaf.fill", // Using a leaf as a placeholder for the seedling
             badgeText: "BUILD HABITS",
             title: "Feel the Difference",

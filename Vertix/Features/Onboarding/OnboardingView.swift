@@ -25,6 +25,11 @@ struct OnboardingView: View {
                                 RoundedRectangle(cornerRadius: 24)
                                     .fill(Color.white)
                                     .shadow(color: .black.opacity(0.05), radius: 10, x: 0, y: 5)
+                                    .overlay(
+                                        Image(systemName: step.iconName)
+                                            .font(.system(size: 90, weight: .light))
+                                            .foregroundColor(Color.vertixDarkGreen)
+                                    )
                             }
                         }
                         .frame(height: 300)
