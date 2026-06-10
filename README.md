@@ -48,14 +48,21 @@
 - **Weekly Posture Trend Chart** — A native Swift Charts line graph visualizing posture score trends across the past 7 days.
 - **Streak Tracking** — Consecutive active day streaks tracked to reinforce daily habit formation.
 
+#### Gamification
+- **EXP & Leveling** — Sessions award EXP based on posture score, duration, and current streak, progressing the user through a 10-tier level system, each with its own title and color.
+- **Daily Challenges** — A rotating set of daily challenges (complete a session, achieve a target score, maintain a streak, hit focus minutes), each granting bonus EXP on completion.
+- **Reward Feedback** — An animated EXP toast and level-up celebration surfaces on the Home dashboard right after a session.
+
 #### Profile
 - **Account Info** — User identity details synced from Firebase, with total tracked hours as a key lifetime metric.
-- **Settings Navigation** — Notification toggles, session duration defaults, and camera permission management.
+- **Custom Pomodoro Settings** — Editable focus duration, short/long break lengths, and cycle count, persisted to Firebase.
+- **Password Reset** — Send a password reset email directly from the profile via Firebase Auth.
 - **Secure Logout** — One-tap sign out via Firebase Auth that cleanly clears the session state.
 
 #### Core Engine
-- **AI Posture Detection** — Real-time body shape analysis via the device's front camera, continuously scoring posture quality during active sessions.
+- **AI Posture Detection** — Real-time pose landmark analysis via the device's front camera using MediaPipe, continuously scoring posture quality (neck angle, shoulder tilt, spine angle) during active sessions.
 - **Pomodoro Timer** — Built-in focus interval timer running in parallel with posture tracking to structure productive work blocks.
+- **Sound & Haptic Feedback** — Audio cues and haptics for session start/end, breaks, level-ups, challenge completions, and bad-posture alerts.
 
 ---
 
@@ -93,12 +100,19 @@
 ### AI & Camera
 | Technology | Usage |
 |------------|-------|
-| **Camera AI Framework** | Real-time body shape and posture detection (TBD — not CreateML) |
+| **MediaPipe Tasks Vision** | `PoseLandmarker` for real-time body pose detection from the live camera feed |
+| **AVFoundation** | Camera capture session and video sample buffering |
+
+### Connectivity & Feedback
+| Technology | Usage |
+|------------|-------|
+| **WatchConnectivity** | Syncs timer state and posture alerts between iPhone and Apple Watch |
+| **AVAudioPlayer + CoreHaptics** | Sound cues and haptic feedback for session events |
 
 ### Dependency Management
 | Tool | Usage |
 |------|-------|
-| **CocoaPods** | Manages Firebase and AI framework dependencies |
+| **CocoaPods** | Manages Firebase and MediaPipe dependencies |
 
 ---
 
@@ -121,25 +135,27 @@ Vertix uses a premium **neo-morphic aesthetic** with a warm, natural color palet
 ```
 Vertix/
 ├── Vertix/
-│   ├── App/
-│   │   ├── VertixApp.swift          # App entry point
-│   │   └── ContentView.swift        # Root router (Onboarding / Auth / Main)
+│   ├── VertixApp.swift              # App entry point (Firebase config + DI)
+│   ├── ContentView.swift            # Root router (Onboarding / Auth / Main)
 │   ├── Features/
 │   │   ├── Onboarding/              # 3-step carousel onboarding
-│   │   ├── Auth/                    # Login & Registration
-│   │   │   ├── View/
-│   │   │   ├── ViewModel/
-│   │   │   └── Model/
-│   │   ├── Home/                    # Dashboard — score gauge, session control
-│   │   ├── History/                 # Calendar + weekly chart
-│   │   └── Profile/                 # Account info, settings, logout
-│   ├── Components/                  # Reusable UI components
-│   ├── Manager/                     # Service managers (Firebase, Camera, etc.)
-│   ├── Models/                      # Shared data models
+│   │   ├── Authentication/          # Login & Registration + AuthContainer
+│   │   └── Main/
+│   │       ├── MainTabView.swift    # Tab container
+│   │       ├── Home/                # Dashboard — score gauge, gamification, session control
+│   │       ├── History/             # Calendar + weekly chart
+│   │       └── Profile/             # Account info, Pomodoro settings, logout
+│   ├── Vision/                      # Camera + AI posture pipeline
+│   │   ├── Models/                  # PoseDetector, PostureAnalyzer, PostureModel
+│   │   ├── ViewModels/              # CameraViewModel
+│   │   └── Views/                   # FocusModeView, CameraPreviewView, PoseOverlayView
+│   ├── Manager/                     # AuthManager, SessionManager, GamificationManager,
+│   │   │                            #   SoundManager, WatchConnectivityManager,
+│   │   │                            #   DatabaseServiceProtocol + FirebaseDatabaseService
+│   ├── Components/                  # Reusable UI (gamification views, input fields)
+│   ├── Models/                      # Shared data models (User, SessionRecord, PomodoroSettings)
 │   └── Assets.xcassets
-├── VertixWatch/                     # watchOS target
-│   ├── TimerView.swift
-│   └── SessionControlView.swift
+├── VertixWatch Watch App/           # watchOS target
 ├── Podfile
 ├── Podfile.lock
 └── Vertix.xcworkspace               # Always open this ⚠️
@@ -261,7 +277,7 @@ refactor: extract session timer into SessionManager
 |------|------|
 | Felicia | iOS Developer — AI Posture Detection |
 | Felix | iOS Developer — Firebase, History Analytics |
-| Clarice | iOS & WatchOS Developer — Pomodoro Session |
+| Clarice | iOS & watchOS Developer — Pomodoro Session & Gamification |
 
 ---
 
