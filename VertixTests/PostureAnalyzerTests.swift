@@ -44,8 +44,8 @@ struct PostureAnalyzerTests {
     @Test("rejects incomplete pose data (error handling)")
     func rejectsIncompletePose() {
         // The analyzer reads up to landmark #24, so anything fewer is rejected.
-        #expect(PostureAnalyzer.hasEnoughLandmarks(10) == false) // too few -> analyze() returns nil
-        #expect(PostureAnalyzer.hasEnoughLandmarks(33) == true)  // a full MediaPipe pose is fine
+        #expect(!PostureAnalyzer.hasEnoughLandmarks(10)) // too few -> analyze() returns nil
+        #expect(PostureAnalyzer.hasEnoughLandmarks(33))  // a full MediaPipe pose is fine
     }
 
     // MARK: - Good posture
