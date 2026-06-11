@@ -29,12 +29,12 @@
 		6E8E06AB2FCAFBDD00BDCC43 /* PomodoroEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8E06AA2FCAFBD800BDCC43 /* PomodoroEngine.swift */; };
 		6E8E06AD2FCAFC4900BDCC43 /* SessionSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8E06AC2FCAFC4600BDCC43 /* SessionSettingsView.swift */; };
 		7E91B1B17CA17BF5906EEDA1 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5008D4933E987E385F62CD4A /* MainTabView.swift */; };
-		81F35A763AF19483FC835A9F /* Pods_Vertix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 575B95ED6CD054A8FCBD8CA9 /* Pods_Vertix.framework */; };
 		824ACBE0DDA32198BD703012 /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB7273AF29EFFD5CF81F48E /* HistoryViewModel.swift */; };
 		8E18894025A43A12B9712667 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBA81477360C8FD128807A5 /* HomeView.swift */; };
 		8F82F512CDC0678B11CCF071 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863E0A80AED7716BD22BF803 /* SessionManager.swift */; };
 		8FDC2C11CCF23DC5BCD47893 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B08B7A72EA4C787BA38157 /* CameraViewModel.swift */; };
 		992FD1E0D3634E5286E44B4A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DEB91D2BF9DE2215D05A31BC /* GoogleService-Info.plist */; };
+		B20B493AD8C77F1F8CD66C13 /* Pods_Vertix.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 919E5B66FBA442CD7B5811B3 /* Pods_Vertix.framework */; };
 		B2607D849559C564D6B2286E /* PostureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D9CA6E3C36E7BD4BFA58BC4 /* PostureModel.swift */; };
 		B79F830E8624D0594D9BFBB5 /* PoseDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5951C2F6BF09B8AFB0D368 /* PoseDetector.swift */; };
 		BA0745A2A0590830AE20998C /* VertixTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA73FA1D1A0A2D06C3148A68 /* VertixTextFields.swift */; };
@@ -44,11 +44,11 @@
 		D06992475DBB4308C9E0B0B2 /* GamificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C59915BDA3B7927DB34F0B /* GamificationManager.swift */; };
 		D4583F45AC518002D44E5702 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D40E2D5BCFCBB2FB1376D0 /* Color.swift */; };
 		DE9E6C6C5850E0BE8A22B752 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CB79112B37D54F1F4E0363 /* ProfileViewModel.swift */; };
-		FE11FEED0000000000000A02 /* SessionSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11FEED0000000000000A01 /* SessionSettingsViewModel.swift */; };
 		E60AB650F8900813F4BC75A5 /* SessionRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F02CCD7C5944DC72F38C9D7 /* SessionRecord.swift */; };
 		F877C677D46D56AAEC84A673 /* VertixApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A55305A219F4122793F214A /* VertixApp.swift */; };
 		F8C6A7026A8FD05BD92AFD81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B1D70A00389204EA8906897 /* Assets.xcassets */; };
 		FB8ADA2675CD5D4BC52C3599 /* AuthContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A714C3B4BB0D4A6C47D25622 /* AuthContainerView.swift */; };
+		FE11FEED0000000000000A02 /* SessionSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE11FEED0000000000000A01 /* SessionSettingsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,19 +106,18 @@
 		2C391BEA63D2028719948A9C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		2CBA81477360C8FD128807A5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		304DDBC4D4F5FDCABCEE37F9 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
+		3091540B20C5A5E885E420DB /* Pods-VertixTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VertixTests.debug.xcconfig"; path = "Target Support Files/Pods-VertixTests/Pods-VertixTests.debug.xcconfig"; sourceTree = "<group>"; };
 		32D01D69C9AC64066E67B80F /* Vertix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vertix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B1D70A00389204EA8906897 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4480CB79F0C0AB4B97205A10 /* Pods-Vertix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vertix.release.xcconfig"; path = "Target Support Files/Pods-Vertix/Pods-Vertix.release.xcconfig"; sourceTree = "<group>"; };
 		46CB79112B37D54F1F4E0363 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
-		FE11FEED0000000000000A01 /* SessionSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSettingsViewModel.swift; sourceTree = "<group>"; };
 		5008D4933E987E385F62CD4A /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		517FA8DED416910A2169F5E1 /* FocusModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusModeView.swift; sourceTree = "<group>"; };
+		51F198BCCF21BB7BFF5A1716 /* Pods-VertixTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VertixTests.release.xcconfig"; path = "Target Support Files/Pods-VertixTests/Pods-VertixTests.release.xcconfig"; sourceTree = "<group>"; };
 		55DE34D22AEDE76088AD7CD4 /* VertixTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VertixTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		575B95ED6CD054A8FCBD8CA9 /* Pods_Vertix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vertix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		59B08B7A72EA4C787BA38157 /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
-		65B225194C7776544470DD54 /* Pods-VertixTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VertixTests.debug.xcconfig"; path = "Target Support Files/Pods-VertixTests/Pods-VertixTests.debug.xcconfig"; sourceTree = "<group>"; };
 		68285596BBA44439B27B08A9 /* PoseOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoseOverlayView.swift; sourceTree = "<group>"; };
 		699BD6CC1CAD9889DB9996B6 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
-		6C5AF9BF97FAFA9BF859C1EB /* Pods-VertixTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VertixTests.release.xcconfig"; path = "Target Support Files/Pods-VertixTests/Pods-VertixTests.release.xcconfig"; sourceTree = "<group>"; };
 		6D9CA6E3C36E7BD4BFA58BC4 /* PostureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostureModel.swift; sourceTree = "<group>"; };
 		6E778BF72FCB3A0A00778942 /* VertixWatch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VertixWatch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E778C032FCB3A0B00778942 /* VertixWatch Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VertixWatch Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,7 +129,6 @@
 		6E8E06AA2FCAFBD800BDCC43 /* PomodoroEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroEngine.swift; sourceTree = "<group>"; };
 		6E8E06AC2FCAFC4600BDCC43 /* SessionSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSettingsView.swift; sourceTree = "<group>"; };
 		71D40E2D5BCFCBB2FB1376D0 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		75277D82A5881515E7756D3C /* Pods-Vertix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vertix.debug.xcconfig"; path = "Target Support Files/Pods-Vertix/Pods-Vertix.debug.xcconfig"; sourceTree = "<group>"; };
 		7F02CCD7C5944DC72F38C9D7 /* SessionRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRecord.swift; sourceTree = "<group>"; };
 		838B848F243303FE76C7FF68 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		863E0A80AED7716BD22BF803 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
@@ -138,20 +136,22 @@
 		8B6614303924F0E80FD6AE47 /* GamificationViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamificationViews.swift; sourceTree = "<group>"; };
 		8C5A67524360B1B7C7C231D9 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		8E60FBC28570BCBBD2F94E07 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		919E5B66FBA442CD7B5811B3 /* Pods_Vertix.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vertix.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BFBE8AD31996F4B80CCC151 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		A57AD47D681A0335C6B1E1E1 /* Pods-Vertix.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Pods-Vertix.release.xcconfig"; sourceTree = "<group>"; };
 		A714C3B4BB0D4A6C47D25622 /* AuthContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthContainerView.swift; sourceTree = "<group>"; };
 		AFB7273AF29EFFD5CF81F48E /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+		BF5D5A10135FF42B2C479CBD /* Pods-Vertix.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vertix.debug.xcconfig"; path = "Target Support Files/Pods-Vertix/Pods-Vertix.debug.xcconfig"; sourceTree = "<group>"; };
 		CA73FA1D1A0A2D06C3148A68 /* VertixTextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertixTextFields.swift; sourceTree = "<group>"; };
 		CDD3291DF56B8E06D2C472F0 /* OnboardingStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingStep.swift; sourceTree = "<group>"; };
 		CEE2E7BA525D4B4A93682C62 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		DE5951C2F6BF09B8AFB0D368 /* PoseDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoseDetector.swift; sourceTree = "<group>"; };
 		DEB91D2BF9DE2215D05A31BC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		E202C80C8638A0944D6F9C7F /* Pods-Vertix.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vertix.release.xcconfig"; path = "Target Support Files/Pods-Vertix/Pods-Vertix.release.xcconfig"; sourceTree = "<group>"; };
 		E4D86D6D7E26E8F471A150C4 /* Pods-Vertix.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Pods-Vertix.debug.xcconfig"; sourceTree = "<group>"; };
 		F6E0ECD1B90233E27AD6BDF3 /* PostureAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostureAnalyzer.swift; sourceTree = "<group>"; };
 		F7718BB5A3D7FEF572C0250D /* DatabaseServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseServiceProtocol.swift; sourceTree = "<group>"; };
 		F947EA7D6739CDBFCF399AB8 /* pose_landmarker_lite.task */ = {isa = PBXFileReference; lastKnownFileType = file; path = pose_landmarker_lite.task; sourceTree = "<group>"; };
+		FE11FEED0000000000000A01 /* SessionSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSettingsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -212,8 +212,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81F35A763AF19483FC835A9F /* Pods_Vertix.framework in Frameworks */,
 				6E778C252FCB3AA400778942 /* WatchConnectivity.framework in Frameworks */,
+				B20B493AD8C77F1F8CD66C13 /* Pods_Vertix.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,10 +317,10 @@
 		670306C9B5EC756E29138B56 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				75277D82A5881515E7756D3C /* Pods-Vertix.debug.xcconfig */,
-				E202C80C8638A0944D6F9C7F /* Pods-Vertix.release.xcconfig */,
-				65B225194C7776544470DD54 /* Pods-VertixTests.debug.xcconfig */,
-				6C5AF9BF97FAFA9BF859C1EB /* Pods-VertixTests.release.xcconfig */,
+				BF5D5A10135FF42B2C479CBD /* Pods-Vertix.debug.xcconfig */,
+				4480CB79F0C0AB4B97205A10 /* Pods-Vertix.release.xcconfig */,
+				3091540B20C5A5E885E420DB /* Pods-VertixTests.debug.xcconfig */,
+				51F198BCCF21BB7BFF5A1716 /* Pods-VertixTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -438,7 +438,7 @@
 				6E778C222FCB3A7100778942 /* WatchConnectivity.framework */,
 				6E778C242FCB3AA400778942 /* WatchConnectivity.framework */,
 				6E778C262FCB3AF300778942 /* WatchConnectivity.framework */,
-				575B95ED6CD054A8FCBD8CA9 /* Pods_Vertix.framework */,
+				919E5B66FBA442CD7B5811B3 /* Pods_Vertix.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -469,12 +469,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 02C323BA0A06F98D05D064D4 /* Build configuration list for PBXNativeTarget "Vertix" */;
 			buildPhases = (
-				AA172272A7E05BD2A71C55E3 /* [CP] Check Pods Manifest.lock */,
+				94FDF0A60B9FEE871F547E05 /* [CP] Check Pods Manifest.lock */,
 				F7FFEAC6C961E26F727EEBEE /* Sources */,
 				00EC63ACBCD923E461ECCBC1 /* Resources */,
 				924F7E6FA3C386B24700E7E4 /* Frameworks */,
-				B271623B2B52032188F235E0 /* [CP] Copy Pods Resources */,
 				6E778C182FCB3A0B00778942 /* Embed Watch Content */,
+				E11ADB875777013DE7037562 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -552,7 +552,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3FEF1EC2434199F05137608D /* Build configuration list for PBXNativeTarget "VertixTests" */;
 			buildPhases = (
-				6A218D1A94D76F44F52193A1 /* [CP] Check Pods Manifest.lock */,
+				F4C7B30C0B127B9B06116541 /* [CP] Check Pods Manifest.lock */,
 				F7F881097033996C70DD01FD /* Sources */,
 				2430C5F5D3FF670D90690EA3 /* Frameworks */,
 			);
@@ -647,29 +647,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6A218D1A94D76F44F52193A1 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-VertixTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AA172272A7E05BD2A71C55E3 /* [CP] Check Pods Manifest.lock */ = {
+		94FDF0A60B9FEE871F547E05 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -691,7 +669,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B271623B2B52032188F235E0 /* [CP] Copy Pods Resources */ = {
+		E11ADB875777013DE7037562 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -706,6 +684,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Vertix/Pods-Vertix-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F4C7B30C0B127B9B06116541 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VertixTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -809,7 +809,7 @@
 /* Begin XCBuildConfiguration section */
 		1E1C9D5BCD63D0FD2724C324 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6C5AF9BF97FAFA9BF859C1EB /* Pods-VertixTests.release.xcconfig */;
+			baseConfigurationReference = 51F198BCCF21BB7BFF5A1716 /* Pods-VertixTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CURRENT_PROJECT_VERSION = 1;
@@ -1095,7 +1095,7 @@
 		};
 		8A21BD923F5F191A61CF153C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 75277D82A5881515E7756D3C /* Pods-Vertix.debug.xcconfig */;
+			baseConfigurationReference = BF5D5A10135FF42B2C479CBD /* Pods-Vertix.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -1127,7 +1127,7 @@
 		};
 		B1A57B630AD22350D96BE66C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 65B225194C7776544470DD54 /* Pods-VertixTests.debug.xcconfig */;
+			baseConfigurationReference = 3091540B20C5A5E885E420DB /* Pods-VertixTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CURRENT_PROJECT_VERSION = 1;
@@ -1151,7 +1151,7 @@
 		};
 		C4C385EC71F073AA7CDD9CE0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E202C80C8638A0944D6F9C7F /* Pods-Vertix.release.xcconfig */;
+			baseConfigurationReference = 4480CB79F0C0AB4B97205A10 /* Pods-Vertix.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;

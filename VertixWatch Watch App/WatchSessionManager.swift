@@ -22,6 +22,7 @@ final class WatchSessionManager: NSObject, ObservableObject {
     @Published var remainingSeconds: Int = 25 * 60
     @Published var isRunning: Bool = false
     @Published var isSessionActive: Bool = false
+    @Published var postureAlertMessage: String?
 
     // MARK: - Init
 
@@ -60,6 +61,8 @@ final class WatchSessionManager: NSObject, ObservableObject {
     // MARK: - Haptic + local notification on bad posture alert
 
     func handlePostureAlert(message: String) {
+        postureAlertMessage = message
+        
         // 1. Haptic tap
         WKInterfaceDevice.current().play(.notification)
 
@@ -76,6 +79,9 @@ final class WatchSessionManager: NSObject, ObservableObject {
         )
         UNUserNotificationCenter.current().add(request) { error in
             if let error { print("WatchSessionManager: notification failed — \(error)") }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            self.postureAlertMessage = nil
         }
     }
 }
@@ -106,6 +112,7 @@ extension WatchSessionManager: WCSessionDelegate {
                 self.isSessionActive  = true
 
             case "postureAlert":
+                print("⌚ POSTURE ALERT RECEIVED")
                 let msg = message["message"] as? String ?? "Check your posture"
                 self.handlePostureAlert(message: msg)
 

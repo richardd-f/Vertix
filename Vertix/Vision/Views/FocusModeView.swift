@@ -28,6 +28,7 @@ struct FocusModeView: View {
 
     @State private var showSaveConfirmation = false
     @State private var sessionSaved = false
+    @State private var lastPostureWasBad = false
     
     private let watchManager = WatchConnectivityManager.shared
 
@@ -138,6 +139,11 @@ struct FocusModeView: View {
             watchManager.sendSessionState(
                   phase: "focus", remainingSeconds: pomodoroEngine.timeRemaining, isRunning: false
             )
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                watchManager.sendPostureAlert(
+                    message: "TEST ALERT"
+                )
+            }
         }
         .onDisappear {
             if !isRunningTests { camera.stopSession() }
@@ -152,29 +158,27 @@ struct FocusModeView: View {
                 remainingSeconds: pomodoroEngine.timeRemaining,
                 isRunning: pomodoroEngine.isRunning
             )
+            
+            if let result = camera.postureResult {
+
+                let currentlyBad = !result.isGoodPosture
+
+                // Kirim alert hanya saat berubah dari Good -> Bad
+                if currentlyBad && !lastPostureWasBad {
+                    watchManager.sendPostureAlert(
+                        message: result.feedback
+                    )
+                }
+
+                lastPostureWasBad = currentlyBad
+            }
          
-            // Record posture sample + send Watch alert at every completed focus minute
             if pomodoroEngine.currentPhase == .focus,
                pomodoroEngine.focusSecondsElapsed > 0,
                pomodoroEngine.focusSecondsElapsed % 60 == 0 {
-         
+
                 let isGood = camera.postureResult?.isGoodPosture ?? false
                 sessionManager.recordMinuteSample(isGood: isGood)
-         
-                // NEW: alert Watch only on bad posture
-                if !isGood, let feedback = camera.postureResult?.feedback {
-                    watchManager.sendPostureAlert(message: feedback)
-                }
-            }
-         
-            if wasRunning && !pomodoroEngine.isRunning && !pomodoroEngine.allCyclesComplete {
-                SoundManager.shared.play(.pomodoroBreak)
-            }
-         
-            if pomodoroEngine.allCyclesComplete {
-                SoundManager.shared.play(.sessionEnd)
-                watchManager.sendSessionEnded()
-                saveAndDismiss()
             }
         }
         .sheet(isPresented: $showSettings) {

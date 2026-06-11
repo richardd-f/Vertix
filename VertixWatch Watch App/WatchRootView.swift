@@ -37,6 +37,7 @@ private func phaseIcon(for phase: String) -> String {
 // MARK: - Root View
 
 struct WatchRootView: View {
+    
     @EnvironmentObject private var session: WatchSessionManager
 
     var body: some View {
@@ -86,6 +87,18 @@ struct WatchTimerView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 8) {
+                
+                // Posture Alert
+                if let alert = session.postureAlertMessage {
+                    Text("⚠️ Fix Your Posture!")
+                        .font(.system(size: 11, weight: .bold))
+                        .foregroundColor(.black)
+                        .padding(.horizontal, 8)
+                        .padding(.vertical, 6)
+                        .background(Color.orange)
+                        .cornerRadius(8)
+                }
+
 
                 // Phase label
                 HStack(spacing: 4) {

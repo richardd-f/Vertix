@@ -34,7 +34,14 @@ final class WatchConnectivityManager: NSObject {
     /// Call this from PostureAnalyzer / FocusModeView when bad posture is detected.
     /// message: the specific fix string, e.g. "Fix: head tilting forward, spine not straight"
     func sendPostureAlert(message: String) {
-        send(["type": "postureAlert", "message": message])
+        print("🚨 POSTURE ALERT SENT")
+        print("🚨 Message:", message)
+        print("🚨 Reachable:", WCSession.default.isReachable)
+
+        send([
+            "type": "postureAlert",
+            "message": message
+        ])
     }
 
     /// Call this every second from PomodoroEngine.tick() so the Watch timer stays in sync.

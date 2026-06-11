@@ -7,6 +7,12 @@ import Combine
 import MediaPipeTasksVision
 
 class CameraViewModel: NSObject, ObservableObject {
+    
+    #if targetEnvironment(simulator)
+    private let isSimulator = true
+    #else
+    private let isSimulator = false
+    #endif
 
     let session = AVCaptureSession()
     private let videoOutput = AVCaptureVideoDataOutput()
@@ -17,6 +23,10 @@ class CameraViewModel: NSObject, ObservableObject {
     @Published var postureResult: PostureResult?
     /// True when the user has denied/restricted camera access — drives the permission UI.
     @Published var permissionDenied: Bool = false
+    
+    #if targetEnvironment(simulator)
+    private var mockTimer: Timer?
+    #endif
 
     override init() {
         super.init()
@@ -74,6 +84,12 @@ class CameraViewModel: NSObject, ObservableObject {
     }
 
     func startSession() {
+
+        #if targetEnvironment(simulator)
+            startMockSession()
+            return
+        #endif
+        
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .authorized:
             setPermissionDenied(false)
@@ -99,18 +115,59 @@ class CameraViewModel: NSObject, ObservableObject {
     }
 
     private func configureAndRun() {
+        #if targetEnvironment(simulator)
+        print("🖥️ Running in Simulator - camera disabled")
+        return
+        #else
         DispatchQueue.global(qos: .userInitiated).async {
             self.setupCamera()
             if !self.session.isRunning {
                 self.session.startRunning()
             }
-            print("▶️ Session running: \(self.session.isRunning)")
+            print("Session running: \(self.session.isRunning)")
         }
+        #endif
     }
 
     func stopSession() {
-        session.stopRunning()
+
+        #if targetEnvironment(simulator)
+            mockTimer?.invalidate()
+            mockTimer = nil
+        #else
+            session.stopRunning()
+        #endif
     }
+        
+    #if targetEnvironment(simulator)
+
+    private func startMockSession() {
+
+        mockTimer?.invalidate()
+
+        mockTimer = Timer.scheduledTimer(
+            withTimeInterval: 2.0,
+            repeats: true
+        ) { [weak self] _ in
+
+            let good = Bool.random()
+
+            DispatchQueue.main.async {
+
+                self?.postureResult = PostureResult(
+                    neckAngle: good ? 8 : 28,
+                    shoulderTilt: good ? 2 : 10,
+                    spineAngle: good ? 7 : 20,
+                    isGoodPosture: good,
+                    feedback: good
+                        ? "Good posture"
+                        : "Sit upright and align your shoulders"
+                )
+            }
+        }
+    }
+
+    #endif
 }
 
 extension CameraViewModel: AVCaptureVideoDataOutputSampleBufferDelegate {

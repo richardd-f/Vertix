@@ -10,7 +10,7 @@ struct PomodoroSettings {
         focusDuration: 25,
         shortBreakDuration: 5,
         longBreakDuration: 15,
-        totalCycles: 1
+        totalCycles: 4
     )
 }
 
